@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { fadeIn } from "@/lib/variants";
-import Circles from "@/components/Circle";
+import { motion ,Variants} from "framer-motion";
+import { fadeIn } from "../../lib/variants";
+import Circles from "../../components/Circle";
 import {
     SiReact,
     SiNextdotjs,
@@ -14,7 +14,7 @@ import {
     SiLaravel,
     SiPostgresql,
     SiMongodb,
-    SiAmazonaws,
+    SiAmazon,
     SiDocker,
     SiGit,
     SiLinux,
@@ -52,7 +52,7 @@ const SkillsPage = () => {
             title: "DevOps & Tools",
             icon: FaCode,
             skills: [
-                { name: "AWS", level: 85, icon: SiAmazonaws, color: "#FF9900" },
+                { name: "AWS", level: 85, icon: SiAmazon, color: "#FF9900" },
                 { name: "Docker", level: 80, icon: SiDocker, color: "#2496ED" },
                 { name: "Git", level: 95, icon: SiGit, color: "#F05032" },
                 { name: "CI/CD", level: 85, icon: FaCode, color: "#9333ea" },
@@ -69,7 +69,7 @@ const SkillsPage = () => {
 
             <div className="w-full max-w-6xl z-10">
                 <motion.h1
-                    variants={fadeIn("down", 0.2)}
+                    variants={fadeIn("down", 0.2) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="text-4xl lg:text-5xl font-bold mb-12 text-center bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent"
@@ -83,7 +83,7 @@ const SkillsPage = () => {
                         return (
                             <motion.div
                                 key={category.title}
-                                variants={fadeIn("up", 0.3 + categoryIndex * 0.1)}
+                                variants={fadeIn("up", 0.3 + categoryIndex * 0.1) as unknown as Variants}
                                 initial="hidden"
                                 animate="show"
                                 className="bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 shadow-xl"

@@ -1,7 +1,7 @@
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
-import  ParticleContainer  from "@/components/ParticularContainer";
-import ParticularContainer from "@/components/ParticularContainer";
-import Avatar from "@/components/Avatar";
+import ParticularContainer from "../components/ParticularContainer";
+import Avatar from "../components/Avatar";
 
 // Main Homepage Component
 function HomePage() {
@@ -28,17 +28,22 @@ function HomePage() {
 
                     {/* Paragraph */}
                     <p className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16 text-lg text-gray-300 font-light animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                        I create immersive digital experiences that blend innovative design with cutting-edge technology. Let's bring your vision to life with solutions that stand out in the digital landscape.
+                        I'm Ahmed Hamdy, a Full Stack Developer & DevOps Engineer. I create immersive digital experiences that blend innovative design with cutting-edge technology.
                     </p>
 
                     {/* Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                        <button className="px-8 py-3 rounded-lg bg-gradient-to-r from-red-500 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+                        <Link href="/projects" className="px-8 py-3 rounded-lg bg-gradient-to-r from-red-500 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
                             View Projects
-                        </button>
-                        <button className="px-8 py-3 rounded-lg border border-gray-700 text-white hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm">
+                        </Link>
+                        <a 
+                            href="/AhmedHamdyCV.pdf" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 rounded-lg border border-gray-700 text-white hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
+                        >
                             View Resume
-                        </button>
+                        </a>
                     </div>
 
                     {/* Stats */}

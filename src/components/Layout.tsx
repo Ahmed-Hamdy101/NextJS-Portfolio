@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import ParticularContainer from "@/components/ParticularContainer";
-import DockNav from "@/components/DockNav";
+import ParticularContainer from "./ParticularContainer";
+import DockNav from "./DockNav";
 
 interface LayoutProps {
     children: ReactNode;

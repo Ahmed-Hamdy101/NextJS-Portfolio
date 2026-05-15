@@ -18,6 +18,6 @@ export const fadeIn = (direction: "up" | "down" | "left" | "right", delay: numbe
                 ease: [0.25, 0.25, 0.25, 0.75],
             },
         },
-    };
+    } as const;
 };
 

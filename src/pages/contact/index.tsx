@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { fadeIn } from "@/lib/variants";
-import Circles from "@/components/Circle";
+import { motion, Variants } from "framer-motion";
+import { fadeIn } from "../../lib/variants";
+import Circles from "../../components/Circle";
 import {
     FaFacebookF,
     FaTwitter,
@@ -25,18 +25,10 @@ import {
 
 const ContactPage = () => {
     const socialLinks = [
-        { icon: FaGithub, href: "#", label: "GitHub" },
-        { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
+        { icon: FaGithub, href: "https://github.com/Ahmed-Hamdy101", label: "GitHub" },
+        { icon: FaLinkedinIn, href: "https://linkedin.com/in/ahmed-hamdy-ah", label: "LinkedIn" },
         { icon: FaTwitter, href: "#", label: "Twitter" },
         { icon: FaInstagram, href: "#", label: "Instagram" },
-        { icon: FaYoutube, href: "#", label: "YouTube" },
-        { icon: FaBehance, href: "#", label: "Behance" },
-        { icon: FaDribbble, href: "#", label: "Dribbble" },
-        { icon: SiCodepen, href: "#", label: "CodePen" },
-        { icon: SiStackoverflow, href: "#", label: "Stack Overflow" },
-        { icon: SiMedium, href: "#", label: "Medium" },
-        { icon: SiHashnode, href: "#", label: "Hashnode" },
-        { icon: SiDevpost, href: "#", label: "DevPost" },
     ];
 
     return (
@@ -46,7 +38,7 @@ const ContactPage = () => {
 
             <div className="w-full max-w-4xl z-10">
                 <motion.h1
-                    variants={fadeIn("down", 0.2)}
+                    variants={fadeIn("down", 0.2) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="text-4xl lg:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent"
@@ -54,18 +46,18 @@ const ContactPage = () => {
                     Get In Touch
                 </motion.h1>
                 <motion.p
-                    variants={fadeIn("down", 0.3)}
+                    variants={fadeIn("down", 0.3) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="text-lg text-center text-gray-300 mb-12"
                 >
-                    I'd love to hear from you! Whether you have a question, a project idea, or just want to connect.
+                    I would love to hear from you! Whether you have a question, a project idea, or just want to connect.
                 </motion.p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Contact Form */}
                     <motion.div
-                        variants={fadeIn("right", 0.4)}
+                        variants={fadeIn("right", 0.4) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 shadow-xl"
@@ -103,7 +95,7 @@ const ContactPage = () => {
                                 <textarea
                                     id="message"
                                     name="message"
-                                    rows="5"
+                                    rows={5}
                                     className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400 resize-none"
                                     placeholder="Your message here..."
                                 ></textarea>
@@ -119,7 +111,7 @@ const ContactPage = () => {
 
                     {/* Social Links */}
                     <motion.div
-                        variants={fadeIn("left", 0.4)}
+                        variants={fadeIn("left", 0.4) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 shadow-xl"
@@ -128,8 +120,8 @@ const ContactPage = () => {
                         <div className="space-y-4">
                             <div>
                                 <h3 className="font-medium mb-2">Email</h3>
-                                <a href="mailto:your.email@example.com" className="text-red-500 hover:text-purple-500 transition-colors">
-                                    your.email@example.com
+                                <a href="mailto:ahmedhamdy.,h95@gmail.com" className="text-red-500 hover:text-purple-500 transition-colors">
+                                    ahmedhamdy.,h95@gmail.com
                                 </a>
                             </div>
                             <div>
@@ -143,7 +135,7 @@ const ContactPage = () => {
                                                 href={social.href}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                variants={fadeIn("up", 0.1 * index)}
+                                                variants={fadeIn("up", 0.1 * index) as unknown as Variants}
                                                 initial="hidden"
                                                 animate="show"
                                                 whileHover={{ scale: 1.1, y: -5 }}

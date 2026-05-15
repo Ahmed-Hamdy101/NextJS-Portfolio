@@ -1,6 +1,6 @@
-import Circles from '@/components/Circle';
-import React, {JSX, useState} from 'react';
-import { Tabs } from "@/components/ui/vercel-tabs"
+import Circles from '../../components/Circle';
+import React, { JSX, useState } from 'react';
+import { Tabs } from "../../components/ui/vercel-tabs"
 import {
     FaHtml5,
     FaCss3Alt,
@@ -47,10 +47,10 @@ import {
 } from 'react-icons/si'
 
 // Motion
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 // Variants
-import { fadeIn } from "@/lib/variants";
-import Avatar from "@/components/Avatar";
+import { fadeIn } from "../../lib/variants";
+import Avatar from "../../components/Avatar";
 
 export default function AboutPage() {
     const icons = {
@@ -279,22 +279,25 @@ export default function AboutPage() {
             <div className="grid gap-6">
                 {[
                     {
-                        title: "Enterprise ERP System",
-                        description: "Full-stack Laravel application with real-time analytics",
-                        tech: ["Laravel", "Vue.js", "PostgreSQL", "AWS"],
-                        status: "Live"
+                        title: "ET GCO TORUS",
+                        description: "Premium travel & tourism platform for Egypt",
+                        tech: ["Next.js", "React", "Tailwind", "Framer Motion"],
+                        status: "Live",
+                        link: "https://egypt-tour-guide.com"
                     },
                     {
-                        title: "E-commerce Platform",
-                        description: "Next.js microservices architecture with payment integration",
-                        tech: ["Next.js", "Node.js", "Stripe", "Docker"],
-                        status: "In Development"
+                        title: "Alkayan Co",
+                        description: "Corporate website for leading construction company",
+                        tech: ["React", "CSS3", "JavaScript"],
+                        status: "Live",
+                        link: "https://www.alkayan-co.com"
                     },
                     {
-                        title: "DevOps Automation Suite",
-                        description: "CI/CD pipeline optimization and cloud management",
-                        tech: ["AWS", "Docker", "GitHub Actions", "Terraform"],
-                        status: "Live"
+                        title: "Egypt Racket Sport",
+                        description: "Advanced e-commerce with SEO & Stock Optimization",
+                        tech: ["Next.js", "AMD Build", "SEO", "Analytics"],
+                        status: "Live",
+                        link: "#"
                     }
                 ].map((project, index) => (
                     <motion.div
@@ -319,11 +322,10 @@ export default function AboutPage() {
                                     ))}
                                 </div>
                             </div>
-                            <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                project.status === "Live"
-                                    ? "bg-green-500/20 text-green-300 border border-green-400/30"
-                                    : "bg-yellow-500/20 text-yellow-300 border border-yellow-400/30"
-                            }`}>
+                            <div className={`px-3 py-1 rounded-full text-xs font-semibold ${project.status === "Live"
+                                ? "bg-green-500/20 text-green-300 border border-green-400/30"
+                                : "bg-yellow-500/20 text-yellow-300 border border-yellow-400/30"
+                                }`}>
                                 {project.status}
                             </div>
                         </div>
@@ -391,7 +393,7 @@ export default function AboutPage() {
 
             {/* Avatar */}
             <motion.div
-                variants={fadeIn('right', 0.2)}
+                variants={fadeIn('right', 0.2) as unknown as Variants}
                 initial="hidden"
                 animate="show"
                 exit="hidden"
@@ -405,7 +407,7 @@ export default function AboutPage() {
                 {/* Left Column - Professional Summary */}
                 <div className="space-y-8">
                     <motion.div
-                        variants={fadeIn('up', 0.3)}
+                        variants={fadeIn('up', 0.3) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="space-y-6"
