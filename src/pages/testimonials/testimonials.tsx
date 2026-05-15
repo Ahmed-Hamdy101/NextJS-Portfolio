@@ -62,7 +62,7 @@ const TestimonialsPage = () => {
 
             <div className="w-full max-w-7xl z-10">
                 <motion.h1
-                    variants={fadeIn("down", 0.2) as any}
+                    variants={fadeIn("down", 0.2) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="text-4xl lg:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent"
@@ -70,7 +70,7 @@ const TestimonialsPage = () => {
                     Client Testimonials
                 </motion.h1>
                 <motion.p
-                    variants={fadeIn("down", 0.3) as any}
+                    variants={fadeIn("down", 0.3) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="text-lg text-center text-gray-300 mb-12"
@@ -82,7 +82,7 @@ const TestimonialsPage = () => {
                     {testimonials.map((testimonial, index) => (
                         <motion.div
                             key={testimonial.id}
-                            variants={fadeIn("up", 0.2 + index * 0.1) as any}
+                            variants={fadeIn("up", 0.2 + index * 0.1) as unknown as Variants}
                             initial="hidden"
                             animate="show"
                             whileHover={{ y: -5 }}
