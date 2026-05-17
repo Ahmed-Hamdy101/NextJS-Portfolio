@@ -1,6 +1,6 @@
 import { motion, Variants } from "framer-motion";
-import { fadeIn } from "../../lib/variants";
-import Circles from "../../components/Circle";
+import { fadeIn } from "@/lib/variants";
+import Circles from "@/components/Circle";
 import {
     FaFacebookF,
     FaTwitter,

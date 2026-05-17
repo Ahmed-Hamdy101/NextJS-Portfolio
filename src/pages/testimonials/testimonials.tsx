@@ -1,7 +1,7 @@
 import { HiMiniStar } from "react-icons/hi2";
 import { motion, Variants } from "framer-motion";
-import { fadeIn } from "../../lib/variants";
-import Circles from "../../components/Circle";
+import { fadeIn } from "@/lib/variants";
+import Circles from "@/components/Circle";
 
 const TestimonialsPage = () => {
     const testimonials = [

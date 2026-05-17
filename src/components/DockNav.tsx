@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-
 import { 
     HiMiniHome, 
     HiMiniUser, 
     HiMiniRectangleGroup, 
     HiMiniSquaresPlus, 
-    HiMiniEnvelope 
+    HiMiniEnvelope,
+    HiMiniBriefcase
 } from "react-icons/hi2";
 
 const navItems = [
     { href: "/", label: "Home", Icon: HiMiniHome },
     { href: "/about", label: "About", Icon: HiMiniUser },
     { href: "/skills", label: "Skills", Icon: HiMiniSquaresPlus },
+    { href: "/work", label: "Work", Icon: HiMiniBriefcase },
     { href: "/projects", label: "Projects", Icon: HiMiniRectangleGroup },
     { href: "/contact", label: "Contact", Icon: HiMiniEnvelope },
 ];

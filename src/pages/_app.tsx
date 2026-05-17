@@ -1,9 +1,9 @@
 // @ts-ignore
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-import Transition from "../components/Transition";
+import Transition from "@/components/Transition";
 import { AnimatePresence } from "framer-motion";
 
 export default function App({ Component, pageProps }: AppProps) {
