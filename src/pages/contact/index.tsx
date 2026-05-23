@@ -1,154 +1,227 @@
 import { motion, Variants } from "framer-motion";
 import { fadeIn } from "@/lib/variants";
 import Circles from "@/components/Circle";
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import {
-    FaFacebookF,
-    FaTwitter,
-    FaLinkedinIn,
-    FaGithub,
-    FaInstagram,
-    FaYoutube,
-    FaBehance,
-    FaDribbble
-} from 'react-icons/fa';
-import {
-    SiCodepen,
-    SiStackoverflow,
-    SiReddit,
-    SiPinterest,
-    SiTiktok,
-    SiVimeo,
-    SiMedium,
-    SiDevpost,
-    SiHashnode
-} from 'react-icons/si';
+    HiMiniEnvelope, HiMiniMapPin, HiMiniPaperAirplane,
+    HiMiniArrowTopRightOnSquare, HiMiniPhone,
+} from 'react-icons/hi2';
 
 const ContactPage = () => {
     const socialLinks = [
-        { icon: FaGithub, href: "https://github.com/Ahmed-Hamdy101", label: "GitHub" },
-        { icon: FaLinkedinIn, href: "https://linkedin.com/in/ahmed-hamdy-ah", label: "LinkedIn" },
-        { icon: FaTwitter, href: "#", label: "Twitter" },
-        { icon: FaInstagram, href: "#", label: "Instagram" },
+        { icon: FaGithub, href: "https://github.com/Ahmed-Hamdy101", label: "GitHub", color: "hover:border-gray-400/40 hover:text-gray-300" },
+        { icon: FaLinkedinIn, href: "https://linkedin.com/in/ahmed-hamdy-ah", label: "LinkedIn", color: "hover:border-blue-500/40 hover:text-blue-400" },
+    ];
+
+    const contactInfo = [
+        {
+            icon: HiMiniEnvelope,
+            label: "Email",
+            value: "ahmedhamdy.mh95@gmail.com",
+            href: "mailto:ahmedhamdy.mh95@gmail.com",
+            color: "text-red-400",
+        },
+        {
+            icon: HiMiniPhone,
+            label: "Phone",
+            value: "+20 114 164 0812",
+            href: "tel:+201141640812",
+            color: "text-purple-400",
+        },
+        {
+            icon: HiMiniMapPin,
+            label: "Location",
+            value: "6th of October, Giza, Egypt — Available Remotely",
+            href: null,
+            color: "text-blue-400",
+        },
     ];
 
     return (
-        <div className="relative text-white min-h-screen flex flex-col items-center justify-center px-6 py-10 overflow-hidden">
-            {/* Background Circles */}
+        <div className="relative text-white min-h-screen flex flex-col items-center justify-center px-6 py-24 overflow-hidden bg-[#020204]">
             <Circles />
 
-            <div className="w-full max-w-4xl z-10">
-                <motion.h1
-                    variants={fadeIn("down", 0.2) as unknown as Variants}
-                    initial="hidden"
-                    animate="show"
-                    className="text-4xl lg:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent"
-                >
-                    Get In Touch
-                </motion.h1>
-                <motion.p
-                    variants={fadeIn("down", 0.3) as unknown as Variants}
-                    initial="hidden"
-                    animate="show"
-                    className="text-lg text-center text-gray-300 mb-12"
-                >
-                    I would love to hear from you! Whether you have a question, a project idea, or just want to connect.
-                </motion.p>
+            <div className="w-full max-w-6xl z-10 pt-16">
+                {/* Header */}
+                <div className="text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="inline-flex items-center gap-3 px-5 py-2 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md mb-6"
+                    >
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+                        </span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-300">Open to Opportunities</span>
+                    </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <motion.h1
+                        variants={fadeIn("down", 0.2) as unknown as Variants}
+                        initial="hidden"
+                        animate="show"
+                        className="text-5xl lg:text-8xl font-black mb-6 bg-gradient-to-r from-red-500 via-purple-600 to-blue-500 bg-clip-text text-transparent uppercase tracking-tighter"
+                    >
+                        Get in Touch
+                    </motion.h1>
+                    <motion.p
+                        variants={fadeIn("down", 0.3) as unknown as Variants}
+                        initial="hidden"
+                        animate="show"
+                        className="text-gray-400 text-xl lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
+                    >
+                        Have a project in mind? Let&apos;s build something scalable and fast together.
+                    </motion.p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
                     {/* Contact Form */}
                     <motion.div
                         variants={fadeIn("right", 0.4) as unknown as Variants}
                         initial="hidden"
                         animate="show"
-                        className="bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 shadow-xl"
+                        className="lg:col-span-3 glass-panel rounded-[2rem] p-8 lg:p-12 shadow-2xl"
                     >
-                        <h2 className="text-2xl font-semibold mb-6">Send a Message</h2>
-                        <form className="space-y-4">
-                            <div>
-                                <label htmlFor="name" className="block mb-2 font-medium">
-                                    Name
-                                </label>
+                        <h2 className="text-3xl font-black mb-2 uppercase tracking-tight">Send a Message</h2>
+                        <p className="text-gray-500 text-sm mb-10 font-light">I typically reply within 24 hours.</p>
+
+                        <form className="space-y-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div className="group">
+                                    <label htmlFor="contact-name" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Full Name</label>
+                                    <input
+                                        type="text"
+                                        id="contact-name"
+                                        name="name"
+                                        className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 transition-all duration-300 text-sm font-light"
+                                        placeholder="Your name"
+                                    />
+                                </div>
+                                <div className="group">
+                                    <label htmlFor="contact-email" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Email Address</label>
+                                    <input
+                                        type="email"
+                                        id="contact-email"
+                                        name="email"
+                                        className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 transition-all duration-300 text-sm font-light"
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="group">
+                                <label htmlFor="contact-subject" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Subject</label>
                                 <input
                                     type="text"
-                                    id="name"
-                                    name="name"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400"
-                                    placeholder="Your Name"
+                                    id="contact-subject"
+                                    name="subject"
+                                    className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 transition-all duration-300 text-sm font-light"
+                                    placeholder="Project Proposal / Collaboration Inquiry"
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="email" className="block mb-2 font-medium">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400"
-                                    placeholder="your.email@example.com"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="message" className="block mb-2 font-medium">
-                                    Message
-                                </label>
+
+                            <div className="group">
+                                <label htmlFor="contact-message" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Message</label>
                                 <textarea
-                                    id="message"
+                                    id="contact-message"
                                     name="message"
-                                    rows={5}
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-white placeholder-gray-400 resize-none"
-                                    placeholder="Your message here..."
-                                ></textarea>
+                                    rows={6}
+                                    className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 resize-none transition-all duration-300 text-sm font-light leading-relaxed"
+                                    placeholder="Tell me about your project, timeline, and goals..."
+                                />
                             </div>
-                            <button
+
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
                                 type="submit"
-                                className="w-full px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 text-white rounded-lg hover:from-red-600 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
+                                className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white rounded-xl font-black uppercase tracking-[0.15em] text-sm shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-500"
                             >
+                                <HiMiniPaperAirplane className="text-lg rotate-[-45deg]" />
                                 Send Message
-                            </button>
+                            </motion.button>
                         </form>
                     </motion.div>
 
-                    {/* Social Links */}
+                    {/* Right Panel */}
                     <motion.div
-                        variants={fadeIn("left", 0.4) as unknown as Variants}
+                        variants={fadeIn("left", 0.5) as unknown as Variants}
                         initial="hidden"
                         animate="show"
-                        className="bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 shadow-xl"
+                        className="lg:col-span-2 flex flex-col gap-5"
                     >
-                        <h2 className="text-2xl font-semibold mb-6">Connect With Me</h2>
-                        <div className="space-y-4">
-                            <div>
-                                <h3 className="font-medium mb-2">Email</h3>
-                                <a href="mailto:ahmedhamdy.,h95@gmail.com" className="text-red-500 hover:text-purple-500 transition-colors">
-                                    ahmedhamdy.,h95@gmail.com
-                                </a>
-                            </div>
-                            <div>
-                                <h3 className="font-medium mb-4">Social Media</h3>
-                                <div className="grid grid-cols-3 gap-3">
-                                    {socialLinks.map((social, index) => {
-                                        const Icon = social.icon;
-                                        return (
-                                            <motion.a
-                                                key={social.label}
-                                                href={social.href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                variants={fadeIn("up", 0.1 * index) as unknown as Variants}
-                                                initial="hidden"
-                                                animate="show"
-                                                whileHover={{ scale: 1.1, y: -5 }}
-                                                className="flex items-center justify-center w-12 h-12 bg-white/5 border border-white/20 rounded-lg hover:bg-white/10 hover:border-red-500/50 transition-all duration-300"
-                                                title={social.label}
-                                            >
-                                                <Icon className="w-5 h-5" />
-                                            </motion.a>
-                                        );
-                                    })}
+                        {contactInfo.map((info, index) => (
+                            <motion.div
+                                key={info.label}
+                                initial={{ opacity: 0, x: 30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.5 + index * 0.1 }}
+                                className="glass-panel glass-panel-hover rounded-2xl p-6"
+                            >
+                                <div className="flex items-start gap-4">
+                                    <div className={`flex-shrink-0 w-11 h-11 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-center ${info.color}`}>
+                                        <info.icon className="text-lg" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-[0.15em] text-gray-500 mb-1">{info.label}</p>
+                                        {info.href ? (
+                                            <a href={info.href} className="text-gray-200 hover:text-red-400 transition-colors duration-300 text-sm font-medium break-all">
+                                                {info.value}
+                                            </a>
+                                        ) : (
+                                            <p className="text-gray-200 text-sm font-medium">{info.value}</p>
+                                        )}
+                                    </div>
                                 </div>
+                            </motion.div>
+                        ))}
+
+                        {/* Social Links */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.8 }}
+                            className="glass-panel rounded-2xl p-6"
+                        >
+                            <p className="text-xs font-black uppercase tracking-[0.15em] text-gray-500 mb-4">Find Me Online</p>
+                            <div className="flex flex-col gap-3">
+                                {socialLinks.map((social) => {
+                                    const Icon = social.icon;
+                                    return (
+                                        <a
+                                            key={social.label}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`flex items-center gap-3 px-4 py-3 bg-white/[0.02] border border-white/10 rounded-xl text-gray-400 ${social.color} transition-all duration-300`}
+                                        >
+                                            <Icon className="text-base flex-shrink-0" />
+                                            <span className="text-xs font-black uppercase tracking-wider">{social.label}</span>
+                                            <HiMiniArrowTopRightOnSquare className="text-xs ml-auto flex-shrink-0 opacity-50" />
+                                        </a>
+                                    );
+                                })}
                             </div>
-                        </div>
+                        </motion.div>
+
+                        {/* Availability Badge */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.95 }}
+                            className="glass-panel rounded-2xl p-6 border border-green-500/20"
+                        >
+                            <div className="flex items-center gap-3 mb-3">
+                                <span className="relative flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+                                </span>
+                                <p className="text-xs font-black uppercase tracking-[0.15em] text-green-400">Available for Projects</p>
+                            </div>
+                            <p className="text-gray-400 text-sm font-light leading-relaxed">
+                                Currently accepting new client projects and collaborations. Response time: under 24 hrs.
+                            </p>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>
@@ -157,4 +230,3 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-
