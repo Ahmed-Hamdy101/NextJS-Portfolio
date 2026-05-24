@@ -39,20 +39,6 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                     </div>
                     <div className="flex items-center gap-3">
                         <button
-                            onClick={() => window.print()}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300"
-                        >
-                            <HiMiniPrinter className="text-sm" />
-                            Print / Save PDF
-                        </button>
-                        <button
-                            onClick={() => window.print()}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-red-500 to-purple-600 text-xs font-bold uppercase tracking-wider text-white hover:opacity-90 shadow-lg shadow-red-500/10 transition-all duration-300"
-                        >
-                            <HiMiniArrowDownTray className="text-sm" />
-                            Download PDF
-                        </button>
-                        <button
                             onClick={onClose}
                             className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/30 transition-all duration-300"
                             aria-label="Close"
@@ -83,11 +69,11 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                                 <HiMiniPhone className="text-purple-400 flex-shrink-0" />
                                 +20 114 164 0812
                             </span>
-                            <a href="mailto:ahmedhamdy.mh95@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
+                            <a href="mailto:ahmedhamdy.mh95@gmail.com" className="flex items-center gap-2 mr-4 hover:text-white transition-colors">
                                 <HiMiniEnvelope className="text-red-500 flex-shrink-0" />
                                 ahmedhamdy.mh95@gmail.com
                             </a>
-                            <a href="https://github.com/Ahmed-Hamdy101" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                            <a href="https://github.com/Ahmed-Hamdy101" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white transition-colors ml-4">
                                 <FaGithub className="text-gray-400 flex-shrink-0" />
                                 github.com/Ahmed-Hamdy101
                             </a>
@@ -168,20 +154,6 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                                 ]
                             },
                             {
-                                role: "Full Stack Developer",
-                                company: "Al Kayan Construction & Engineering",
-                                link: "https://www.alkayan-co.com",
-                                duration: "Jan 2020 – Present | Maadi",
-                                color: "bg-purple-500",
-                                points: [
-                                    "Designed and deployed MVC web applications using PHP and Laravel, improving scalability for higher traffic volumes.",
-                                    "Engineered a proprietary Real Estate CMS with secure authentication and role-based access control (RBAC).",
-                                    "Reduced identified vulnerabilities by 75% through CSRF protection and rigorous full-stack input validation.",
-                                    "Optimized database schemas and SQL query execution plans, accelerating data retrieval across production systems.",
-                                    "Managed end-to-end hosting (Namecheap), DNS configuration (GoDaddy), and SSL certificates.",
-                                ]
-                            },
-                            {
                                 role: "IT Support & Systems Engineer",
                                 company: "Padel Nuestro",
                                 duration: "Sep 2022 – Mar 2025 | West Cairo",
@@ -192,7 +164,22 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                                     "Deployed and maintained 3+ CCTV and DVR/NVR systems, cutting security incident response time by 35%.",
                                     "Administered 50+ software licenses; resolved 15+ weekly hardware and printer issues, reducing recurring downtime by 50%.",
                                 ]
-                            },
+                            }
+                            ,
+                            {
+                                role: "Full Stack Developer",
+                                company: "Al Kayan Construction & Engineering",
+                                link: "https://www.alkayan-co.com",
+                                duration: "Jan 2021 – Present | Maadi",
+                                color: "bg-purple-500",
+                                points: [
+                                    "Designed and deployed MVC web applications using PHP and Laravel, improving scalability for higher traffic volumes.",
+                                    "Engineered a proprietary Real Estate CMS with secure authentication and role-based access control (RBAC).",
+                                    "Reduced identified vulnerabilities by 75% through CSRF protection and rigorous full-stack input validation.",
+                                    "Optimized database schemas and SQL query execution plans, accelerating data retrieval across production systems.",
+                                    "Managed end-to-end hosting (Namecheap), DNS configuration (GoDaddy), and SSL certificates.",
+                                ]
+                            }
                         ].map((exp, i) => (
                             <div key={i} className="relative pl-6 border-l border-white/10 print-cv-border">
                                 <div className={`absolute -left-1.5 top-1.5 w-3 h-3 rounded-full ${exp.color}`} />

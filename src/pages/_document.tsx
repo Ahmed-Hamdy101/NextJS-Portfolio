@@ -1,40 +1,24 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
-  return (
-    <Html lang="en">
-      <Head>
-        {/* Preconnect first so the DNS + TLS handshake starts immediately */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/**
-         * Performance: load the font stylesheet non-blocking via media="print" trick.
-         * The browser fetches it at low priority, then onload switches to all media.
-         * display=swap already prevents FOIT; this removes render-blocking entirely.
-         */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
-          media="print"
-          // @ts-ignore — onLoad is valid on link elements in the browser
-          onLoad="this.media='all'"
-        />
-        {/* Noscript fallback for users without JS */}
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
-          />
-        </noscript>
-
-        {/* Favicon hints */}
-        <meta name="theme-color" content="#020204" />
-      </Head>
-      <body className="antialiased font-sans">
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+    return (
+        <Html lang="en">
+            <Head>
+                <meta name="theme-color" content="#020204" />
+                {/* DNS prefetch for external resources */}
+                <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+                <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+                <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+                <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+                <link rel="shortcut icon" href="/icon.svg" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                <meta name="apple-mobile-web-app-title" content="Ahmed Hamdy" />
+                <link rel="manifest" href="/site.webmanifest" />    
+            </Head>
+            <body className="antialiased font-sans bg-[#020204]">
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
+    );
 }

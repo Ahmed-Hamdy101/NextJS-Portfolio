@@ -85,7 +85,17 @@ const ContactPage = () => {
                         <h2 className="text-3xl font-black mb-2 uppercase tracking-tight">Send a Message</h2>
                         <p className="text-gray-500 text-sm mb-10 font-light">I typically reply within 24 hours.</p>
 
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={(e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.currentTarget);
+                            const name = formData.get("name") as string;
+                            const subject = formData.get("subject") as string;
+                            const message = formData.get("message") as string;
+                            
+                            const mailtoLink = `mailto:ahmedhamdy.mh95@gmail.com?subject=${encodeURIComponent(subject || "Contact from Portfolio")}&body=${encodeURIComponent(`Name: ${name}\n\n${message}`)}`;
+                            
+                            window.location.href = mailtoLink;
+                        }}>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div className="group">
                                     <label htmlFor="contact-name" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Full Name</label>

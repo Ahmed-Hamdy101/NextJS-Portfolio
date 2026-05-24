@@ -7,13 +7,13 @@ const Logo = () => {
 
     return (
         <Link href="/" className="group">
-            <div className="relative w-12 h-12 bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-xl border border-white/20 dark:border-white/10 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden flex items-center justify-center">
+            <div className="relative w-20 h-20 bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-xl border border-white/20 dark:border-white/10 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden flex items-center justify-center">
                 {!imageError ? (
                     <Image
-                        src="/logo-2.png"
+                        src="/images/logo/logo.png"
                         alt="Logo"
-                        width={48}
-                        height={48}
+                        width={90}
+                        height={80}
                         className="object-contain p-2 transition-transform duration-300"
                         priority
                         onError={() => setImageError(true)}

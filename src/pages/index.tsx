@@ -86,7 +86,7 @@ export default function HomePage() {
                             <span className="relative inline-block mt-1.5">
                                 <span className="absolute -inset-1 bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 opacity-25 blur-xl rounded-full" />
                                 <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-500 to-indigo-500 drop-shadow-2xl">
-                                    Stack Eng.
+                                    Stack  Eng.
                                 </span>
                             </span>
                         </motion.h1>

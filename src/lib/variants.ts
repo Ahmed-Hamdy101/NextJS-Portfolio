@@ -1,12 +1,12 @@
 // Framer Motion animation variants
-// Perf: duration reduced from 1.2s → 0.5s; travel distance from 80px → 30px.
-// Snappier perceived performance with same visual style.
+// Delays are intentionally small — large delays (0.3–0.8s) make pages feel
+// slow even when the JS is already loaded and the component is mounted.
 
 export const fadeIn = (direction: "up" | "down" | "left" | "right", delay: number) => {
     return {
         hidden: {
-            y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
-            x: direction === "left" ? 30 : direction === "right" ? -30 : 0,
+            y: direction === "up" ? 20 : direction === "down" ? -20 : 0,
+            x: direction === "left" ? 20 : direction === "right" ? -20 : 0,
             opacity: 0,
         },
         show: {
@@ -15,8 +15,9 @@ export const fadeIn = (direction: "up" | "down" | "left" | "right", delay: numbe
             opacity: 1,
             transition: {
                 type: "tween",
-                duration: 0.5,
-                delay: delay,
+                // Cap delay at 0.2s max — longer delays make content invisible too long
+                duration: 0.35,
+                delay: Math.min(delay * 0.4, 0.2),
                 ease: [0.25, 0.1, 0.25, 1],
             },
         },

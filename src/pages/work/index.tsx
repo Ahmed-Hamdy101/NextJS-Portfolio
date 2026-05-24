@@ -27,17 +27,6 @@ const WorkPage = () => {
             accentColor: "text-cyan-400",
         },
         {
-            company: "Al Kayan Construction & Engineering",
-            companyLink: "https://www.alkayan-co.com",
-            role: "Full Stack Developer",
-            duration: "Jan 2020 – Present | Maadi",
-            description: "Designed and deployed Laravel MVC web applications for a leading construction firm. Built a proprietary Real Estate CMS with RBAC authentication. Reduced vulnerabilities by 75% via CSRF protection and full-stack input validation. Optimized SQL queries and managed DNS, hosting, and SSL across concurrent projects.",
-            skills: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF", "Namecheap", "GoDaddy", "SSL"],
-            icon: HiMiniRocketLaunch,
-            gradient: "from-red-500/10 via-purple-600/5 to-transparent",
-            accentColor: "text-red-400",
-        },
-        {
             company: "Padel Nuestro",
             role: "IT Support & Systems Engineer",
             duration: "Sep 2022 – Mar 2025 | West Cairo",
@@ -46,6 +35,17 @@ const WorkPage = () => {
             icon: HiMiniCommandLine,
             gradient: "from-blue-500/10 via-indigo-600/5 to-transparent",
             accentColor: "text-blue-400",
+        },
+        {
+            company: "Al Kayan Construction & Engineering",
+            companyLink: "https://www.alkayan-co.com",
+            role: "Full Stack Developer",
+            duration: "Jan 2021 – Present | Maadi",
+            description: "Designed and deployed Laravel MVC web applications for a leading construction firm. Built a proprietary Real Estate CMS with RBAC authentication. Reduced vulnerabilities by 75% via CSRF protection and full-stack input validation. Optimized SQL queries and managed DNS, hosting, and SSL across concurrent projects.",
+            skills: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF", "Namecheap", "GoDaddy", "SSL"],
+            icon: HiMiniRocketLaunch,
+            gradient: "from-red-500/10 via-purple-600/5 to-transparent",
+            accentColor: "text-red-400",
         },
     ];
 

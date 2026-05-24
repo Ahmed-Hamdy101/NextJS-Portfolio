@@ -10,7 +10,7 @@ const Avatar = () => {
         <div className="relative w-full h-full p-4">
             <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                 <Image
-                    src="/avater.png"
+                    src="/images/avater/avater.png"
                     alt="Ahmed Hamdy"
                     fill
                     priority
