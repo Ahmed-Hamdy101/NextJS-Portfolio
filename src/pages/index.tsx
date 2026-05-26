@@ -1,14 +1,19 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
+import { BiLogoAmazon } from "react-icons/bi";
+import { HiMiniCommandLine, HiMiniEye  } from "react-icons/hi2";
+import {
+      SiBun,
+    SiDigitalocean,
+    SiFastify,
+    SiLaravel,
+    SiNextdotjs,
+    SiVercel,
+} from "react-icons/si";
 import Avatar from "../components/Avatar";
 import { fadeIn } from "../lib/variants";
-import {
-    SiNextdotjs, SiAmazon, SiLaravel, SiBun, SiFastify,
-    SiDigitalocean, SiVercel,
-} from "react-icons/si";
-import { HiMiniCommandLine, HiMiniEye } from "react-icons/hi2";
 
 // Lazy — only loads when user clicks "Interactive CV"
 const ResumeModal = dynamic(() => import("../components/ResumeModal"), {
@@ -50,7 +55,7 @@ export default function HomePage() {
         {
             title: "Cloud & DevOps",
             description: "Scalable infrastructure on AWS and DigitalOcean with Docker, CI/CD pipelines, NGINX/Caddy, and SSL-secured production deployments.",
-            icon: SiAmazon,
+            icon: BiLogoAmazon,
             gradient: "from-orange-500 to-red-500"
         },
         {
@@ -188,7 +193,7 @@ export default function HomePage() {
                             { Icon: SiLaravel, color: "text-[#FF2D20]", name: "Laravel" },
                             { Icon: SiBun, color: "text-[#FBF0DF]", name: "Bun" },
                             { Icon: SiFastify, color: "text-white", name: "Fastify" },
-                            { Icon: SiAmazon, color: "text-[#FF9900]", name: "AWS" },
+                            { Icon: BiLogoAmazon, color: "text-[#FF9900]", name: "AWS" },
                             { Icon: SiDigitalocean, color: "text-[#0080FF]", name: "DigitalOcean" },
                             { Icon: SiVercel, color: "text-white", name: "Vercel" },
                             { Icon: HiMiniCommandLine, color: "text-slate-400", name: "SSH / Linux" },

@@ -1,13 +1,17 @@
 import { motion, Variants } from "framer-motion";
 import { FaCode, FaHtml5 } from 'react-icons/fa';
 import { HiMiniCommandLine } from "react-icons/hi2";
+import { 
+  DiPhotoshop,   
+  DiIllustrator ,
+}   from "react-icons/di";
+import { TbBrandAdobePremier   ,TbBrandAdobeXd  } from "react-icons/tb";
+
+import { GrOracle } from "react-icons/gr";
+import { AiFillAmazonCircle } from "react-icons/ai";
+
 import {
-    SiAdobe,
-    SiAdobeillustrator,
-    SiAdobephotoshop,
-    SiAdobepremierepro,
-    SiAdobexd,
-    SiAmazon,
+
     SiAnycubic,
     SiBun,
     SiDigitalocean,
@@ -29,7 +33,6 @@ import {
     SiNamecheap,
     SiNextdotjs,
     SiNodedotjs,
-    SiOracle,
     SiPostgresql,
     SiPrisma,
     SiQgis,
@@ -78,7 +81,7 @@ const SkillsPage = () => {
                 { name: "PHP / Laravel", level: 88, icon: SiLaravel, color: "#FF2D20" },
                 { name: "PostgreSQL", level: 85, icon: SiPostgresql, color: "#4169E1" },
                 { name: "Mysql", level: 85, icon: SiMysql, color: "#c45445" },
-                { name: "RDS AWS", level: 85, icon: SiAmazon, color: "#FF9900" },
+                { name: "RDS AWS", level: 85, icon: AiFillAmazonCircle, color: "#FF9900" },
                 { name: "MongoDB", level: 80, icon: SiMongodb, color: "#47A248" },
                 { name: "Redis", level: 82, icon: SiRedis, color: "#DC382D" },
                 { name: "Drizzle", level: 82, icon: SiDrizzle, color: "#DC382D" },
@@ -91,7 +94,7 @@ const SkillsPage = () => {
             accentColor: "text-red-400",
             gradient: "from-red-500/10 via-orange-500/5 to-transparent",
             skills: [
-                { name: "AWS (EC2/S3/RDS)", level: 85, icon: SiAmazon, color: "#FF9900" },
+                { name: "AWS (EC2/S3/RDS)", level: 85, icon: AiFillAmazonCircle, color: "#FF9900" },
                 { name: "DigitalOcean", level: 82, icon: SiDigitalocean, color: "#0080FF" },
                 { name: "Docker", level: 82, icon: SiDocker, color: "#2496ED" },
                 { name: "SSH / Linux", level: 88, icon: HiMiniCommandLine, color: "#FFFFFF" },
@@ -99,7 +102,7 @@ const SkillsPage = () => {
                 { name: "Vercel", level: 90, icon: SiVercel, color: "#FFFFFF" },
                 { name: "Decouple", level: 90, icon: SiAnycubic, color: "#7a2a6d" },
                 { name: "NameCheap", level: 90, icon: SiNamecheap, color: "#7a2a6d" },
-                { name: "Oracle Cloud", level: 90, icon: SiOracle, color: "#7a2a6d" },
+                { name: "Oracle Cloud", level: 90, icon: GrOracle, color: "#7a2a6d" },
                 { name: "Godaddy", level: 90, icon: SiGodaddy, color: "#7a2a6d" },
                 { name: "Github", level: 90, icon: SiGithub, color: "#7a2a6d" },
             ],
@@ -110,10 +113,10 @@ const SkillsPage = () => {
             gradient: "from-red-500/10 via-orange-500/5 to-transparent",
             skills: [
                 { name: "Figma ", level: 90, icon: SiFigma, color: "#00ffbf" },
-                { name: "Adobe Xd", level: 90, icon: SiAdobexd, color: "#d20be4" }, 
-                { name: "Adobe Illustrator", level: 90, icon: SiAdobeillustrator, color: "#e9d62a" },
-                { name: "Adobe Photoshop", level: 90, icon: SiAdobephotoshop, color: "#0080FF" },
-                { name: "Adobe Premier", level: 90, icon: SiAdobepremierepro, color: "#c72eb3" },
+                { name: "Adobe Xd", level: 90, icon: TbBrandAdobeXd, color: "#d20be4" }, 
+                { name: "Adobe Illustrator", level: 90, icon: DiIllustrator, color: "#e9d62a" },
+                { name: "Adobe Photoshop", level: 90, icon: DiPhotoshop, color: "#0080FF" },
+                { name: "Adobe Premier", level: 90, icon: TbBrandAdobePremier, color: "#c72eb3" },
                 { name: "QT / C++", level: 82, icon: SiQt, color: "#2496ED" },
                 { name: "Visual Studio Community / C# ", level: 90, icon: SiVsco, color: "#2496ED" },
                 { name: "Electrons", level: 20, icon: SiElectron, color: "#2496ED" },
