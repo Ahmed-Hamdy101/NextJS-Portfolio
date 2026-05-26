@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { fadeIn } from "../../lib/variants";
 import Circles from "../../components/Circle";
 import Image from "next/image";
@@ -28,6 +28,7 @@ const experiences = [
     },
     {
         company: "Al Kayan Construction & Engineering",
+        update: "Alkayan Nova New UX-2.0 In Progress",
         companyLink: "https://www.alkayan-co.com",
         logo: "/images/companies/alkayan-nova.png",
         role: "Full Stack Developer",
@@ -99,7 +100,7 @@ const WorkPage = () => {
                     </motion.div>
 
                     <motion.h1
-                        variants={fadeIn("down", 0.1)}
+                        variants={fadeIn("down", 0.1) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-5xl sm:text-6xl lg:text-8xl font-black mb-6 bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 bg-clip-text text-transparent uppercase tracking-tighter"
@@ -108,12 +109,12 @@ const WorkPage = () => {
                     </motion.h1>
 
                     <motion.p
-                        variants={fadeIn("down", 0.15)}
+                        variants={fadeIn("down", 0.15) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-gray-400 text-lg lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
                     >
-                        3+ years of full-stack engineering, IT leadership, and scalable system architecture.
+                        4+ years of full-stack engineering, IT leadership, and scalable system architecture.
                     </motion.p>
                 </div>
 
@@ -127,7 +128,7 @@ const WorkPage = () => {
                         return (
                             <motion.div
                                 key={exp.company}
-                                variants={fadeIn("up", 0.1 + index * 0.08)}
+                                variants={fadeIn("up", 0.1 + index * 0.08)  as unknown as Variants }
                                 initial="hidden"
                                 animate="show"
                                 className="group relative glass-panel glass-panel-hover rounded-[2.5rem] overflow-hidden shadow-2xl"
@@ -179,6 +180,14 @@ const WorkPage = () => {
                                                     {exp.company}
                                                 </p>
                                             )}
+                                            <div className="text-xs text-gray-500 mt-1">
+                                                {exp.update && (
+                                                    <span className="bg-yellow-500/10 text-yellow-400 px-2 py-0.5 rounded-full uppercase tracking-widest font-black">
+                                                        {exp.update}
+                                                    </span>
+                                                )}
+                                            </div>
+                                                
                                         </div>
                                     </div>
 

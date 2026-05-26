@@ -103,7 +103,7 @@ const TestimonialsPage = () => {
                     className="grid grid-cols-3 gap-6 mb-20 max-w-2xl mx-auto"
                 >
                     {[
-                        { value: "3+", label: "Years Experience" },
+                        { value: "4+", label: "Years Experience" },
                         { value: "10+", label: "Live Projects" },
                         { value: "5★", label: "Client Rating" },
                     ].map((stat) => (

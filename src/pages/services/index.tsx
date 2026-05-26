@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { fadeIn } from "@/lib/variants";
 import Circles from "@/components/Circle";
 import Link from "next/link";
@@ -99,7 +99,7 @@ const ServicesPage = () => {
                     </motion.div>
 
                     <motion.h1
-                        variants={fadeIn("down", 0.2)}
+                        variants={fadeIn("down", 0.2) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-5xl lg:text-8xl font-black mb-6 bg-gradient-to-r from-red-500 via-purple-600 to-blue-500 bg-clip-text text-transparent uppercase tracking-tighter"
@@ -107,7 +107,7 @@ const ServicesPage = () => {
                         Services
                     </motion.h1>
                     <motion.p
-                        variants={fadeIn("down", 0.3)}
+                        variants={fadeIn("down", 0.3) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-gray-400 text-xl lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
@@ -123,7 +123,7 @@ const ServicesPage = () => {
                         return (
                             <motion.div
                                 key={service.title}
-                                variants={fadeIn("up", 0.2 + (index % 3) * 0.1)}
+                                variants={fadeIn("up", 0.2 + (index % 3) * 0.1) as unknown as Variants}
                                 initial="hidden"
                                 animate="show"
                                 whileHover={{ y: -10, scale: 1.01 }}
@@ -166,7 +166,7 @@ const ServicesPage = () => {
 
                 {/* Process Section */}
                 <motion.div
-                    variants={fadeIn("up", 0.4)}
+                    variants={fadeIn("up", 0.4) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="glass-panel rounded-[2rem] p-10 lg:p-16 mb-16"
@@ -194,7 +194,7 @@ const ServicesPage = () => {
 
                 {/* CTA */}
                 <motion.div
-                    variants={fadeIn("up", 0.5)}
+                    variants={fadeIn("up", 0.5) as unknown as Variants}
                     initial="hidden"
                     animate="show"
                     className="text-center"

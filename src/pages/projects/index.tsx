@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { fadeIn } from "@/lib/variants";
 import Circles from "@/components/Circle";
 import Image from "next/image";
@@ -12,7 +12,8 @@ import {
     HiMiniPhoto,
 } from "react-icons/hi2";
 
-type FilterType = "All" | "Live" | "In Progress" | "Graduation";
+// Look for something like this and add your new string:
+type FilterType = "All" | "Live" | "In Progress (private)" | "Completed" | "Live -- Alkayan Nova in Progress" | "Graduation";
 
 interface Project {
     title: string;
@@ -60,7 +61,7 @@ const projects: Project[] = [
         color: "text-blue-400",
         gradient: "from-blue-500/15 to-cyan-600/10",
         borderHover: "hover:border-blue-500/40",
-        status: "Live",
+        status: "Live -- Alkayan Nova in Progress",
         previewImage: "/images/projects/alkayan-nova.png",
         images: [
             "/images/projects/alkayan-nova.png",
@@ -78,7 +79,7 @@ const projects: Project[] = [
         color: "text-red-400",
         gradient: "from-red-500/15 to-orange-600/10",
         borderHover: "hover:border-red-500/40",
-        status: "In Progress",
+        status: "In Progress (private)",
         previewImage: "/images/projects/logger-dsahboard.png",
         images: [
             "/images/projects/logger-dsahboard.png",
@@ -113,7 +114,7 @@ const projects: Project[] = [
         color: "text-purple-400",
         gradient: "from-purple-500/15 to-pink-600/10",
         borderHover: "hover:border-purple-500/40",
-        status: "In Progress",
+        status: "In Progress (private)",
         previewImage: "/images/projects/evento-dashboard.png",
         images: [
             "/images/projects/evento-dashboard.png",
@@ -190,20 +191,24 @@ const projects: Project[] = [
     },
 ];
 
-const filters: FilterType[] = ["All", "Live", "In Progress", "Graduation"];
+const filters: FilterType[] = ["All", "Live", "In Progress (private)", "Graduation", "Completed", "Live -- Alkayan Nova in Progress"];
 
 const filterColors: Record<FilterType, string> = {
     All: "border-white/20 text-white",
     Live: "border-green-500/30 text-green-400",
-    "In Progress": "border-yellow-500/30 text-yellow-400",
+    "In Progress (private)": "border-yellow-500/30 text-yellow-400",
     Graduation: "border-purple-500/30 text-purple-400",
+    Completed: "border-blue-500/30 text-blue-400",
+    "Live -- Alkayan Nova in Progress": "border-cyan-500/30 text-cyan-400",
 };
 
 const statusBadge: Record<FilterType, string> = {
     All: "",
     Live: "bg-green-500/20 text-green-400 border border-green-500/30",
-    "In Progress": "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
+    "In Progress (private)": "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
     Graduation: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
+    Completed: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
+    "Live -- Alkayan Nova in Progress": "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30",
 };
 
 // ─── Lightbox ────────────────────────────────────────────────────────────────
@@ -343,7 +348,7 @@ const ProjectsPage = () => {
                     </motion.div>
 
                     <motion.h1
-                        variants={fadeIn("down", 0.1)}
+                        variants={fadeIn("down", 0.1) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-5xl lg:text-8xl font-black mb-6 bg-gradient-to-r from-red-500 via-purple-600 to-blue-500 bg-clip-text text-transparent uppercase tracking-tighter"
@@ -351,7 +356,7 @@ const ProjectsPage = () => {
                         Portfolio
                     </motion.h1>
                     <motion.p
-                        variants={fadeIn("down", 0.15)}
+                        variants={fadeIn("down", 0.15) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-gray-400 text-xl lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
@@ -362,7 +367,7 @@ const ProjectsPage = () => {
 
                 {/* Filter Tabs */}
                 <motion.div
-                    variants={fadeIn("up", 0.15)}
+                    variants={fadeIn("up", 0.15) as unknown as Variants }
                     initial="hidden"
                     animate="show"
                     className="flex flex-wrap justify-center gap-3 mb-14"

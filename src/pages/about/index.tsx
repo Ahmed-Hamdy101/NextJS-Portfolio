@@ -1,15 +1,19 @@
-import Circles from '../../components/Circle';
-import React, { JSX, useState } from 'react';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import Link from 'next/link';
-import { Variants } from 'framer-motion';
+import { JSX, useState } from 'react';
 import {
-     HiMiniBriefcase, HiMiniTrophy,
-    HiMiniAcademicCap, HiMiniStar, HiMiniBolt, HiMiniSparkles, HiMiniEye,
+    HiMiniAcademicCap,
+    HiMiniBolt,
+    HiMiniBriefcase,
+    HiMiniEye,
+    HiMiniSparkles,
+    HiMiniStar,
+    HiMiniTrophy,
 } from "react-icons/hi2";
-import { motion, AnimatePresence } from "framer-motion";
-import { fadeIn } from "../../lib/variants";
 import Avatar from "../../components/Avatar";
+import Circles from '../../components/Circle';
 import ResumeModal from "../../components/ResumeModal";
+import { fadeIn } from "../../lib/variants";
 
 export default function AboutPage() {
     const tabs = [
@@ -30,22 +34,11 @@ export default function AboutPage() {
                         company: "ET GCO Tours",
                         duration: "Dec 2025 – Present",
                         points: [
-                            "Led Next.js + Express architecture with TypeScript; achieved Lighthouse 100% SEO, 98% Accessibility.",
+                            "Led Next.js + Express architecture with TypeScript, achieved Lighthouse 100% SEO, 98% Accessibility.",
                             "Optimized LCP under 2.5s via Redis caching, Gzip compression, and SSR/SSG.",
-                            "Designed normalized PostgreSQL schema with Drizzle ORM; managed Vercel + DigitalOcean VPS deployment.",
+                            "Designed normalized PostgreSQL schema with Drizzle ORM, managed Vercel + DigitalOcean VPS deployment.",
                         ],
                         color: "from-yellow-500 to-green-600"
-                    },
-                    {
-                        role: "Full Stack Developer",
-                        company: "Al Kayan Construction & Engineering",
-                        duration: "Jan 2020 – Present",
-                        points: [
-                            "Built proprietary Real Estate CMS in Laravel with RBAC authentication and role-based access control.",
-                            "Reduced vulnerabilities by 75% through CSRF protection and full-stack input validation.",
-                            "Managed DNS (GoDaddy), hosting (Namecheap), and SSL certificates for concurrent production projects.",
-                        ],
-                        color: "from-purple-500 to-red-600"
                     },
                     {
                         role: "Junior WordPress Developer",
@@ -63,11 +56,22 @@ export default function AboutPage() {
                         company: "Padel Nuestro",
                         duration: "Sep 2022 – Mar 2025",
                         points: [
-                            "Diagnosed 50+ monthly network issues in a 200-person office; improved uptime from 95% to 99.5% using Wireshark.",
+                            "Diagnosed 50+ monthly network issues in a 200-person office, improved uptime from 95% to 99.5% using Wireshark.",
                             "Designed AI Padel Coach assistant prototype with 15+ architecture diagrams, cutting implementation time by 30%.",
-                            "Deployed 3+ CCTV/DVR/NVR systems; administered 50+ licenses and reduced hardware downtime by 50%.",
+                            "Deployed 3+ CCTV/DVR/NVR systems, administered 50+ licenses and reduced hardware downtime by 50%.",
                         ],
                         color: "from-blue-400 to-indigo-600"
+                    },          
+                     {
+                        role: "Full Stack Developer",
+                        company: "Al Kayan Construction & Engineering",
+                        duration: "Jan 2021 – Present",
+                        points: [
+                            "Built proprietary Real Estate CMS in Laravel with RBAC authentication and role-based access control.",
+                            "Reduced vulnerabilities by 75% through CSRF protection and full-stack input validation.",
+                            "Managed DNS (GoDaddy), hosting (Namecheap), and SSL certificates for concurrent production projects.",
+                        ],
+                        color: "from-purple-500 to-red-600"
                     },
                 ].map((exp, index) => (
                     <motion.div
@@ -208,7 +212,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black,transparent)]" />
 
             <motion.div
-                variants={fadeIn('right', 0.2) as Variants}
+                variants={fadeIn('right', 0.2) as unknown as Variants}
                 initial="hidden"
                 animate="show"
                 className="hidden xl:flex absolute bottom-0 -left-[370px]"
@@ -220,7 +224,7 @@ export default function AboutPage() {
                 {/* Left Column */}
                 <div className="space-y-10">
                     <motion.div
-                        variants={fadeIn('up', 0.3) as Variants}
+                        variants={fadeIn('up', 0.3) as unknown as  Variants}
                         initial="hidden"
                         animate="show"
                         className="space-y-8"
@@ -230,7 +234,7 @@ export default function AboutPage() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                             </span>
-                            <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-300">3+ Years Experience</span>
+                            <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-300">4+ Years Experience</span>
                         </div>
 
                         <h2 className="text-5xl lg:text-7xl font-black text-white leading-tight">
@@ -256,14 +260,14 @@ export default function AboutPage() {
                                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-500 to-purple-600 text-white font-black uppercase tracking-widest text-[10px] transition-all duration-300 hover:opacity-90 shadow-lg shadow-red-500/10 flex items-center justify-center gap-2 group cursor-pointer"
                             >
                                 <HiMiniEye className="text-sm group-hover:scale-110 transition-transform" />
-                                Review & Download CV
+                                Review CV
                             </button>
                         </div>
 
                         <div className="grid grid-cols-3 gap-6 pt-6">
                             {[
-                                { number: "3+", label: "Yrs Exp" },
-                                { number: "10+", label: "Live Projects" },
+                                { number: "4+", label: "Yrs Exp" },
+                                { number: "4+", label: "Live Projects" },
                                 { number: "75%", label: "Vuln Reduction" }
                             ].map((stat, index) => (
                                 <motion.div

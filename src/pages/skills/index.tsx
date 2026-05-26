@@ -1,14 +1,50 @@
-import { motion } from "framer-motion";
-import { fadeIn } from "../../lib/variants";
-import Circles from "../../components/Circle";
-import {
-    SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss,
-    SiNodedotjs, SiExpress, SiPhp, SiLaravel, SiPostgresql,
-    SiAmazon, SiDocker, SiGit, SiBun, SiFastify, SiDigitalocean, SiVercel,
-    SiMongodb, SiRedis, SiPrisma,
-} from 'react-icons/si';
-import { FaCode } from 'react-icons/fa';
+import { motion, Variants } from "framer-motion";
+import { FaCode, FaHtml5 } from 'react-icons/fa';
 import { HiMiniCommandLine } from "react-icons/hi2";
+import {
+    SiAdobe,
+    SiAdobeillustrator,
+    SiAdobephotoshop,
+    SiAdobepremierepro,
+    SiAdobexd,
+    SiAmazon,
+    SiAnycubic,
+    SiBun,
+    SiDigitalocean,
+    SiDocker,
+    SiDrizzle,
+    SiElectron,
+    SiExpress,
+    SiFastify,
+    SiFigma,
+    SiGit,
+    SiGithub,
+    SiGodaddy,
+    SiJasmine,
+    SiJavascript,
+    SiLaravel,
+    SiMagic,
+    SiMongodb,
+    SiMysql,
+    SiNamecheap,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiOracle,
+    SiPostgresql,
+    SiPrisma,
+    SiQgis,
+    SiQt,
+    SiReact,
+    SiRedis,
+    SiShadcnui,
+    SiTailwindcss,
+    SiTypescript,
+    SiUikit,
+    SiVercel,
+    SiVsco
+} from 'react-icons/si';
+import Circles from "../../components/Circle";
+import { fadeIn } from "../../lib/variants";
 
 const SkillsPage = () => {
     const skillCategories = [
@@ -21,7 +57,13 @@ const SkillsPage = () => {
                 { name: "Next.js", level: 92, icon: SiNextdotjs, color: "#FFFFFF" },
                 { name: "TypeScript", level: 88, icon: SiTypescript, color: "#3178C6" },
                 { name: "JavaScript", level: 95, icon: SiJavascript, color: "#F7DF1E" },
-                { name: "Tailwind CSS", level: 92, icon: SiTailwindcss, color: "#06B6D4" },
+                { name: "Tailwind CSS+", level: 92, icon: SiTailwindcss, color: "#06B6D4" },
+                { name: "Shadcn UI", level: 92, icon: SiShadcnui, color: "#0e1111" },
+                { name: "Magic UI", level: 92, icon: SiMagic, color: "#33c27f" },
+                { name: "UX/UI", level: 92, icon: SiUikit, color: "#bd33c2" },
+                { name: "GASPJS", level: 92, icon: FaCode, color: "#5e33c2" },
+                { name: "CSS3 + HTML", level: 92, icon: FaHtml5, color: "#b87231" },
+                { name: "GIS MAPS", level: 92, icon: SiQgis, color: "#b87231" },
             ],
         },
         {
@@ -35,12 +77,17 @@ const SkillsPage = () => {
                 { name: "Fastify", level: 82, icon: SiFastify, color: "#FFFFFF" },
                 { name: "PHP / Laravel", level: 88, icon: SiLaravel, color: "#FF2D20" },
                 { name: "PostgreSQL", level: 85, icon: SiPostgresql, color: "#4169E1" },
+                { name: "Mysql", level: 85, icon: SiMysql, color: "#c45445" },
+                { name: "RDS AWS", level: 85, icon: SiAmazon, color: "#FF9900" },
                 { name: "MongoDB", level: 80, icon: SiMongodb, color: "#47A248" },
                 { name: "Redis", level: 82, icon: SiRedis, color: "#DC382D" },
+                { name: "Drizzle", level: 82, icon: SiDrizzle, color: "#DC382D" },
+                { name: "Prisma", level: 82, icon: SiPrisma, color: "#DC382D" },
+                { name: "Jasmine", level: 82, icon: SiJasmine, color: "#DC382D" },
             ],
         },
         {
-            title: "DevOps & Cloud",
+            title: "DevOps & Cloud & Architecture",
             accentColor: "text-red-400",
             gradient: "from-red-500/10 via-orange-500/5 to-transparent",
             skills: [
@@ -50,8 +97,31 @@ const SkillsPage = () => {
                 { name: "SSH / Linux", level: 88, icon: HiMiniCommandLine, color: "#FFFFFF" },
                 { name: "Git / CI-CD", level: 95, icon: SiGit, color: "#F05032" },
                 { name: "Vercel", level: 90, icon: SiVercel, color: "#FFFFFF" },
+                { name: "Decouple", level: 90, icon: SiAnycubic, color: "#7a2a6d" },
+                { name: "NameCheap", level: 90, icon: SiNamecheap, color: "#7a2a6d" },
+                { name: "Oracle Cloud", level: 90, icon: SiOracle, color: "#7a2a6d" },
+                { name: "Godaddy", level: 90, icon: SiGodaddy, color: "#7a2a6d" },
+                { name: "Github", level: 90, icon: SiGithub, color: "#7a2a6d" },
+            ],
+        }       
+         ,{
+            title: "Tools & AI & Platforms",
+            accentColor: "text-red-400",
+            gradient: "from-red-500/10 via-orange-500/5 to-transparent",
+            skills: [
+                { name: "Figma ", level: 90, icon: SiFigma, color: "#00ffbf" },
+                { name: "Adobe Xd", level: 90, icon: SiAdobexd, color: "#d20be4" }, 
+                { name: "Adobe Illustrator", level: 90, icon: SiAdobeillustrator, color: "#e9d62a" },
+                { name: "Adobe Photoshop", level: 90, icon: SiAdobephotoshop, color: "#0080FF" },
+                { name: "Adobe Premier", level: 90, icon: SiAdobepremierepro, color: "#c72eb3" },
+                { name: "QT / C++", level: 82, icon: SiQt, color: "#2496ED" },
+                { name: "Visual Studio Community / C# ", level: 90, icon: SiVsco, color: "#2496ED" },
+                { name: "Electrons", level: 20, icon: SiElectron, color: "#2496ED" },
+                { name: "VS Code", level: 88, icon: HiMiniCommandLine, color: "#FFFFFF" },
+
             ],
         },
+
     ];
 
     return (
@@ -74,7 +144,7 @@ const SkillsPage = () => {
                     </motion.div>
 
                     <motion.h1
-                        variants={fadeIn("down", 0.1)}
+                        variants={fadeIn("down", 0.1) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-5xl sm:text-6xl lg:text-8xl font-black mb-6 bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 bg-clip-text text-transparent uppercase tracking-tighter"
@@ -83,12 +153,12 @@ const SkillsPage = () => {
                     </motion.h1>
 
                     <motion.p
-                        variants={fadeIn("down", 0.15)}
+                        variants={fadeIn("down", 0.15) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="text-gray-400 text-lg lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
                     >
-                        3+ years shipping production systems across the full stack.
+                        4+ years shipping production systems across the full stack.
                     </motion.p>
                 </div>
 
@@ -96,7 +166,7 @@ const SkillsPage = () => {
                     {skillCategories.map((category, categoryIndex) => (
                         <motion.div
                             key={category.title}
-                            variants={fadeIn("up", 0.1 + categoryIndex * 0.05)}
+                            variants={fadeIn("up", 0.1 + categoryIndex * 0.05) as unknown as Variants}
                             initial="hidden"
                             animate="show"
                             className="glass-panel glass-panel-hover rounded-[2.5rem] p-8 shadow-2xl overflow-hidden relative group"

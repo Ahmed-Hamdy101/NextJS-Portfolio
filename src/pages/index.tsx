@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Avatar from "../components/Avatar";
 import { fadeIn } from "../lib/variants";
 import {
@@ -81,7 +81,7 @@ export default function HomePage() {
 
                     <div className="flex flex-col text-center xl:text-left z-20">
                         <motion.div
-                            variants={fadeIn("down", 0.1)}
+                            variants={fadeIn("down", 0.1) as unknown as Variants  }
                             initial="hidden"
                             animate="show"
                             className="group inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/[0.03] border border-white/5 w-fit mx-auto xl:mx-0 mb-8 backdrop-blur-xl"
@@ -94,7 +94,7 @@ export default function HomePage() {
                         </motion.div>
 
                         <motion.h1
-                            variants={fadeIn("down", 0.15)}
+                            variants={fadeIn("down", 0.15) as unknown as Variants }
                             initial="hidden"
                             animate="show"
                             className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-[0.95] tracking-tighter uppercase"
@@ -109,7 +109,7 @@ export default function HomePage() {
                         </motion.h1>
 
                         <motion.p
-                            variants={fadeIn("down", 0.2)}
+                            variants={fadeIn("down", 0.2) as unknown as Variants }
                             initial="hidden"
                             animate="show"
                             className="max-w-xl mx-auto xl:mx-0 mb-10 text-lg lg:text-xl text-slate-400 font-light leading-relaxed"
@@ -118,7 +118,7 @@ export default function HomePage() {
                         </motion.p>
 
                         <motion.div
-                            variants={fadeIn("down", 0.25)}
+                            variants={fadeIn("down", 0.25) as unknown as Variants }
                             initial="hidden"
                             animate="show"
                             className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4"
@@ -142,7 +142,7 @@ export default function HomePage() {
                     </div>
 
                     <motion.div
-                        variants={fadeIn("left", 0.2)}
+                        variants={fadeIn("left", 0.2) as unknown as Variants }
                         initial="hidden"
                         animate="show"
                         className="hidden xl:flex justify-center items-center relative"

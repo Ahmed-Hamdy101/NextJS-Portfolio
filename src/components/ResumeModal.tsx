@@ -52,7 +52,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                         <div>
                             <h1 className="text-4xl md:text-5xl font-black text-white print-cv-text-dark tracking-tight uppercase">Ahmed Hamdy</h1>
                             <p className="text-base font-bold text-red-500 print:text-red-600 uppercase tracking-widest mt-1">
-                                Senior Full Stack Engineer &amp; IT Support
+                                Mid Level Senior Full Stack Engineer &amp; IT Support
                             </p>
                             <p className="text-xs text-gray-500 mt-1 font-medium">Node.js · Laravel · Next.js · TypeScript · AWS · AI Integration</p>
                         </div>
@@ -87,7 +87,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                             Professional Summary
                         </h2>
                         <p className="text-sm leading-relaxed text-gray-400 print-cv-text-muted font-light">
-                            Senior Full Stack Engineer and Computer Programmer with <strong className="text-white font-bold">3+ years</strong> of professional experience designing, building, and deploying scalable web applications, RESTful APIs, and cloud-hosted systems. Skilled across the full stack — JavaScript, TypeScript, PHP, and Python — with deep expertise in <strong className="text-white font-bold">Node.js, Bun, Laravel, React, and AWS</strong> (EC2, S3, RDS, Lambda). Hands-on experience with Docker, Redis, JWT/OAuth2, CI/CD pipelines, microservices, and decoupled architecture. Currently engineering AI-powered products including LLM-integrated agents, RAG pipelines, and AI video generation platforms.
+                            Mid level Senior Full Stack Engineer and Computer Programmer with <strong className="text-white font-bold">3+ years</strong> of professional experience designing, building, and deploying scalable web applications, RESTful APIs, and cloud-hosted systems. Skilled across the full stack — JavaScript, TypeScript, PHP, and Python — with deep expertise in <strong className="text-white font-bold">Node.js, Bun, Laravel, React, and AWS</strong> (EC2, S3, RDS, Lambda). Hands-on experience with Docker, Redis, JWT/OAuth2, CI/CD pipelines, microservices, and decoupled architecture. Currently engineering AI-powered products including LLM-integrated agents, RAG pipelines, and AI video generation platforms.
                         </p>
                     </div>
 
@@ -257,7 +257,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
 
                     {/* Print footer */}
                     <div className="hidden print:block text-center pt-6 border-t border-gray-200 mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                        Ahmed Hamdy · Senior Full Stack Engineer · ahmedhamdy.mh95@gmail.com · +20 114 164 0812
+                        Ahmed Hamdy · Mid Level Senior Full Stack Engineer · ahmedhamdy.mh95@gmail.com · +20 114 164 0812
                     </div>
                 </div>
             </motion.div>
