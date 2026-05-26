@@ -2,7 +2,6 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "*": ["./*"]
     },
     "target": "ES2017",
     "lib": [
@@ -22,12 +21,13 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+"include": [
+  "next-env.d.ts",
+  "**/*.ts",
+  "**/*.tsx",
+  ".next/types/**/*.ts"
+],
+"exclude": [
+  "node_modules"
+]
 }

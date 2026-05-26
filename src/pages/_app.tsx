@@ -1,15 +1,16 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
-import Transition from "@/components/Transition";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 const plusJakarta = Plus_Jakarta_Sans({
     subsets: ["latin"],
+    weight: ["300", "400", "500", "600", "700", "800"],
     variable: "--font-plus-jakarta",
-    weight: "variable",
+    display: "swap",
+    preload: true,
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,11 +19,23 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <div className={`${plusJakarta.variable} font-sans`}>
             <Layout>
-                <AnimatePresence mode="wait">
-                    <div key={router.route} className="h-full relative">
-                        <Transition />
+                {/*
+                  NO Transition component, NO mode="wait".
+                  mode="popLayout" → new page mounts immediately,
+                  exit fades concurrently — no blocked render.
+                  duration 0.12s = imperceptible flash prevention only.
+                */}
+                <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.div
+                        key={router.route}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.12, ease: "linear" }}
+                        className="h-full relative"
+                    >
                         <Component {...pageProps} />
-                    </div>
+                    </motion.div>
                 </AnimatePresence>
             </Layout>
         </div>

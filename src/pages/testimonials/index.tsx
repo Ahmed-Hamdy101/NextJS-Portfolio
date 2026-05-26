@@ -1,7 +1,9 @@
+import Link from "next/link";
+import { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import { fadeIn } from "@/lib/variants";
 import Circles from "@/components/Circle";
-import { HiMiniStar, HiMiniChatBubbleLeftRight } from "react-icons/hi2";
+import { HiMiniStar, HiMiniChatBubbleLeftRight, HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
 
 const testimonials = [
     {
@@ -47,6 +49,17 @@ const testimonials = [
 ];
 
 const TestimonialsPage = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+    // Auto-advance
+    useEffect(() => {
+        const timer = setInterval(next, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <div className="relative text-white min-h-screen flex flex-col items-center justify-center px-6 py-24 overflow-hidden bg-[#020204]">
             <Circles />
@@ -101,45 +114,94 @@ const TestimonialsPage = () => {
                     ))}
                 </motion.div>
 
-                {/* Testimonials Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {testimonials.map((testimonial, index) => (
+                {/* Testimonials Carousel */}
+                <motion.div
+                    variants={fadeIn("up", 0.1) as unknown as Variants}
+                    initial="hidden"
+                    animate="show"
+                    className="relative w-full max-w-5xl mx-auto"
+                >
+                    {/* Carousel Viewport */}
+                    <div className="overflow-hidden rounded-[2.5rem] relative group py-4">
                         <motion.div
-                            key={testimonial.id}
-                            variants={fadeIn("up", 0.1 + index * 0.05) as unknown as Variants}
-                            initial="hidden"
-                            animate="show"
-                            whileHover={{ y: -8, scale: 1.01 }}
-                            className="group relative glass-panel glass-panel-hover rounded-[2rem] p-8 shadow-2xl overflow-hidden transition-all duration-700"
+                            className="flex cursor-grab active:cursor-grabbing"
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={0.2}
+                            onDragEnd={(e, { offset, velocity }) => {
+                                const swipe = Math.abs(offset.x) * velocity.x;
+                                if (swipe < -10000 || offset.x < -50) next();
+                                else if (swipe > 10000 || offset.x > 50) prev();
+                            }}
+                            animate={{ x: `-${currentIndex * 100}%` }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
-                            <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${testimonial.color} opacity-0 group-hover:opacity-[0.06] rounded-bl-[4rem] transition-opacity duration-700`} />
+                            {testimonials.map((testimonial) => (
+                                <div key={testimonial.id} className="w-full flex-shrink-0 px-2 sm:px-6">
+                                    <div className="relative glass-panel rounded-[2rem] p-8 md:p-12 shadow-2xl overflow-hidden h-full border border-white/[0.06]">
+                                        <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${testimonial.color} opacity-[0.06] rounded-bl-full`} />
+                                        
+                                        <div className="flex flex-col md:flex-row gap-8 items-start md:items-center h-full relative z-10">
+                                            {/* Left Column: Author */}
+                                            <div className="flex flex-col items-center text-center w-full md:w-1/3 md:border-r border-white/10 md:pr-8">
+                                                <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-white font-black text-3xl shadow-xl mb-4 border border-white/20`}>
+                                                    {testimonial.initial}
+                                                </div>
+                                                <h3 className="font-black text-white text-lg uppercase tracking-wider">{testimonial.name}</h3>
+                                                <p className="text-gray-400 text-xs font-medium mt-1 mb-2 uppercase tracking-widest">{testimonial.role}</p>
+                                                <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold text-gray-500 uppercase tracking-widest">
+                                                    {testimonial.company}
+                                                </div>
+                                                <div className="flex gap-1 mt-4">
+                                                    {[...Array(testimonial.rating)].map((_, i) => (
+                                                        <HiMiniStar key={i} className="w-5 h-5 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
+                                                    ))}
+                                                </div>
+                                            </div>
 
-                            <div className="flex gap-1 mb-5">
-                                {[...Array(testimonial.rating)].map((_, i) => (
-                                    <HiMiniStar key={i} className="w-4 h-4 text-yellow-400" />
-                                ))}
-                            </div>
-
-                            <p className="text-gray-300 leading-relaxed font-light text-sm mb-7 italic">
-                                &ldquo;{testimonial.content}&rdquo;
-                            </p>
-
-                            <div className="w-10 h-px bg-white/10 group-hover:bg-red-500/30 transition-colors duration-500 mb-5" />
-
-                            <div className="flex items-center gap-4">
-                                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-white font-black text-sm shadow-lg flex-shrink-0`}>
-                                    {testimonial.initial}
+                                            {/* Right Column: Content */}
+                                            <div className="w-full md:w-2/3 flex flex-col justify-center">
+                                                <HiMiniChatBubbleLeftRight className="text-4xl text-white/10 mb-4" />
+                                                <p className="text-gray-200 leading-relaxed font-light text-base md:text-xl italic">
+                                                    &ldquo;{testimonial.content}&rdquo;
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="font-black text-white text-sm uppercase tracking-wider">{testimonial.name}</h3>
-                                    <p className="text-gray-500 text-xs font-medium mt-0.5">
-                                        {testimonial.role} <span className="text-gray-600">·</span> {testimonial.company}
-                                    </p>
-                                </div>
-                            </div>
+                            ))}
                         </motion.div>
-                    ))}
-                </div>
+                    </div>
+
+                    {/* Navigation Controls */}
+                    <div className="flex items-center justify-center gap-6 mt-8">
+                        <button
+                            onClick={prev}
+                            className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+                        >
+                            <HiMiniChevronLeft className="text-xl" />
+                        </button>
+                        
+                        <div className="flex items-center gap-3">
+                            {testimonials.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentIndex(idx)}
+                                    className={`h-2 rounded-full transition-all duration-300 ${
+                                        currentIndex === idx ? "w-8 bg-gradient-to-r from-red-500 to-purple-500" : "w-2 bg-white/20 hover:bg-white/40"
+                                    }`}
+                                />
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={next}
+                            className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+                        >
+                            <HiMiniChevronRight className="text-xl" />
+                        </button>
+                    </div>
+                </motion.div>
 
                 <motion.div
                     variants={fadeIn("up", 0.3) as unknown as Variants}
@@ -148,12 +210,12 @@ const TestimonialsPage = () => {
                     className="text-center mt-20"
                 >
                     <p className="text-gray-500 text-sm uppercase tracking-[0.2em] font-black mb-4">Ready to build together?</p>
-                    <a
+                    <Link
                         href="/contact"
                         className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-purple-600 text-white font-black uppercase tracking-widest text-sm hover:shadow-lg hover:shadow-red-500/25 transition-all duration-500 hover:scale-105"
                     >
                         Start a Project →
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
         </div>

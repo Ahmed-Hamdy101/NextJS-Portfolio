@@ -11,8 +11,7 @@ import {
     HiMiniRocketLaunch,
     HiMiniArrowTopRightOnSquare,
 } from "react-icons/hi2";
-import { SiNextdotjs, SiLaravel, SiBun, SiDocker } from "react-icons/si";
-import { FaAws } from "react-icons/fa";
+
 
 const services = [
     {

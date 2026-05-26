@@ -1,17 +1,9 @@
 import Circles from '../../components/Circle';
 import React, { JSX, useState } from 'react';
 import Link from 'next/link';
+import { Variants } from 'framer-motion';
 import {
-    FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
-    FaPhp, FaLaravel, FaAws, FaDocker, FaGitAlt, FaPython,
-} from 'react-icons/fa';
-import {
-    SiGo, SiNextdotjs, SiBootstrap, SiTailwindcss, SiShadcnui,
-    SiExpress, SiTypescript, SiPostman, SiPostgresql, SiBun,
-    SiFastify, SiDigitalocean, SiVercel,
-} from 'react-icons/si';
-import {
-    HiMiniCommandLine, HiMiniBriefcase, HiMiniTrophy,
+     HiMiniBriefcase, HiMiniTrophy,
     HiMiniAcademicCap, HiMiniStar, HiMiniBolt, HiMiniSparkles, HiMiniEye,
 } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
@@ -216,7 +208,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black,transparent)]" />
 
             <motion.div
-                variants={fadeIn('right', 0.2)}
+                variants={fadeIn('right', 0.2) as Variants}
                 initial="hidden"
                 animate="show"
                 className="hidden xl:flex absolute bottom-0 -left-[370px]"
@@ -228,7 +220,7 @@ export default function AboutPage() {
                 {/* Left Column */}
                 <div className="space-y-10">
                     <motion.div
-                        variants={fadeIn('up', 0.3)}
+                        variants={fadeIn('up', 0.3) as Variants}
                         initial="hidden"
                         animate="show"
                         className="space-y-8"
@@ -242,14 +234,14 @@ export default function AboutPage() {
                         </div>
 
                         <h2 className="text-5xl lg:text-7xl font-black text-white leading-tight">
-                            Senior Full<br />
+                            Mid level Senior Full  <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-600 to-blue-500">Stack Engineer</span>
                         </h2>
 
                         <div className="space-y-5 text-lg text-gray-400 font-light leading-relaxed">
                             <p>
                                 I&apos;m <span className="text-white font-bold underline decoration-red-500 underline-offset-8">Ahmed Hamdy</span>,
-                                a Senior Full Stack Engineer based in Giza, Egypt. I design and ship scalable web applications, RESTful APIs, and cloud-hosted systems across the full stack.
+                                a Mid level Senior Full  Stack Engineer based in Giza, Egypt. I design and ship scalable web applications, RESTful APIs, and cloud-hosted systems across the full stack.
                             </p>
                             <p>
                                 From real estate platforms and ERP systems to AI-powered products and tourism PWAs, I specialize in

@@ -13,10 +13,10 @@ const nextConfig = {
 
     compress: true,
 
-    // Reduce JS bundle sent to client
-    experimental: {
-        optimizePackageImports: ["framer-motion", "react-icons"],
-    },
+    // react-icons ships CommonJS — tell webpack to transpile it so
+    // named imports get tree-shaken down to only the icons actually used.
+    // This alone cuts icon-related modules from ~900 to the handful you import.
+    transpilePackages: ["react-icons"],
 };
 
 export default nextConfig;

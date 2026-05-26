@@ -2,11 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
     HiMiniXMark,
-    HiMiniPrinter,
-    HiMiniArrowDownTray,
-    HiMiniBriefcase,
     HiMiniEnvelope,
-    HiMiniGlobeAlt,
     HiMiniMapPin,
     HiMiniPhone,
 } from "react-icons/hi2";

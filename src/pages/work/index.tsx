@@ -1,63 +1,94 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "../../lib/variants";
 import Circles from "../../components/Circle";
-import { HiMiniBriefcase, HiMiniCommandLine, HiMiniRocketLaunch, HiMiniWrenchScrewdriver, HiMiniGlobeAlt } from "react-icons/hi2";
+import Image from "next/image";
+import {
+    HiMiniBriefcase,
+    HiMiniCommandLine,
+    HiMiniRocketLaunch,
+    HiMiniGlobeAlt,
+} from "react-icons/hi2";
+
+const experiences = [
+    {
+        company: "ET GCO Tours",
+        companyLink: "https://egypt-tour-guide.com",
+        logo: "/images/companies/ET GCO.png",
+        role: "Full Stack Developer",
+        duration: "Dec 2025 – Present",
+        type: "Remote",
+        description:
+            "Led full-stack architecture using Next.js 15 (client) and Express (server) with TypeScript and a fully decoupled design. Engineered a tour booking workflow with unique booking-code generation and dynamic inventory tracking. Achieved Lighthouse 100% SEO / 98% Accessibility. Optimized LCP under 2.5s via Redis caching, Gzip compression, and SSR/SSG. Deployed on Vercel + DigitalOcean VPS with Caddy reverse proxy.",
+        skills: ["Next.js 15", "TypeScript", "PostgreSQL", "Drizzle ORM", "Redis", "GSAP", "i18next", "DigitalOcean", "Vercel"],
+        Icon: HiMiniGlobeAlt,
+        gradient: "from-yellow-500/10 via-green-600/5 to-transparent",
+        accent: "text-yellow-400",
+        dot: "border-yellow-500 shadow-yellow-500/40",
+        tag: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+    },
+    {
+        company: "Al Kayan Construction & Engineering",
+        companyLink: "https://www.alkayan-co.com",
+        logo: "/images/companies/alkayan-nova.png",
+        role: "Full Stack Developer",
+        duration: "Jan 2021 – Present",
+        type: "On-site · Maadi",
+        description:
+            "Engineered Alkayan Nova — a high-diamond UX real estate platform for one of Egypt's leading construction firms. Designed and built a premium property management CMS from the ground up with sophisticated role-based access control (RBAC), dark/light theme system, advanced property filtering, and smooth micro-animations. Implemented enterprise-grade security: CSRF protection, full-stack input validation, and SQL injection prevention — cutting vulnerabilities by 75%. Optimized database schema and query execution plans across all production systems. Managed DNS (GoDaddy), hosting (Namecheap), and SSL certificates end-to-end.",
+        skills: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF", "Next.js", "Tailwind CSS", "Dark Mode UX", "Namecheap", "GoDaddy"],
+        Icon: HiMiniRocketLaunch,
+        gradient: "from-blue-500/10 via-purple-600/5 to-transparent",
+        accent: "text-blue-400",
+        dot: "border-blue-500 shadow-blue-500/40",
+        tag: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    },
+    {
+        company: "Egypt Racket Sport",
+        companyLink: null,
+        logo: null,
+        role: "Junior WordPress Developer",
+        duration: "Dec 2024 – Present",
+        type: "Remote",
+        description:
+            "Evaluated and improved site performance using GTmetrix and Google Lighthouse; implemented caching and image optimization to reduce load times. Boosted e-commerce product visibility through on-page SEO strategies using Yoast/Rank Math. Maintained overall site health — daily plugin updates, conflict resolution, and frontend UI/UX troubleshooting.",
+        skills: ["WordPress", "WooCommerce", "SEO", "GTmetrix", "Lighthouse", "Plugin Dev"],
+        Icon: HiMiniBriefcase,
+        gradient: "from-cyan-500/10 via-blue-600/5 to-transparent",
+        accent: "text-cyan-400",
+        dot: "border-cyan-500 shadow-cyan-500/40",
+        tag: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    },
+    {
+        company: "Padel Nuestro",
+        companyLink: null,
+        logo: null,
+        role: "IT Support & Systems Engineer",
+        duration: "Sep 2022 – Mar 2025",
+        type: "West Cairo",
+        description:
+            "Diagnosed and resolved 50+ monthly network issues across a 200-person office, improving uptime from 95% to 99.5% using Wireshark packet analysis. Designed an AI Padel Coach assistant prototype with 15+ technical architecture diagrams, reducing estimated implementation time by 30%. Deployed and maintained 3+ CCTV/DVR/NVR systems, cutting security incident response time by 35%. Administered 50+ software licenses and resolved 15+ weekly hardware and printer issues.",
+        skills: ["Networking", "Wireshark", "CCTV / NVR", "IT Support", "AI Prototyping", "System Design"],
+        Icon: HiMiniCommandLine,
+        gradient: "from-indigo-500/10 via-purple-600/5 to-transparent",
+        accent: "text-indigo-400",
+        dot: "border-indigo-500 shadow-indigo-500/40",
+        tag: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
+    },
+];
 
 const WorkPage = () => {
-    const experiences = [
-        {
-            company: "ET GCO Tours",
-            companyLink: "https://egypt-tour-guide.com",
-            role: "Full Stack Developer",
-            duration: "Dec 2025 – Present | Remote",
-            description: "Led full-stack architecture using Next.js (client) and Express (server) with TypeScript and decoupled design. Engineered a tour booking workflow, achieved Lighthouse 100% SEO / 98% Accessibility, and optimized LCP under 2.5s via Redis caching, SSR/SSG, and Gzip. Deployed on Vercel + DigitalOcean VPS with Caddy reverse proxy.",
-            skills: ["Next.js 15", "TypeScript", "PostgreSQL", "Drizzle ORM", "Redis", "GSAP", "DigitalOcean", "Vercel"],
-            icon: HiMiniGlobeAlt,
-            gradient: "from-yellow-500/10 via-green-600/5 to-transparent",
-            accentColor: "text-yellow-400",
-        },
-        {
-            company: "Egypt Racket Sport",
-            role: "Junior WordPress Developer",
-            duration: "Dec 2024 – Present | Remote",
-            description: "Evaluated and improved site performance using GTmetrix and Google Lighthouse. Implemented caching and image optimization. Boosted product visibility through on-page SEO with Yoast/Rank Math. Managed plugin updates and resolved frontend UI/UX conflicts.",
-            skills: ["WordPress", "WooCommerce", "SEO", "GTmetrix", "Plugin Dev", "Lighthouse"],
-            icon: HiMiniBriefcase,
-            gradient: "from-cyan-500/10 via-blue-600/5 to-transparent",
-            accentColor: "text-cyan-400",
-        },
-        {
-            company: "Padel Nuestro",
-            role: "IT Support & Systems Engineer",
-            duration: "Sep 2022 – Mar 2025 | West Cairo",
-            description: "Diagnosed and resolved 50+ monthly network issues across a 200-person office, improving uptime from 95% to 99.5% using Wireshark packet analysis. Designed an AI Padel Coach assistant prototype with 15+ architecture diagrams, reducing implementation time by 30%. Deployed 3+ CCTV/DVR systems and managed 50+ software licenses.",
-            skills: ["Networking", "Wireshark", "CCTV/NVR", "IT Support", "AI Prototyping", "System Design"],
-            icon: HiMiniCommandLine,
-            gradient: "from-blue-500/10 via-indigo-600/5 to-transparent",
-            accentColor: "text-blue-400",
-        },
-        {
-            company: "Al Kayan Construction & Engineering",
-            companyLink: "https://www.alkayan-co.com",
-            role: "Full Stack Developer",
-            duration: "Jan 2021 – Present | Maadi",
-            description: "Designed and deployed Laravel MVC web applications for a leading construction firm. Built a proprietary Real Estate CMS with RBAC authentication. Reduced vulnerabilities by 75% via CSRF protection and full-stack input validation. Optimized SQL queries and managed DNS, hosting, and SSL across concurrent projects.",
-            skills: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF", "Namecheap", "GoDaddy", "SSL"],
-            icon: HiMiniRocketLaunch,
-            gradient: "from-red-500/10 via-purple-600/5 to-transparent",
-            accentColor: "text-red-400",
-        },
-    ];
-
     return (
         <div className="relative text-white min-h-screen flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
             <Circles />
 
             <div className="w-full max-w-5xl z-10 pt-20">
+
+                {/* ── Header ── */}
                 <div className="text-center mb-20">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.25 }}
                         className="inline-flex items-center gap-3 px-5 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md mb-6"
                     >
                         <span className="relative flex h-2 w-2">
@@ -68,7 +99,7 @@ const WorkPage = () => {
                     </motion.div>
 
                     <motion.h1
-                        variants={fadeIn("down", 0.2)}
+                        variants={fadeIn("down", 0.1)}
                         initial="hidden"
                         animate="show"
                         className="text-5xl sm:text-6xl lg:text-8xl font-black mb-6 bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 bg-clip-text text-transparent uppercase tracking-tighter"
@@ -77,7 +108,7 @@ const WorkPage = () => {
                     </motion.h1>
 
                     <motion.p
-                        variants={fadeIn("down", 0.3)}
+                        variants={fadeIn("down", 0.15)}
                         initial="hidden"
                         animate="show"
                         className="text-gray-400 text-lg lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
@@ -86,60 +117,96 @@ const WorkPage = () => {
                     </motion.p>
                 </div>
 
+                {/* ── Timeline ── */}
                 <div className="relative pl-6 sm:pl-10 space-y-12">
+                    {/* Vertical line */}
                     <div className="absolute left-1.5 sm:left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-red-500 via-purple-600 to-indigo-500/10" />
 
                     {experiences.map((exp, index) => {
-                        const Icon = exp.icon;
+                        const Icon = exp.Icon;
                         return (
                             <motion.div
-                                key={index}
-                                variants={fadeIn("up", 0.3 + index * 0.1)}
+                                key={exp.company}
+                                variants={fadeIn("up", 0.1 + index * 0.08)}
                                 initial="hidden"
                                 animate="show"
-                                className="group relative glass-panel glass-panel-hover rounded-[2.5rem] p-8 shadow-2xl overflow-hidden"
+                                className="group relative glass-panel glass-panel-hover rounded-[2.5rem] overflow-hidden shadow-2xl"
                             >
+                                {/* Ambient glow */}
                                 <div className={`absolute -top-20 -right-20 w-44 h-44 rounded-full bg-gradient-to-br ${exp.gradient} opacity-20 blur-[40px] group-hover:scale-125 transition-all duration-700`} />
 
-                                {/* Timeline node */}
-                                <div className="absolute left-[-29px] sm:left-[-41px] top-10 w-4 h-4 rounded-full bg-[#020204] border-2 border-red-500 flex items-center justify-center shadow-[0_0_10px_rgba(239,68,68,0.5)] z-20 group-hover:scale-125 group-hover:border-purple-500 transition-all duration-500">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 group-hover:bg-purple-500 transition-all duration-500" />
+                                {/* Timeline dot */}
+                                <div className={`absolute left-[-29px] sm:left-[-41px] top-10 w-4 h-4 rounded-full bg-[#020204] border-2 ${exp.dot} flex items-center justify-center shadow-[0_0_10px] z-20 group-hover:scale-125 transition-all duration-500`}>
+                                    <div className={`w-1.5 h-1.5 rounded-full ${exp.accent.replace("text-", "bg-")}`} />
                                 </div>
 
-                                <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
-                                    <div className="flex-shrink-0 p-5 bg-white/[0.03] border border-white/5 rounded-2xl group-hover:scale-105 transition-transform duration-500 shadow-xl">
-                                        <Icon className={`w-12 h-12 ${exp.accentColor}`} />
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-4">
-                                            <div>
-                                                <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight leading-none">
-                                                    {exp.role}
-                                                </h3>
-                                                <p className="text-red-500/80 group-hover:text-red-500 transition-colors font-bold text-sm mt-2 uppercase tracking-wider">
-                                                    {exp.companyLink
-                                                        ? <a href={exp.companyLink} target="_blank" rel="noopener noreferrer" className="hover:underline">{exp.company}</a>
-                                                        : exp.company
-                                                    }
-                                                </p>
+                                {/* ── Card header with logo ── */}
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-8 pt-8 pb-5 border-b border-white/[0.05] relative z-10">
+                                    <div className="flex items-center gap-4">
+                                        {/* Company logo or icon fallback */}
+                                        {exp.logo ? (
+                                            <div className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-xl group-hover:scale-105 transition-transform duration-500">
+                                                <Image
+                                                    src={exp.logo}
+                                                    alt={exp.company}
+                                                    width={48}
+                                                    height={48}
+                                                    className="object-contain w-10 h-10"
+                                                    unoptimized
+                                                />
                                             </div>
-                                            <div className="px-5 py-2 bg-white/[0.03] border border-white/5 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-400 whitespace-nowrap">
-                                                {exp.duration}
+                                        ) : (
+                                            <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center flex-shrink-0 shadow-xl group-hover:scale-105 transition-transform duration-500">
+                                                <Icon className={`w-7 h-7 ${exp.accent}`} />
                                             </div>
-                                        </div>
-                                        <p className="text-slate-400 mb-6 leading-relaxed text-sm lg:text-base font-light">
-                                            {exp.description}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {exp.skills.map((skill, si) => (
-                                                <span
-                                                    key={si}
-                                                    className="px-3.5 py-1.5 bg-white/[0.02] border border-white/5 text-[9px] font-black uppercase tracking-widest text-gray-500 rounded-lg group-hover:border-white/10 group-hover:text-gray-300 transition-colors"
+                                        )}
+
+                                        <div>
+                                            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight leading-none">
+                                                {exp.role}
+                                            </h3>
+                                            {exp.companyLink ? (
+                                                <a
+                                                    href={exp.companyLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={`${exp.accent} font-bold text-sm mt-1.5 inline-block uppercase tracking-wider hover:underline`}
                                                 >
-                                                    {skill}
-                                                </span>
-                                            ))}
+                                                    {exp.company} ↗
+                                                </a>
+                                            ) : (
+                                                <p className={`${exp.accent} font-bold text-sm mt-1.5 uppercase tracking-wider`}>
+                                                    {exp.company}
+                                                </p>
+                                            )}
                                         </div>
+                                    </div>
+
+                                    {/* Duration + location badges */}
+                                    <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                                        <div className={`px-4 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-widest ${exp.tag}`}>
+                                            {exp.duration}
+                                        </div>
+                                        <div className="px-4 py-1.5 rounded-lg bg-white/[0.02] border border-white/5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                            {exp.type}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* ── Card body ── */}
+                                <div className="px-8 py-6 relative z-10">
+                                    <p className="text-slate-400 leading-relaxed text-sm lg:text-base font-light mb-6">
+                                        {exp.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {exp.skills.map((skill) => (
+                                            <span
+                                                key={skill}
+                                                className="px-3 py-1.5 bg-white/[0.02] border border-white/5 text-[9px] font-black uppercase tracking-widest text-gray-500 rounded-lg group-hover:border-white/10 group-hover:text-gray-300 transition-colors duration-300"
+                                            >
+                                                {skill}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
                             </motion.div>

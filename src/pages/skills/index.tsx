@@ -112,30 +112,28 @@ const SkillsPage = () => {
                                 </h2>
                             </div>
 
-                            <div className="space-y-5 relative z-10">
+                            <div className="grid grid-cols-2 gap-4 relative z-10">
                                 {category.skills.map((skill, index) => {
                                     const SkillIcon = skill.icon;
                                     return (
-                                        <div key={skill.name} className="group/item">
-                                            <div className="flex items-center justify-between mb-2">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-7 h-7 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-center">
-                                                        <SkillIcon className="w-3.5 h-3.5" style={{ color: skill.color }} />
-                                                    </div>
-                                                    <span className="font-bold text-gray-400 group-hover/item:text-white transition-colors uppercase text-[10px] tracking-widest">{skill.name}</span>
-                                                </div>
-                                                <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest">{skill.level}%</span>
+                                        <motion.div
+                                            key={skill.name}
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.3, delay: index * 0.05 }}
+                                            className="group/item relative flex flex-col items-center justify-center p-5 rounded-[1.5rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/20 transition-all duration-500 overflow-hidden"
+                                        >
+                                            {/* Hover Glow */}
+                                            <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/5 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
+                                            
+                                            <div className="w-12 h-12 mb-4 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center shadow-xl group-hover/item:scale-110 group-hover/item:-translate-y-1 transition-all duration-500 relative z-10">
+                                                <SkillIcon className="w-6 h-6 drop-shadow-md" style={{ color: skill.color }} />
                                             </div>
-                                            <div className="w-full bg-white/5 rounded-full h-1 overflow-hidden border border-white/5">
-                                                <motion.div
-                                                    initial={{ width: 0 }}
-                                                    animate={{ width: `${skill.level}%` }}
-                                                    // viewport-based trigger: only animate when visible, not on mount
-                                                    transition={{ duration: 0.8, delay: index * 0.04, ease: "easeOut" }}
-                                                    className="h-full bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 rounded-full"
-                                                />
-                                            </div>
-                                        </div>
+                                            <span className="font-bold text-gray-400 group-hover/item:text-white transition-colors uppercase text-[10px] tracking-widest text-center relative z-10">
+                                                {skill.name}
+                                            </span>
+                                        </motion.div>
                                     );
                                 })}
                             </div>
