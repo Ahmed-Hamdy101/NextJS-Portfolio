@@ -1,40 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-## Getting Started
+![Portfolio](./public/images/projects/portfolio.png)
 
-First, run the development server:
+# ✨ Developer Resume & Portfolio Engine
 
+[![Bun](https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh)
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+> A fast, developer-first tool that turns simple data (Markdown/JSON) into clean, production-ready **resume + portfolio** websites.
+
+## 🚀 What this project does
+Stop rebuilding the same pages again and again.
+
+Feed your journey—**skills**, **experience**, **projects**, and optionally **GitHub activity**—and generate a modern, SEO-friendly portfolio site quickly.
+
+## ⚡ Tech stack
+
+- **Runtime:** [Bun](https://bun.sh) (speed + ergonomic DX)
+- **Language:** TypeScript (strict typing)
+- **File discovery:** [fast-glob](https://github.com/mrmlnc/fast-glob)
+- **Module resolution:** [resolve](https://github.com/browserify/resolve)
+
+## ✨ Key features
+
+- **Instant Preview:** fast builds using Bun.
+- **Schema-driven input:** use JSON schemas or simple Markdown.
+- **Zero-config defaults:** get from `init` → `deploy` quickly.
+
+## 🏁 Getting started
+
+### Prerequisites
+- Install **Bun**: https://bun.sh
+
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
+```
+
+### Run development mode
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🤝 Contributing
+Contributions are welcome—templates, content parsing, theme improvements, and docs.
 
-You can start editing the page by modifying `pages/index.jsx`. The page auto-updates as you edit the file.
+### How to contribute
+1. **Find an issue**: look for Help Wanted tags.
+2. **Create a branch**: `git checkout -b feature/amazing-thing`
+3. **Commit**: keep commits focused and descriptive.
+4. **Open a Pull Request**: reviewed within ~48 hours.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 🗺️ Roadmap
+- [x] Automated Resume-to-Data Parser (PDF/LinkedIn)
+- [x] Dynamic Theme Engine (Tailwind-based)
+- [x] One-click deployment to Vercel/Netlify via CLI
+- [x] Review CV
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## 📜 License
+MIT. See `LICENSE` for details.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+<p align="center">Built with ❤️ and ⚡ by the community</p>

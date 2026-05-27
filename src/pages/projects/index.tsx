@@ -191,14 +191,13 @@ const projects: Project[] = [
     },
 ];
 
-const filters: FilterType[] = ["All", "Live", "In Progress (private)", "Graduation", "Completed", "Live -- Alkayan Nova in Progress"];
+const filters: FilterType[] = ["All", "Live", "In Progress (private)", "Graduation", "Live -- Alkayan Nova in Progress"];
 
 const filterColors: Record<FilterType, string> = {
     All: "border-white/20 text-white",
     Live: "border-green-500/30 text-green-400",
     "In Progress (private)": "border-yellow-500/30 text-yellow-400",
     Graduation: "border-purple-500/30 text-purple-400",
-    Completed: "border-blue-500/30 text-blue-400",
     "Live -- Alkayan Nova in Progress": "border-cyan-500/30 text-cyan-400",
 };
 
@@ -207,7 +206,6 @@ const statusBadge: Record<FilterType, string> = {
     Live: "bg-green-500/20 text-green-400 border border-green-500/30",
     "In Progress (private)": "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
     Graduation: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
-    Completed: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
     "Live -- Alkayan Nova in Progress": "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30",
 };
 
