@@ -13,7 +13,7 @@ import {
 } from "react-icons/hi2";
 
 // Look for something like this and add your new string:
-type FilterType = "All" | "Live" | "In Progress (private)" | "Completed" | "Live -- Alkayan Nova in Progress" | "Graduation";
+type FilterType = "All" | "Live" | "In Progress (private)" | "Live -- Alkayan Nova in Progress" | "Graduation";
 
 interface Project {
     title: string;
