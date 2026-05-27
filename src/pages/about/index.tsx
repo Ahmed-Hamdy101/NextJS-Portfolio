@@ -291,6 +291,25 @@ export default function AboutPage() {
                                 </div>
                                 <span className="text-cyan-400/60 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all duration-300">→</span>
                             </Link>
+                            {/* LINKEDIN BADGE PLACED HERE */}
+                                    <div className="pt-4 flex justify-start w-full">
+                                        <div 
+                                            className="badge-base LI-profile-badge w-full" 
+                                            data-locale="en_US" 
+                                            data-size="large" 
+                                            data-theme="dark" 
+                                            data-type="HORIZONTAL" 
+                                            data-vanity="ahmed-hamdy-ah" 
+                                            data-version="v1"
+                                        >
+                                            <a 
+                                                className="badge-base__link LI-simple-link" 
+                                                href="https://eg.linkedin.com/in/ahmed-hamdy-ah?trk=profile-badge"
+                                            >
+                                                Ahmed Hamdy
+                                            </a>
+                                        </div>
+                                    </div>
                             <Link href="/projects" className="group flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-red-400/30 transition-all duration-300">
                                 <div>
                                     <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 mb-0.5">View</p>
