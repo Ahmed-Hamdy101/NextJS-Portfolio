@@ -3,9 +3,10 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import { BiLogoAmazon } from "react-icons/bi";
-import { HiMiniCommandLine, HiMiniEye  } from "react-icons/hi2";
+import { FaGithub, FaLinkedinIn, FaStackOverflow, FaWhatsapp } from "react-icons/fa";
+import { HiMiniCommandLine, HiMiniEye } from "react-icons/hi2";
 import {
-      SiBun,
+    SiBun,
     SiDigitalocean,
     SiFastify,
     SiLaravel,
@@ -15,11 +16,45 @@ import {
 import Avatar from "../components/Avatar";
 import { fadeIn } from "../lib/variants";
 
-// Lazy — only loads when user clicks "Interactive CV"
 const ResumeModal = dynamic(() => import("../components/ResumeModal"), {
     ssr: false,
     loading: () => null,
 });
+
+const SOCIALS = [
+    {
+        label: "GitHub",
+        href: "https://github.com/Ahmed-Hamdy101",
+        Icon: FaGithub,
+        color: "hover:text-white hover:border-white/30 hover:bg-white/5",
+        glow: "hover:shadow-white/10",
+        tooltip: "Ahmed-Hamdy101",
+    },
+    {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/ahmed-hamdy-ah/",
+        Icon: FaLinkedinIn,
+        color: "hover:text-[#0A66C2] hover:border-[#0A66C2]/40 hover:bg-[#0A66C2]/5",
+        glow: "hover:shadow-[#0A66C2]/20",
+        tooltip: "ahmed-hamdy-ah",
+    },
+    {
+        label: "Stack Overflow",
+        href: "https://stackoverflow.com/users/19638490/ahmed-hamdy",
+        Icon: FaStackOverflow,
+        color: "hover:text-[#F58025] hover:border-[#F58025]/40 hover:bg-[#F58025]/5",
+        glow: "hover:shadow-[#F58025]/20",
+        tooltip: "ahmed-hamdy",
+    },
+    {
+        label: "WhatsApp",
+        href: "https://wa.me/201141640812",
+        Icon: FaWhatsapp,
+        color: "hover:text-[#25D366] hover:border-[#25D366]/40 hover:bg-[#25D366]/5",
+        glow: "hover:shadow-[#25D366]/20",
+        tooltip: "+20 114 164 0812",
+    },
+];
 
 export default function HomePage() {
     const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -29,20 +64,20 @@ export default function HomePage() {
             name: "Al Kayan Team",
             role: "Construction & Engineering Co.",
             content: "Ahmed engineered our Real Estate CMS with RBAC authentication. Security vulnerabilities dropped by 75% and the system handles our entire property listing operation.",
-            avatar: "AK"
+            avatar: "AK",
         },
         {
             name: "ET GCO Tours",
             role: "Tourism Platform",
             content: "Achieved Google Lighthouse scores of 100% SEO and 98% Accessibility on our bilingual PWA. Booking workflow is seamless and the site loads in under 2 seconds.",
-            avatar: "ET"
+            avatar: "ET",
         },
         {
             name: "Padel Nuestro",
             role: "IT Infrastructure Client",
             content: "Ahmed took our network uptime from 95% to 99.5% and designed an AI coaching assistant prototype that cut our estimated implementation time by 30%.",
-            avatar: "PN"
-        }
+            avatar: "PN",
+        },
     ];
 
     const services = [
@@ -50,46 +85,100 @@ export default function HomePage() {
             title: "Full Stack Systems",
             description: "End-to-end web applications with Next.js, Laravel, Bun and Fastify — from pixel-perfect UI to high-performance APIs and database design.",
             icon: SiNextdotjs,
-            gradient: "from-blue-500 to-cyan-400"
+            gradient: "from-blue-500 to-cyan-400",
         },
         {
             title: "Cloud & DevOps",
             description: "Scalable infrastructure on AWS and DigitalOcean with Docker, CI/CD pipelines, NGINX/Caddy, and SSL-secured production deployments.",
             icon: BiLogoAmazon,
-            gradient: "from-orange-500 to-red-500"
+            gradient: "from-orange-500 to-red-500",
         },
         {
             title: "AI Integration",
             description: "LLM-powered products using OpenAI and Claude APIs, RAG pipelines, LangChain, and vector databases for intelligent application features.",
             icon: SiBun,
-            gradient: "from-purple-500 to-pink-500"
-        }
+            gradient: "from-purple-500 to-pink-500",
+        },
     ];
 
     const trustedCompanies = [
-        "Al Kayan Engineering",
-        "ET GCO Tours",
-        "Padel Nuestro",
-        "Egypt Racket Sport",
-        "Logger Suite",
-        "AutoFix",
-        "Evento",
-        "GIS Sinai",
+        "Al Kayan Engineering", "ET GCO Tours", "Padel Nuestro",
+        "Egypt Racket Sport", "Logger Suite", "AutoFix", "Evento", "GIS Sinai",
     ];
 
     return (
         <div className="relative min-h-screen bg-[#020204] selection:bg-red-500/20 overflow-hidden font-sans">
+
+            {/* ── Vertical Social Sidebar — desktop only ── */}
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="fixed left-6 bottom-1/2 translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-1"
+            >
+                {/* Top line */}
+                <div className="w-px h-16 bg-gradient-to-b from-transparent to-white/10 mb-2" />
+
+                {SOCIALS.map(({ label, href, Icon, color, glow, tooltip }) => (
+                    <div key={label} className="group relative flex items-center">
+                        <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={label}
+                            className={`
+                                relative w-10 h-10 rounded-xl
+                                border border-white/[0.07]
+                                bg-white/[0.02]
+                                flex items-center justify-center
+                                text-gray-500 text-base
+                                transition-all duration-300
+                                shadow-lg ${glow}
+                                ${color}
+                            `}
+                        >
+                            <Icon />
+
+                            {/* Active dot pulse */}
+                            {label === "WhatsApp" && (
+                                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#25D366]">
+                                    <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-75" />
+                                </span>
+                            )}
+                        </a>
+
+                        {/* Tooltip — slides in from left */}
+                        <div className="
+                            absolute left-14 pointer-events-none
+                            flex items-center gap-2
+                            opacity-0 -translate-x-2
+                            group-hover:opacity-100 group-hover:translate-x-0
+                            transition-all duration-200
+                            whitespace-nowrap
+                        ">
+                            <div className="px-3 py-1.5 rounded-lg bg-[#0d0d12] border border-white/10 shadow-xl">
+                                <p className="text-[10px] font-black uppercase tracking-widest text-white">{label}</p>
+                                <p className="text-[9px] text-gray-500 font-mono mt-0.5">{tooltip}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+                {/* Bottom line */}
+                <div className="w-px h-16 bg-gradient-to-b from-white/10 to-transparent mt-2" />
+            </motion.div>
 
             {/* ── Hero ── */}
             <section className="relative w-full min-h-screen flex items-center justify-center px-6 lg:px-24 pt-28 pb-16 z-10">
                 <div className="container mx-auto grid grid-cols-1 xl:grid-cols-2 gap-16 items-center">
 
                     <div className="flex flex-col text-center xl:text-left z-20">
+                        {/* Status badge */}
                         <motion.div
-                            variants={fadeIn("down", 0.1) as unknown as Variants  }
+                            variants={fadeIn("down", 0.1) as unknown as Variants}
                             initial="hidden"
                             animate="show"
-                            className="group inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/[0.03] border border-white/5 w-fit mx-auto xl:mx-0 mb-8 backdrop-blur-xl"
+                            className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/[0.03] border border-white/5 w-fit mx-auto xl:mx-0 mb-8 backdrop-blur-xl"
                         >
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -98,13 +187,14 @@ export default function HomePage() {
                             <span className="text-[10px] font-black text-gray-400 tracking-[0.25em] uppercase">Accepting New Projects</span>
                         </motion.div>
 
+                        {/* Headline */}
                         <motion.h1
-                            variants={fadeIn("down", 0.15) as unknown as Variants }
+                            variants={fadeIn("down", 0.15) as unknown as Variants}
                             initial="hidden"
                             animate="show"
                             className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-[0.95] tracking-tighter uppercase"
                         >
-                           Mid Level Senior Full<br />
+                            Senior Full<br />
                             <span className="relative inline-block mt-1.5">
                                 <span className="absolute -inset-1 bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 opacity-25 blur-xl rounded-full" />
                                 <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-500 to-indigo-500">
@@ -113,22 +203,27 @@ export default function HomePage() {
                             </span>
                         </motion.h1>
 
+                        {/* Bio */}
                         <motion.p
-                            variants={fadeIn("down", 0.2) as unknown as Variants }
+                            variants={fadeIn("down", 0.2) as unknown as Variants}
                             initial="hidden"
                             animate="show"
-                            className="max-w-xl mx-auto xl:mx-0 mb-10 text-lg lg:text-xl text-slate-400 font-light leading-relaxed"
+                            className="max-w-xl mx-auto xl:mx-0 mb-8 text-lg lg:text-xl text-slate-400 font-light leading-relaxed"
                         >
-                            <span className="text-white font-black">Ahmed Hamdy</span> — 4+ years building scalable web systems, RESTful APIs, and cloud-hosted platforms with Node.js, Bun, Laravel, Next.js, and AWS.
+                            <span className="text-white font-black">Ahmed Hamdy</span> — 3+ years building scalable web systems, RESTful APIs, and cloud-hosted platforms with Node.js, Bun, Laravel, Next.js, and AWS.
                         </motion.p>
 
+                        {/* CTA Buttons */}
                         <motion.div
-                            variants={fadeIn("down", 0.25) as unknown as Variants }
+                            variants={fadeIn("down", 0.25) as unknown as Variants}
                             initial="hidden"
                             animate="show"
-                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4"
+                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-10"
                         >
-                            <Link href="/projects" className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-white/5">
+                            <Link
+                                href="/projects"
+                                className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-white/5"
+                            >
                                 View Projects →
                             </Link>
 
@@ -144,10 +239,92 @@ export default function HomePage() {
                                 About Me
                             </Link>
                         </motion.div>
+
+                        {/* ── Mobile Social Row ── */}
+                        <motion.div
+                            variants={fadeIn("up", 0.3) as unknown as Variants}
+                            initial="hidden"
+                            animate="show"
+                            className="flex items-center justify-center xl:justify-start gap-3 lg:hidden"
+                        >
+                            {SOCIALS.map(({ label, href, Icon, color }) => (
+                                <a
+                                    key={label}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={label}
+                                    className={`
+                                        w-11 h-11 rounded-xl
+                                        border border-white/[0.07]
+                                        bg-white/[0.02]
+                                        flex items-center justify-center
+                                        text-gray-500 text-lg
+                                        transition-all duration-300
+                                        ${color}
+                                    `}
+                                >
+                                    <Icon />
+                                </a>
+                            ))}
+
+                            {/* Divider + email hint */}
+                            <div className="w-px h-6 bg-white/10 mx-1" />
+                            <a
+                                href="mailto:ahmedhamdy.mh95@gmail.com"
+                                className="text-[10px] font-black uppercase tracking-widest text-gray-600 hover:text-gray-300 transition-colors"
+                            >
+                                Email
+                            </a>
+                        </motion.div>
+
+                        {/* ── Desktop inline social strip (below CTA, above marquee) ── */}
+                        <motion.div
+                            variants={fadeIn("up", 0.3) as unknown as Variants}
+                            initial="hidden"
+                            animate="show"
+                            className="hidden xl:flex items-center gap-4 mt-2"
+                        >
+                            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600">Find me on</span>
+                            <div className="flex items-center gap-2">
+                                {SOCIALS.map(({ label, href, Icon, color, tooltip }) => (
+                                    <a
+                                        key={label}
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={label}
+                                        title={tooltip}
+                                        className={`
+                                            group/s relative
+                                            w-9 h-9 rounded-lg
+                                            border border-white/[0.06]
+                                            bg-white/[0.02]
+                                            flex items-center justify-center
+                                            text-gray-600 text-sm
+                                            transition-all duration-200
+                                            ${color}
+                                        `}
+                                    >
+                                        <Icon />
+                                        {/* Micro tooltip */}
+                                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#0d0d12] border border-white/10 rounded text-[9px] font-black text-white whitespace-nowrap opacity-0 group-hover/s:opacity-100 transition-opacity duration-150 pointer-events-none">
+                                            {label}
+                                        </span>
+                                    </a>
+                                ))}
+                            </div>
+                            {/* Open to work pill */}
+                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">Open to work</span>
+                            </div>
+                        </motion.div>
                     </div>
 
+                    {/* Avatar */}
                     <motion.div
-                        variants={fadeIn("left", 0.2) as unknown as Variants }
+                        variants={fadeIn("left", 0.2) as unknown as Variants}
                         initial="hidden"
                         animate="show"
                         className="hidden xl:flex justify-center items-center relative"
@@ -168,14 +345,13 @@ export default function HomePage() {
                 <div className="relative flex w-full max-w-[100vw] overflow-hidden group">
                     <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-[#020204] to-transparent z-10" />
                     <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-[#020204] to-transparent z-10" />
-                    
                     <motion.div
                         className="flex whitespace-nowrap"
                         animate={{ x: ["0%", "-50%"] }}
                         transition={{ ease: "linear", duration: 30, repeat: Infinity }}
                     >
                         {[...trustedCompanies, ...trustedCompanies, ...trustedCompanies, ...trustedCompanies].map((company, i) => (
-                            <div key={i} className="flex items-center gap-4 px-8 sm:px-12 opacity-50 hover:opacity-100 transition-opacity duration-300 group-hover:opacity-30 group-hover:hover:opacity-100 cursor-default">
+                            <div key={i} className="flex items-center gap-4 px-8 sm:px-12 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default">
                                 <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-red-500 to-purple-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
                                 <span className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">{company}</span>
                             </div>
@@ -185,7 +361,7 @@ export default function HomePage() {
             </section>
 
             {/* ── Tech Strip ── */}
-            <section className="relative py-12 px-6 border-b border-white/[0.05] bg-gradient-to-r from-transparent via-white/[0.01] to-transparent z-10 overflow-hidden">
+            <section className="relative py-12 px-6 border-b border-white/[0.05] z-10 overflow-hidden">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-16">
                         {[
@@ -238,7 +414,7 @@ export default function HomePage() {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.08 }}
                                 whileHover={{ y: -10 }}
-                                className="group relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.05] backdrop-blur-2xl overflow-hidden shadow-2xl"
+                                className="group relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.05] overflow-hidden shadow-2xl"
                             >
                                 <div className={`absolute -top-20 -right-20 w-44 h-44 rounded-full bg-gradient-to-br ${service.gradient} opacity-10 blur-[40px] group-hover:opacity-20 transition-opacity duration-700`} />
                                 <div className="relative z-10">
@@ -275,7 +451,7 @@ export default function HomePage() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.06 }}
-                                className="relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.06] backdrop-blur-2xl shadow-xl"
+                                className="relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.06] shadow-xl"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 via-purple-500 to-indigo-500 flex items-center justify-center font-black text-white text-sm shadow-lg border border-white/10">
@@ -301,12 +477,43 @@ export default function HomePage() {
                     viewport={{ once: true }}
                     className="container mx-auto text-center"
                 >
-                    <h2 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white uppercase tracking-tighter mb-12 leading-[0.95]">
+                    <h2 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white uppercase tracking-tighter mb-6 leading-[0.95]">
                         Ready to Build <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-500 to-indigo-500">Something?</span>
                     </h2>
+
+                    {/* Social row inside CTA */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.15 }}
+                        className="flex items-center justify-center gap-3 mb-12"
+                    >
+                        {SOCIALS.map(({ label, href, Icon, color }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={label}
+                                className={`
+                                    w-11 h-11 rounded-xl
+                                    border border-white/[0.07]
+                                    bg-white/[0.02]
+                                    flex items-center justify-center
+                                    text-gray-500 text-base
+                                    transition-all duration-300
+                                    ${color}
+                                `}
+                            >
+                                <Icon />
+                            </a>
+                        ))}
+                    </motion.div>
+
                     <Link href="/contact" className="group inline-block">
-                        <div className="relative px-12 py-5 bg-[#030305] rounded-full border border-white/10 overflow-hidden hover:scale-105 transition-transform duration-300">
+                        <div className="relative px-12 py-5 bg-[#030305] rounded-full border border-white/10 hover:scale-105 transition-transform duration-300">
                             <span className="relative z-10 text-white font-black uppercase tracking-[0.25em] text-xs">
                                 Start Your Project
                             </span>
