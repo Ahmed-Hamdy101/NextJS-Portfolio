@@ -15,6 +15,7 @@ import {
 } from "react-icons/si";
 import Avatar from "../components/Avatar";
 import { fadeIn } from "../lib/variants";
+import Head from "next/head"; 
 
 const ResumeModal = dynamic(() => import("../components/ResumeModal"), {
     ssr: false,
@@ -107,6 +108,28 @@ export default function HomePage() {
     ];
 
     return (
+        <> {/*  This fragment now correctly wraps all top-level elements */}
+        <Head>
+            <title> Home Page Ahmed Hamdy |  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
+            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
+            
+            {/* Open Graph / Facebook */}
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
+            <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
+            
+            {/* Twitter */}
+            <meta name="twitter:card" content="favicons.svg" />     
+            <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
+            <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
+
+        </Head>
+
         <div className="relative min-h-screen bg-[#020204] selection:bg-red-500/20 overflow-hidden font-sans">
 
             {/* ── Vertical Social Sidebar — desktop only ── */}
@@ -210,7 +233,7 @@ export default function HomePage() {
                             animate="show"
                             className="max-w-xl mx-auto xl:mx-0 mb-8 text-lg lg:text-xl text-slate-400 font-light leading-relaxed"
                         >
-                            <span className="text-white font-black">Ahmed Hamdy</span> — 3+ years building scalable web systems, RESTful APIs, and cloud-hosted platforms with Node.js, Bun, Laravel, Next.js, and AWS.
+                            <span className="text-white font-black">Ahmed Hamdy</span> — 4+ years building scalable web systems, RESTful APIs, and cloud-hosted platforms with Node.js, Bun, Laravel, Next.js, and AWS.
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -528,5 +551,6 @@ export default function HomePage() {
                 )}
             </AnimatePresence>
         </div>
+        </>
     );
 }

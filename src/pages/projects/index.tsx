@@ -11,7 +11,7 @@ import {
     HiMiniXMark, HiMiniChevronLeft, HiMiniChevronRight,
     HiMiniPhoto,
 } from "react-icons/hi2";
-
+import Head from "next/head";
 // Look for something like this and add your new string:
 type FilterType = "All" | "Live" | "In Progress (private)" | "Live -- Alkayan Nova in Progress" | "Graduation";
 
@@ -224,6 +224,7 @@ const Lightbox = ({ images, title, startIndex, onClose }: LightboxProps) => {
     const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length]);
 
     return (
+
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -309,6 +310,7 @@ const Lightbox = ({ images, title, startIndex, onClose }: LightboxProps) => {
                 </div>
             )}
         </motion.div>
+
     );
 };
 
@@ -326,6 +328,27 @@ const ProjectsPage = () => {
     }, []);
 
     return (
+                                <> {/*  This fragment now correctly wraps all top-level elements */}
+        <Head>
+            <title> Projects Page|  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
+            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
+            
+            {/* Open Graph / Facebook */}
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
+            <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
+            
+            {/* Twitter */}
+            <meta name="twitter:card" content="favicons.svg" />     
+            <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
+            <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
+
+        </Head>
         <div className="relative text-white min-h-screen flex flex-col items-center px-6 py-24 overflow-hidden bg-[#020204]">
             <Circles />
 
@@ -543,6 +566,7 @@ const ProjectsPage = () => {
                 )}
             </AnimatePresence>
         </div>
+     </>
     );
 };
 

@@ -14,6 +14,7 @@ import Avatar from "../../components/Avatar";
 import Circles from '../../components/Circle';
 import ResumeModal from "../../components/ResumeModal";
 import { fadeIn } from "../../lib/variants";
+import Head from "next/head"; 
 
 export default function AboutPage() {
     const tabs = [
@@ -205,6 +206,27 @@ export default function AboutPage() {
     };
 
     return (
+                        <> {/*  This fragment now correctly wraps all top-level elements */}
+        <Head>
+            <title> About Me|  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
+            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
+            
+            {/* Open Graph / Facebook */}
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
+            <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
+            
+            {/* Twitter */}
+            <meta name="twitter:card" content="favicons.svg" />     
+            <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
+            <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
+
+        </Head>
         <div className="relative text-white min-h-screen flex flex-col items-center justify-center px-4 py-8 overflow-hidden">
             <Circles />
 
@@ -291,7 +313,7 @@ export default function AboutPage() {
                                 </div>
                                 <span className="text-cyan-400/60 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all duration-300">→</span>
                             </Link>
-                            {/* LINKEDIN BADGE PLACED HERE */}
+                            {/* LINKEDIN BADGE  */}
                                     <div className="pt-4 flex justify-start w-full">
                                         <div 
                                             className="badge-base LI-profile-badge w-full" 
@@ -360,5 +382,6 @@ export default function AboutPage() {
                 </AnimatePresence>
             </div>
         </div>
+        </>
     );
 }
