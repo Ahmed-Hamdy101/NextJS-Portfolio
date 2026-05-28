@@ -110,7 +110,7 @@ export default function HomePage() {
     return (
         <> {/*  This fragment now correctly wraps all top-level elements */}
         <Head>
-            <title> Home Page Ahmed Hamdy |  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
+            <title> Home Page Ahmed Hamdy Portfolio |  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
             <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
             
