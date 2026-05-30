@@ -6,10 +6,12 @@ import {
     HiMiniEnvelope, HiMiniMapPin, HiMiniPaperAirplane,
     HiMiniArrowTopRightOnSquare, HiMiniPhone,
 } from 'react-icons/hi2';
-
+import { useState } from "react";
 import Head from "next/head"; 
-
+import { sendContactEmail } from "@/lib/email";
 const ContactPage = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
     const socialLinks = [
         { icon: FaGithub, href: "https://github.com/Ahmed-Hamdy101", label: "GitHub", color: "hover:border-gray-400/40 hover:text-gray-300" },
         { icon: FaLinkedinIn, href: "https://linkedin.com/in/ahmed-hamdy-ah", label: "LinkedIn", color: "hover:border-blue-500/40 hover:text-blue-400" },
@@ -40,7 +42,8 @@ const ContactPage = () => {
     ];
 
     return (
-                <> {/*  This fragment now correctly wraps all top-level elements */}
+        
+      <> {/*  This fragment now correctly wraps all top-level elements */}
         <Head>
             <title> Contact Me|  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
             <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
@@ -109,72 +112,52 @@ const ContactPage = () => {
                         <h2 className="text-3xl font-black mb-2 uppercase tracking-tight">Send a Message</h2>
                         <p className="text-gray-500 text-sm mb-10 font-light">I typically reply within 24 hours.</p>
 
-                        <form className="space-y-6" onSubmit={(e) => {
-                            e.preventDefault();
-                            const formData = new FormData(e.currentTarget);
-                            const name = formData.get("name") as string;
-                            const subject = formData.get("subject") as string;
-                            const message = formData.get("message") as string;
-                            
-                            const mailtoLink = `mailto:ahmedhamdy.mh95@gmail.com?subject=${encodeURIComponent(subject || "Contact from Portfolio")}&body=${encodeURIComponent(`Name: ${name}\n\n${message}`)}`;
-                            
-                            window.location.href = mailtoLink;
-                        }}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div className="group">
-                                    <label htmlFor="contact-name" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Full Name</label>
-                                    <input
-                                        type="text"
-                                        id="contact-name"
-                                        name="name"
-                                        className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 transition-all duration-300 text-sm font-light"
-                                        placeholder="Your name"
-                                    />
-                                </div>
-                                <div className="group">
-                                    <label htmlFor="contact-email" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Email Address</label>
-                                    <input
-                                        type="email"
-                                        id="contact-email"
-                                        name="email"
-                                        className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 transition-all duration-300 text-sm font-light"
-                                        placeholder="your@email.com"
-                                    />
-                                </div>
-                            </div>
 
-                            <div className="group">
-                                <label htmlFor="contact-subject" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Subject</label>
-                                <input
-                                    type="text"
-                                    id="contact-subject"
-                                    name="subject"
-                                    className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 transition-all duration-300 text-sm font-light"
-                                    placeholder="Project Proposal / Collaboration Inquiry"
-                                />
-                            </div>
+            {/* In your form structure below, modify ONLY the onSubmit and button state: */}
+            <form 
+                className="space-y-6" 
+                onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsSubmitting(true);
+                    setStatusMessage(null);
 
-                            <div className="group">
-                                <label htmlFor="contact-message" className="block mb-2 text-xs font-black uppercase tracking-[0.15em] text-gray-400 group-focus-within:text-red-400 transition-colors duration-300">Message</label>
-                                <textarea
-                                    id="contact-message"
-                                    name="message"
-                                    rows={6}
-                                    className="w-full px-5 py-4 bg-white/[0.02] border border-white/10 rounded-xl focus:outline-none focus:border-red-500/60 focus:ring-1 focus:ring-red-500/30 focus:bg-white/[0.04] text-white placeholder-gray-600 resize-none transition-all duration-300 text-sm font-light leading-relaxed"
-                                    placeholder="Tell me about your project, timeline, and goals..."
-                                />
-                            </div>
+                    const formData = new FormData(e.currentTarget);
+                    const result = await sendContactEmail(formData);
 
-                            <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                type="submit"
-                                className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white rounded-xl font-black uppercase tracking-[0.15em] text-sm shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-500"
-                            >
-                                <HiMiniPaperAirplane className="text-lg rotate-[-45deg]" />
-                                Send Message
-                            </motion.button>
-                        </form>
+                    setIsSubmitting(false);
+                    if (result.success) {
+                        setStatusMessage({ type: 'success', text: "Message sent successfully! I'll be in touch." });
+                        (e.target as HTMLFormElement).reset(); // Clear input fields
+                    } else {
+                        setStatusMessage({ type: 'error', text: result.error || "Something went wrong." });
+                    }
+                }}
+            >
+                {/* Status Message Notification */}
+                {statusMessage && (
+                    <div className={`p-4 rounded-xl text-xs font-black uppercase tracking-wider ${statusMessage.type === 'success' ? 'bg-green-500/10 border border-green-500/20 text-green-400' : 'bg-red-500/10 border border-red-500/20 text-red-400'}`}>
+                        {statusMessage.text}
+                    </div>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* ... keep your inputs for Name and Email exactly the same ... */}
+                </div>
+
+                {/* ... keep Subject and Message inputs exactly the same ... */}
+
+                <motion.button
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white rounded-xl font-black uppercase tracking-[0.15em] text-sm shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-500 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                    <HiMiniPaperAirplane className={`text-lg rotate-[-45deg] ${isSubmitting ? 'animate-pulse' : ''}`} />
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                </motion.button>
+            </form>
+
                     </motion.div>
 
                     {/* Right Panel */}

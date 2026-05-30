@@ -58,7 +58,7 @@ const projects: Project[] = [
     },
     {
         title: "Alkayan Construction",
-        description: "Proprietary Real Estate CMS with RBAC authentication, Laravel MVC backend. Reduced vulnerabilities by 75% via CSRF protection and full-stack input validation.",
+        description: "Proprietary Real Estate CMS with RBAC authentication,  MVC backend. Reduced vulnerabilities by 75% via CSRF protection and full-stack input validation.",
         tech: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF"],
         link: "https://www.alkayan-co.com",
         Icon: HiMiniCpuChip,
