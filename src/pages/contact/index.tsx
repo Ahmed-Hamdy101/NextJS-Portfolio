@@ -8,7 +8,7 @@ import {
 } from 'react-icons/hi2';
 import { useState } from "react";
 import Head from "next/head"; 
-import { sendContactEmail } from "@/lib/email";
+
 
 const ContactPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -120,14 +120,27 @@ const ContactPage = () => {
                                 setStatusMessage(null);
 
                                 const formData = new FormData(e.currentTarget);
-                                const result = await sendContactEmail(formData);
+                                const data = Object.fromEntries(formData.entries());
 
-                                setIsSubmitting(false);
-                                if (result.success) {
-                                    setStatusMessage({ type: 'success', text: "Message sent successfully! I'll be in touch." });
-                                    (e.target as HTMLFormElement).reset(); 
-                                } else {
-                                    setStatusMessage({ type: 'error', text: result.error || "Something went wrong." });
+                                try {
+                                    const response = await fetch('/api/contact', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify(data),
+                                    });
+
+                                    const result = await response.json();
+
+                                    setIsSubmitting(false);
+                                    if (result.success) {
+                                        setStatusMessage({ type: 'success', text: "Message sent successfully! I'll be in touch." });
+                                        (e.target as HTMLFormElement).reset(); 
+                                    } else {
+                                        setStatusMessage({ type: 'error', text: result.error || "Something went wrong." });
+                                    }
+                                } catch (err) {
+                                    setIsSubmitting(false);
+                                    setStatusMessage({ type: 'error', text: "Server communication error." });
                                 }
                             }}
                         >
