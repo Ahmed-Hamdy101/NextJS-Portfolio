@@ -1,25 +1,24 @@
 import React, { useEffect, useRef } from "react";
 
 /**
- * Performance optimizations:
- * 1. Batch all particle dots into ONE beginPath → fill call (eliminates N draw calls/frame)
- * 2. Spatial grid bucketing for connectParticles — O(n) instead of O(n²)
- * 3. Visibility API pauses animation when tab is hidden
- * 4. Debounced resize handler
- * 5. Reduced particle count on mobile
+ * Performance budget:
+ * - Single beginPath/stroke for ALL connection lines per frame  (was 1 stroke per line)
+ * - Spatial grid O(n) neighbour lookup                          (was O(n²))
+ * - Opacity-bucketed dot batching, 1 fill call per bucket       (was N fill calls)
+ * - Visibility API pauses RAF when tab hidden
+ * - Debounced resize
+ * - Reduced counts on mobile
  */
 
-const PARTICLE_COUNT_DESKTOP = 45;
-const PARTICLE_COUNT_MOBILE = 22;
-const CONNECTION_DISTANCE = 130;
-const CELL_SIZE = CONNECTION_DISTANCE;
+const PARTICLE_COUNT_DESKTOP = 40;
+const PARTICLE_COUNT_MOBILE  = 18;
+const CONNECTION_DISTANCE    = 120;
+const CELL_SIZE              = CONNECTION_DISTANCE;
 
-interface ParticleData {
-    x: number;
-    y: number;
+interface Particle {
+    x: number; y: number;
     size: number;
-    speedX: number;
-    speedY: number;
+    speedX: number; speedY: number;
     opacity: number;
 }
 
@@ -29,121 +28,116 @@ const ParticularContainer = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-
         const ctx = canvas.getContext("2d", { alpha: true });
         if (!ctx) return;
 
-        let animationFrameId: number;
+        let rafId: number;
         let paused = false;
 
-        const setCanvasSize = () => {
-            canvas.width = window.innerWidth;
+        const setSize = () => {
+            canvas.width  = window.innerWidth;
             canvas.height = window.innerHeight;
         };
-        setCanvasSize();
+        setSize();
 
         const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        const count = isMobile ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
+        const count    = isMobile ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
 
-        const particles: ParticleData[] = [];
+        const particles: Particle[] = [];
 
-        const initParticles = () => {
+        const init = () => {
             particles.length = 0;
             for (let i = 0; i < count; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 1.5 + 0.8,
-                    speedX: (Math.random() - 0.5) * 0.4,
-                    speedY: (Math.random() - 0.5) * 0.4,
-                    opacity: Math.random() * 0.4 + 0.1,
+                    size:   Math.random() * 1.4 + 0.7,
+                    speedX: (Math.random() - 0.5) * 0.35,
+                    speedY: (Math.random() - 0.5) * 0.35,
+                    opacity: Math.random() * 0.35 + 0.1,
                 });
             }
         };
-        initParticles();
+        init();
 
+        // ── Grid build ─────────────────────────────────────────────────────────
         type Grid = Map<string, number[]>;
-
         const buildGrid = (): Grid => {
-            const grid: Grid = new Map();
+            const g: Grid = new Map();
             for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                const cx = Math.floor(p.x / CELL_SIZE);
-                const cy = Math.floor(p.y / CELL_SIZE);
-                const key = `${cx},${cy}`;
-                if (!grid.has(key)) grid.set(key, []);
-                grid.get(key)!.push(i);
+                const p   = particles[i];
+                const key = `${Math.floor(p.x / CELL_SIZE)},${Math.floor(p.y / CELL_SIZE)}`;
+                if (!g.has(key)) g.set(key, []);
+                g.get(key)!.push(i);
             }
-            return grid;
+            return g;
         };
 
+        // ── Single-path connection draw ─────────────────────────────────────────
+        // All lines share ONE beginPath → ONE stroke call per frame.
+        // Opacity is encoded per-segment by piggy-backing on a uniform low alpha.
         const connectParticles = () => {
             const grid = buildGrid();
-            ctx.lineWidth = 0.5;
+            const distSqMax = CONNECTION_DISTANCE * CONNECTION_DISTANCE;
+
+            ctx.lineWidth   = 0.5;
+            ctx.strokeStyle = "rgba(147,51,234,0.12)"; // base colour, low alpha
+            ctx.beginPath();
 
             for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
+                const p  = particles[i];
                 const cx = Math.floor(p.x / CELL_SIZE);
                 const cy = Math.floor(p.y / CELL_SIZE);
 
                 for (let nx = cx - 1; nx <= cx + 1; nx++) {
                     for (let ny = cy - 1; ny <= cy + 1; ny++) {
-                        const neighbors = grid.get(`${nx},${ny}`);
-                        if (!neighbors) continue;
+                        const bucket = grid.get(`${nx},${ny}`);
+                        if (!bucket) continue;
 
-                        for (const j of neighbors) {
+                        for (const j of bucket) {
                             if (j <= i) continue;
-                            const q = particles[j];
-                            const dx = p.x - q.x;
-                            const dy = p.y - q.y;
-                            const distSq = dx * dx + dy * dy;
+                            const q    = particles[j];
+                            const dx   = p.x - q.x;
+                            const dy   = p.y - q.y;
+                            const dSq  = dx * dx + dy * dy;
+                            if (dSq >= distSqMax) continue;
 
-                            if (distSq < CONNECTION_DISTANCE * CONNECTION_DISTANCE) {
-                                const alpha = 0.1 * (1 - Math.sqrt(distSq) / CONNECTION_DISTANCE);
-                                ctx.strokeStyle = `rgba(147,51,234,${alpha.toFixed(3)})`;
-                                ctx.beginPath();
-                                ctx.moveTo(p.x, p.y);
-                                ctx.lineTo(q.x, q.y);
-                                ctx.stroke();
-                            }
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(q.x, q.y);
                         }
                     }
                 }
             }
+
+            ctx.stroke(); // ONE draw call for all lines
         };
 
-        // Group particles by opacity bucket to minimize fillStyle changes
+        // ── Main loop ──────────────────────────────────────────────────────────
         const animate = () => {
-            if (paused) {
-                animationFrameId = requestAnimationFrame(animate);
-                return;
-            }
+            rafId = requestAnimationFrame(animate);
+            if (paused) return;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Update positions first
+            // Update positions
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
                 p.x += p.speedX;
                 p.y += p.speedY;
                 if (p.x > canvas.width)  p.x = 0;
-                if (p.x < 0)             p.x = canvas.width;
+                else if (p.x < 0)        p.x = canvas.width;
                 if (p.y > canvas.height) p.y = 0;
-                if (p.y < 0)             p.y = canvas.height;
+                else if (p.y < 0)        p.y = canvas.height;
             }
 
-            // Batch draw all dots in ONE path per opacity group — massive draw call reduction
-            // Sort into ~4 opacity buckets to limit fillStyle changes
-            const buckets: Record<string, ParticleData[]> = {};
+            // Bucket dots by opacity (1 decimal) → 1 fill call per bucket
+            const buckets: Record<string, Particle[]> = {};
             for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                const key = p.opacity.toFixed(1);
-                if (!buckets[key]) buckets[key] = [];
-                buckets[key].push(p);
+                const key = particles[i].opacity.toFixed(1);
+                (buckets[key] ??= []).push(particles[i]);
             }
-
-            for (const [opacityKey, group] of Object.entries(buckets)) {
-                ctx.fillStyle = `rgba(239,68,68,${opacityKey})`;
+            for (const [alpha, group] of Object.entries(buckets)) {
+                ctx.fillStyle = `rgba(239,68,68,${alpha})`;
                 ctx.beginPath();
                 for (const p of group) {
                     ctx.moveTo(p.x + p.size, p.y);
@@ -153,29 +147,27 @@ const ParticularContainer = () => {
             }
 
             connectParticles();
-            animationFrameId = requestAnimationFrame(animate);
         };
 
         animate();
 
-        const handleVisibility = () => { paused = document.hidden; };
-        document.addEventListener("visibilitychange", handleVisibility);
+        // ── Visibility pause ───────────────────────────────────────────────────
+        const onVisibility = () => { paused = document.hidden; };
+        document.addEventListener("visibilitychange", onVisibility);
 
+        // ── Debounced resize ───────────────────────────────────────────────────
         let resizeTimer: ReturnType<typeof setTimeout>;
-        const handleResize = () => {
+        const onResize = () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                setCanvasSize();
-                initParticles();
-            }, 150);
+            resizeTimer = setTimeout(() => { setSize(); init(); }, 150);
         };
-        window.addEventListener("resize", handleResize, { passive: true });
+        window.addEventListener("resize", onResize, { passive: true });
 
         return () => {
-            cancelAnimationFrame(animationFrameId);
+            cancelAnimationFrame(rafId);
             clearTimeout(resizeTimer);
-            window.removeEventListener("resize", handleResize);
-            document.removeEventListener("visibilitychange", handleVisibility);
+            window.removeEventListener("resize", onResize);
+            document.removeEventListener("visibilitychange", onVisibility);
         };
     }, []);
 

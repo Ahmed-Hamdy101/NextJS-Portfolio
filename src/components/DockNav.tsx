@@ -9,7 +9,8 @@ import {
     HiMiniEnvelope,
     HiMiniBriefcase,
     HiMiniChatBubbleLeftRight,
-    HiMiniCube
+    HiMiniCube,
+    HiMiniCalendarDays
 } from "react-icons/hi2";
 
 const navItems = [
@@ -20,6 +21,7 @@ const navItems = [
     { href: "/projects", label: "Projects", Icon: HiMiniRectangleGroup },
     { href: "/testimonials", label: "Testimonials", Icon: HiMiniChatBubbleLeftRight },
     { href: "/services", label: "Services", Icon: HiMiniCube },
+    { href: "/schedule", label: "Schedule", Icon: HiMiniCalendarDays },
     { href: "/contact", label: "Contact", Icon: HiMiniEnvelope },
 ];
 
