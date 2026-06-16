@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { BiLogoAmazon } from "react-icons/bi";
 import { FaGithub, FaLinkedinIn, FaStackOverflow, FaWhatsapp } from "react-icons/fa";
-import { HiMiniCommandLine, HiMiniEye } from "react-icons/hi2";
+import { HiMiniCommandLine, HiMiniEye, HiMiniCalendarDays } from "react-icons/hi2";
 import {
     SiBun,
     SiDigitalocean,
@@ -16,6 +16,7 @@ import {
 import Avatar from "../components/Avatar";
 import { fadeIn } from "../lib/variants";
 import Head from "next/head"; 
+import ScheduleForm from "../components/ScheduleForm";
 
 const ResumeModal = dynamic(() => import("../components/ResumeModal"), {
     ssr: false,
@@ -241,8 +242,20 @@ export default function HomePage() {
                             variants={fadeIn("down", 0.25) as unknown as Variants}
                             initial="hidden"
                             animate="show"
-                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-10"
+                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-10 w-full"
                         >
+                            <Link
+                                href="#schedule"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById("schedule")?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                                className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-purple-600 text-white font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-red-500/20 hover:shadow-red-500/30"
+                            >
+                                <HiMiniCalendarDays className="text-sm" />
+                                Schedule a Call
+                            </Link>
+
                             <Link
                                 href="/projects"
                                 className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-white/5"
@@ -299,49 +312,6 @@ export default function HomePage() {
                             >
                                 Email
                             </a>
-                        </motion.div>
-
-                        {/* ── Desktop inline social strip (below CTA, above marquee) ── */}
-                        <motion.div
-                            variants={fadeIn("up", 0.3) as unknown as Variants}
-                            initial="hidden"
-                            animate="show"
-                            className="hidden xl:flex items-center gap-4 mt-2"
-                        >
-                            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600">Find me on</span>
-                            <div className="flex items-center gap-2">
-                                {SOCIALS.map(({ label, href, Icon, color, tooltip }) => (
-                                    <a
-                                        key={label}
-                                        href={href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={label}
-                                        title={tooltip}
-                                        className={`
-                                            group/s relative
-                                            w-9 h-9 rounded-lg
-                                            border border-white/[0.06]
-                                            bg-white/[0.02]
-                                            flex items-center justify-center
-                                            text-gray-600 text-sm
-                                            transition-all duration-200
-                                            ${color}
-                                        `}
-                                    >
-                                        <Icon />
-                                        {/* Micro tooltip */}
-                                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#0d0d12] border border-white/10 rounded text-[9px] font-black text-white whitespace-nowrap opacity-0 group-hover/s:opacity-100 transition-opacity duration-150 pointer-events-none">
-                                            {label}
-                                        </span>
-                                    </a>
-                                ))}
-                            </div>
-                            {/* Open to work pill */}
-                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">Open to work</span>
-                            </div>
                         </motion.div>
                     </div>
 
@@ -437,12 +407,12 @@ export default function HomePage() {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.08 }}
                                 whileHover={{ y: -10 }}
-                                className="group relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.05] overflow-hidden shadow-2xl"
+                                className="group relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.05] overflow-hidden shadow-2xl hover:border-red-500/20 hover:bg-[#0c0c10]/60 transition-all duration-500"
                             >
                                 <div className={`absolute -top-20 -right-20 w-44 h-44 rounded-full bg-gradient-to-br ${service.gradient} opacity-10 blur-[40px] group-hover:opacity-20 transition-opacity duration-700`} />
                                 <div className="relative z-10">
-                                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center mb-8">
-                                        <service.icon className="text-3xl text-white opacity-80" />
+                                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:border-red-500/30 transition-all duration-500">
+                                        <service.icon className="text-3xl text-white opacity-80 group-hover:opacity-100 transition-opacity" />
                                     </div>
                                     <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tight">{service.title}</h3>
                                     <p className="text-slate-400 font-light leading-relaxed text-sm">{service.description}</p>
@@ -474,7 +444,7 @@ export default function HomePage() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.06 }}
-                                className="relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.06] shadow-xl"
+                                className="relative p-8 md:p-10 rounded-[2.5rem] bg-[#0c0c10]/40 border border-white/[0.06] shadow-xl hover:border-purple-500/20 hover:bg-[#0c0c10]/60 transition-all duration-500"
                             >
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 via-purple-500 to-indigo-500 flex items-center justify-center font-black text-white text-sm shadow-lg border border-white/10">
@@ -488,6 +458,48 @@ export default function HomePage() {
                                 <p className="text-slate-400 font-light leading-relaxed text-sm italic">&quot;{t.content}&quot;</p>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Schedule Section ── */}
+            <section id="schedule" className="relative py-32 px-6 lg:px-24 z-10 border-t border-white/[0.05]">
+                <div className="container mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div className="lg:col-span-5 flex flex-col justify-center text-center lg:text-left">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                className="inline-flex items-center gap-3 px-5 py-2 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md mb-6 w-fit mx-auto lg:mx-0"
+                            >
+                                <HiMiniCalendarDays className="text-red-400 text-base" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-300">
+                                    Let's connect
+                                </span>
+                            </motion.div>
+
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="text-4xl lg:text-6xl font-black text-white uppercase tracking-tighter mb-6"
+                            >
+                                Schedule a <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">Call</span>
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="text-slate-400 text-lg font-light leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
+                            >
+                                Pick a date and time that suits you. We can discuss your project requirements, technical challenges, or collaboration opportunities. A Google Meet link and calendar invite will be sent directly to your email.
+                            </motion.p>
+                        </div>
+                        <div className="lg:col-span-7 w-full">
+                            <ScheduleForm />
+                        </div>
                     </div>
                 </div>
             </section>
