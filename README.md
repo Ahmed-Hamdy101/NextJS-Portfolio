@@ -1,6 +1,9 @@
 
 ![Portfolio](./public/images/projects/portfolio.png)
 
+# Next.js Developer Portfolio
+
+A responsive portfolio web application built with Next.js, React, and Tailwind CSS to showcase my projects and technical expertise.
 # ✨ Developer Resume & Portfolio Engine
 
 [![Bun](https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh)
