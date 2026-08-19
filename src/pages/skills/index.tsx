@@ -5,7 +5,7 @@ import {
   DiPhotoshop,   
   DiIllustrator ,
 }   from "react-icons/di";
-import { TbBrandAdobePremier   ,TbBrandAdobeXd  } from "react-icons/tb";
+import { TbBrandAdobePremier, TbBrandAdobeXd } from "react-icons/tb";
 
 import { GrOracle } from "react-icons/gr";
 import { AiFillAmazonCircle } from "react-icons/ai";
