@@ -116,7 +116,7 @@ const SkillsPage = () => {
                 { name: "Adobe Xd", level: 90, icon: TbBrandAdobeXd, color: "#d20be4" }, 
                 { name: "Adobe Illustrator", level: 90, icon: DiIllustrator, color: "#e9d62a" },
                 { name: "Adobe Photoshop", level: 90, icon: DiPhotoshop, color: "#0080FF" },
-                { name: "Adobe Premier", level: 90, icon: TbBrandAdobePremier, color: "#c72eb3" },
+                { name: "Adobe Premiere", level: 90, icon: TbBrandAdobePremier, color: "#c72eb3" },
                 { name: "QT / C++", level: 82, icon: SiQt, color: "#2496ED" },
                 { name: "Visual Studio Community / C# ", level: 90, icon: SiVsco, color: "#2496ED" },
                 { name: "Electrons", level: 20, icon: SiElectron, color: "#2496ED" },
