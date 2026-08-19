@@ -2,265 +2,25 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { fadeIn } from "@/lib/variants";
 import Circles from "@/components/Circle";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useCallback, useRef } from "react";
 import {
-    HiMiniRocketLaunch, HiMiniCpuChip, HiMiniCube, HiMiniChartBar,
-    HiMiniMap, HiMiniUsers, HiMiniWrenchScrewdriver,
-    HiMiniArrowTopRightOnSquare, HiMiniCommandLine,
-    HiMiniGlobeAlt, HiMiniShoppingCart,
+    HiMiniArrowTopRightOnSquare,
     HiMiniXMark, HiMiniChevronLeft, HiMiniChevronRight,
-    HiMiniPhoto, HiMiniCodeBracket,
+    HiMiniPhoto, HiMiniCodeBracket, HiMiniDocumentText,
 } from "react-icons/hi2";
 import Head from "next/head";
-
-type FilterType = "All" | "Live" | "In Progress (private)" | "Live -- Alkayan Nova in Progress" | "Graduation";
-
-interface Project {
-    title: string;
-    description: string;
-    tech: string[];
-    link: string;
-    Icon: React.ElementType;
-    color: string;
-    accent: string;
-    accentRgb: string;
-    status: FilterType;
-    images: string[];
-    previewImage: string;
-    year: string;
-    category: string;
-}
-
-const projects: Project[] = [
-    {
-        title: "Egypt Tour Guide",
-        description: "Bilingual PWA tourism platform. Next.js 15 App Router, Node.js REST API, Redis caching, GSAP animations, i18next. LCP under 2s. Lighthouse 100% SEO, 98% Accessibility.",
-        tech: ["Next.js 15", "TypeScript", "Node.js", "PostgreSQL", "Redis", "GSAP", "i18next"],
-        link: "https://egypt-tour-guide.com",
-        Icon: HiMiniGlobeAlt,
-        color: "text-amber-400",
-        accent: "#f59e0b",
-        accentRgb: "245,158,11",
-        status: "Live",
-        previewImage: "/images/projects/etgco-laptop-mop.png",
-        year: "2024",
-        category: "Tourism · PWA",
-        images: [
-            "/images/projects/etgco-laptop-mop.png",
-            "/images/projects/et-gco-tours-ux.png",
-            "/images/projects/et-gco-destinations-ux.png",
-            "/images/projects/et-gco-destinations.png",
-            "/images/projects/et-gco-booking-details-ux.png",
-            "/images/projects/et-gco-booking-summary-ux.png",
-            "/images/projects/etgco-mobile-x-iphone.png",
-            "/images/projects/etgco-mobile.png",
-        ],
-    },
-    {
-        title: "Alkayan Construction",
-        description: "Proprietary Real Estate CMS with RBAC authentication,  MVC backend. Reduced vulnerabilities by 75% via CSRF protection and full-stack input validation.",
-        tech: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF"],
-        link: "https://www.alkayan-co.com",
-        Icon: HiMiniCpuChip,
-        color: "text-sky-400",
-        accent: "#38bdf8",
-        accentRgb: "56,189,248",
-        status: "Live -- Alkayan Nova in Progress",
-        previewImage: "/images/projects/alkayan-nova.png",
-        year: "2023",
-        category: "Real Estate · CMS",
-        images: [
-            "/images/projects/alkayan-nova.png",
-            "/images/projects/alkayan-nova-construction.png",
-            "/images/projects/alkayan-projects.png",
-            "/images/projects/dark-alkayan-nova-projects.png",
-        ],
-    } , 
-    {
-        title: "Portfolio — This Site",
-        description: "This portfolio — built with Next.js 15, Framer Motion, Tailwind CSS 4, and a custom particle canvas engine. Deployed on Vercel with perfect Lighthouse scores.",
-        tech: ["Next.js 15", "TypeScript", "Framer Motion", "Tailwind CSS 4", "Canvas API"],
-        link: "#",
-        Icon: HiMiniUsers,
-        color: "text-pink-400",
-        accent: "#f472b6",
-        accentRgb: "244,114,182",
-        status: "Live",
-        previewImage: "/images/projects/portfolio.png",
-        year: "2025",
-        category: "Portfolio",
-        images: ["/images/projects/portfolio.png"],
-    },
-    {
-        title: "Logger Suite ERP",
-        description: "Multi-tenant SaaS ERP combining Next.js 15 frontend with Laravel REST backend. Admin/Editor/Guest RBAC, Redis caching, Docker containerization, AWS EC2/S3.",
-        tech: ["Next.js 15", "Laravel", "MySQL", "Redis", "JWT", "Docker", "AWS"],
-        link: "#",
-        Icon: HiMiniChartBar,
-        color: "text-rose-400",
-        accent: "#fb7185",
-        accentRgb: "251,113,133",
-        status: "In Progress (private)",
-        previewImage: "/images/projects/logger-dsahboard.png",
-        year: "2024",
-        category: "SaaS · ERP",
-        images: [
-            "/images/projects/logger-dsahboard.png",
-            "/images/projects/loger.png",
-            "/images/projects/logge-dashboard-stock.png",
-        ],
-    },
-    {
-        title: "AutoFix — Car Service",
-        description: "AI-powered automotive platform using Bun runtime. Multi-role dashboards for mechanics, admins, and customers. OpenAI API for vehicle diagnostics and code-level maintenance guidance.",
-        tech: ["Bun", "React", "TypeScript", "OpenAI API", "Tailwind CSS"],
-        link: "#",
-        Icon: HiMiniWrenchScrewdriver,
-        color: "text-emerald-400",
-        accent: "#34d399",
-        accentRgb: "52,211,153",
-        status: "Graduation",
-        previewImage: "/images/projects/autofix-car-ux-full.png",
-        year: "2024",
-        category: "AI · Automotive",
-        images: [
-            "/images/projects/autofix-car-ux-full.png",
-            "/images/projects/auto-fix-car-ux-login.png",
-            "/images/projects/autofix-car-ux1.png",
-            "/images/projects/autofix-car-ux2.png",
-        ],
-    },
-    {
-        title: "Evento — Events",
-        description: "Full-stack event management platform with admin and client portals, role-based access, dashboard analytics, and event scheduling.",
-        tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS"],
-        link: "#",
-        Icon: HiMiniRocketLaunch,
-        color: "text-violet-400",
-        accent: "#a78bfa",
-        accentRgb: "167,139,250",
-        status: "In Progress (private)",
-        previewImage: "/images/projects/evento-dashboard.png",
-        year: "2024",
-        category: "Events · Platform",
-        images: [
-            "/images/projects/evento-dashboard.png",
-            "/images/projects/evento-admin-login.png",
-            "/images/projects/evento-client-login.png",
-        ],
-    },
-    {
-        title: "Larafolio",
-        description: "Personal developer portfolio on Laravel backend with a clean CMS for content management, showcasing projects, skills, and work history.",
-        tech: ["Laravel", "PHP", "MySQL", "Blade", "Tailwind CSS"],
-        link: "#",
-        Icon: HiMiniCube,
-        color: "text-fuchsia-400",
-        accent: "#e879f9",
-        accentRgb: "232,121,249",
-        status: "Live",
-        previewImage: "/images/projects/larafolio.png",
-        year: "2023",
-        category: "Portfolio · Laravel",
-        images: ["/images/projects/larafolio.png"],
-    }, 
-     {
-        title: "Admin Rest API",
-        description: "About A secure and scalable Admin API built with Laravel and powered by Passport authentication. Designed to manage users, orders, and admin operations through clean RESTful endpoints.",
-        tech: ["Laravel","Docker", "Angular Docket","Network Service", "PHP", "MySQL", "Rest API", "Tailwind CSS"],
-        link: "https://github.com/Ahmed-Hamdy101/laravel-rest-api",
-        Icon: HiMiniRocketLaunch,
-        color: "text-cyan-400",
-        accent: "#cf352a",
-        accentRgb: "34,211,238",
-        status: "Live",
-        previewImage: "",
-        year: "2023",
-        category: "Backend · API",
-        images: [],
-    },
-    ,  {
-        title: "Larafolio",
-        description: "Personal developer portfolio on Laravel backend with a clean CMS for content management, showcasing projects, skills, and work history.",
-        tech: ["Laravel", "PHP", "MySQL", "Blade", "Tailwind CSS"],
-        link: "https://github.com/Ahmed-Hamdy101/laravel-larafolio",
-        Icon: HiMiniCube,
-        color: "text-fuchsia-400",
-        accent: "#e95656",
-        accentRgb: "232,121,249",
-        status: "Live",
-        previewImage: "/images/projects/larafolio.png",
-        year: "2023",
-        category: "Portfolio · Laravel",
-        images: ["/images/projects/larafolio.png"],
-    },
-    {
-        title: "GIS Sinai Explorer",
-        description: "Interactive map dashboard for managing POIs across the Sinai region. Fully decoupled Node.js/Express backend with PostgreSQL/PostGIS and Leaflet.js frontend.",
-        tech: ["Node.js", "Express", "PostgreSQL", "PostGIS", "Leaflet.js"],
-        link: "#",
-        Icon: HiMiniMap,
-        color: "text-orange-400",
-        accent: "#fb923c",
-        accentRgb: "251,146,60",
-        status: "Graduation",
-        previewImage: "",
-        year: "2023",
-        category: "GIS · Mapping",
-        images: [],
-    },
-    {
-        title: "Node.js Backend Suite",
-        description: "Three production services on AWS: Store Front API (Redis cart caching, 100% Jasmine coverage), Image Processing Microservice, and MERN app with CI/CD via CircleCI.",
-        tech: ["Node.js", "Express", "PostgreSQL", "Redis", "AWS EC2", "S3", "Jasmine"],
-        link: "https://github.com/Ahmed-Hamdy101/nodejs-store-front",
-        Icon: HiMiniCommandLine,
-        color: "text-cyan-400",
-        accent: "#22d3ee",
-        accentRgb: "34,211,238",
-        status: "Live",
-        previewImage: "",
-        year: "2023",
-        category: "Backend · API",
-        images: [],
-    },
-    {
-        title: "Zed Store",
-        description: "Live e-commerce storefront with full product catalog, cart management, and checkout flow. React frontend + Node.js/MongoDB backend. Hosted on Vercel with GitHub CI/CD.",
-        tech: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Vercel"],
-        link: "https://zed-store.app.vercel.app",
-        Icon: HiMiniShoppingCart,
-        color: "text-teal-400",
-        accent: "#2dd4bf",
-        accentRgb: "45,212,191",
-        status: "Live",
-        previewImage: "",
-        year: "2023",
-        category: "E-Commerce",
-        images: [],
-    },
-
-];
-
-const filters: FilterType[] = ["All", "Live", "In Progress (private)", "Graduation", "Live -- Alkayan Nova in Progress"];
-
-const statusConfig: Record<FilterType, { label: string; dot: string; bg: string; text: string; border: string }> = {
-    All: { label: "All", dot: "bg-white", bg: "bg-white/5", text: "text-white", border: "border-white/20" },
-    Live: { label: "Live", dot: "bg-emerald-400", bg: "bg-emerald-500/10", text: "text-emerald-400", border: "border-emerald-500/25" },
-    "In Progress (private)": { label: "In Progress", dot: "bg-amber-400", bg: "bg-amber-500/10", text: "text-amber-400", border: "border-amber-500/25" },
-    Graduation: { label: "Graduation", dot: "bg-violet-400", bg: "bg-violet-500/10", text: "text-violet-400", border: "border-violet-500/25" },
-    "Live -- Alkayan Nova in Progress": { label: "Live ↗ WIP", dot: "bg-sky-400", bg: "bg-sky-500/10", text: "text-sky-400", border: "border-sky-500/25" },
-};
+import { projects, filters, statusConfig, Project, FilterType } from "@/lib/projects-data";
 
 // ─── Lightbox ──────────────────────────────────────────────────────────────
-interface LightboxProps {
+export interface LightboxProps {
     images: string[];
     title: string;
     startIndex: number;
     onClose: () => void;
 }
 
-const Lightbox = ({ images, title, startIndex, onClose }: LightboxProps) => {
+export const Lightbox = ({ images, title, startIndex, onClose }: LightboxProps) => {
     const [current, setCurrent] = useState(startIndex);
     const prev = useCallback(() => setCurrent(c => (c - 1 + images.length) % images.length), [images.length]);
     const next = useCallback(() => setCurrent(c => (c + 1) % images.length), [images.length]);
@@ -326,6 +86,7 @@ const ProjectCard = ({ project, index, onOpenLightbox }: CardProps) => {
     const Icon = project.Icon;
     const hasImages = project.images.length > 0;
     const status = statusConfig[project.status];
+    const isLiveLink = project.link !== "#" && !project.link.includes("github");
 
     return (
         <motion.div
@@ -434,25 +195,42 @@ const ProjectCard = ({ project, index, onOpenLightbox }: CardProps) => {
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center gap-3 pt-3 border-t border-white/[0.04]">
-                    {project.link !== "#" && (
+                <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-white/[0.04]">
+                    {isLiveLink && (
                         <a href={project.link} target="_blank" rel="noopener noreferrer"
                             className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.15em] transition-all duration-300"
                             style={{ color: project.accent }}
                         >
                             <HiMiniArrowTopRightOnSquare className="text-sm" />
-                            {project.link.includes("github") ? "GitHub" : "Live"}
+                            Live
                         </a>
                     )}
-                    {project.link.includes("github") && (
+                    {!isLiveLink && project.link.includes("github") && (
                         <a href={project.link} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.15em] transition-all duration-300"
+                            style={{ color: project.accent }}
+                        >
+                            <HiMiniCodeBracket className="text-sm" />
+                            GitHub
+                        </a>
+                    )}
+                    {project.githubLink && (
+                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
                             className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-gray-600 hover:text-gray-300 transition-colors duration-300"
                         >
                             <HiMiniCodeBracket className="text-sm" />
                             Source
                         </a>
                     )}
-                    {hasImages && (
+                    {project.slug && (
+                        <Link href={`/projects/${project.slug}`}
+                            className="ml-auto flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-gray-300 hover:text-white transition-colors duration-300"
+                        >
+                            <HiMiniDocumentText className="text-sm" />
+                            Case Study
+                        </Link>
+                    )}
+                    {hasImages && !project.slug && (
                         <button onClick={() => onOpenLightbox(project, 0)} className="ml-auto flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-gray-600 hover:text-gray-300 transition-colors duration-300">
                             <HiMiniPhoto className="text-sm" />
                             Gallery
@@ -486,7 +264,7 @@ const ProjectsPage = () => {
         <>
             <Head>
                 <title>Projects | Ahmed Hamdy — Full Stack Engineer</title>
-                <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+                <meta name="description" content="Ahmed Hamdy is a Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
                 <link rel="canonical" href="https://ahmedhamdy101.is-a.dev/projects" />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/projects" />
@@ -557,7 +335,7 @@ const ProjectsPage = () => {
                         {[
                             { label: "Projects Built", value: `${projects.length}+` },
                             { label: "Live in Prod", value: `${liveCount}` },
-                            { label: "Years Exp.", value: "4+" },
+                            { label: "Years Exp.", value: "5+" },
                             { label: "Tech Stack", value: "12+" },
                         ].map((stat, i) => (
                             <div key={i} className="px-5 py-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col gap-1">
