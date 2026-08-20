@@ -44,7 +44,7 @@ export default function AboutPage() {
                     {
                         role: "Junior WordPress Developer",
                         company: "Egypt Racket Sport",
-                        duration: "Dec 2024 – Present",
+                        duration: "Dec 2024 – Jun 2026",
                         points: [
                             "Improved site performance via GTmetrix/Lighthouse audits, caching, and image optimization.",
                             "Implemented on-page SEO with Yoast/Rank Math to boost e-commerce product visibility.",
@@ -122,7 +122,7 @@ export default function AboutPage() {
                 {[
                     {
                         title: "Udacity Advanced Full Stack Nanodegree",
-                        description: "Node.js, PostgreSQL, React, AWS (EC2/S3/RDS), CI/CD, Docker, security & testing — 2023",
+                        description: "Node.js, PostgreSQL, React, AWS (EC2/S3/RDS), CI/CD, Docker, security & testing — 2022",
                         Icon: HiMiniStar,
                         gradient: "from-cyan-400 to-blue-600"
                     },
@@ -256,7 +256,7 @@ export default function AboutPage() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                             </span>
-                            <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-300">4+ Years Experience</span>
+                            <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-300">5+ Years Experience</span>
                         </div>
 
                         <h2 className="text-5xl lg:text-7xl font-black text-white leading-tight">
@@ -288,7 +288,7 @@ export default function AboutPage() {
 
                         <div className="grid grid-cols-3 gap-6 pt-6">
                             {[
-                                { number: "4+", label: "Yrs Exp" },
+                                { number: "5+", label: "Yrs Exp" },
                                 { number: "4+", label: "Live Projects" },
                                 { number: "75%", label: "Vuln Reduction" }
                             ].map((stat, index) => (

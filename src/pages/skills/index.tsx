@@ -23,28 +23,35 @@ import {
     SiFigma,
     SiGit,
     SiGithub,
+    SiGo,
     SiGodaddy,
     SiJasmine,
     SiJavascript,
+    SiJest,
     SiLaravel,
     SiMagic,
     SiMongodb,
     SiMysql,
     SiNamecheap,
     SiNextdotjs,
+    SiNginx,
     SiNodedotjs,
     SiPostgresql,
     SiPrisma,
+    SiPython,
     SiQgis,
     SiQt,
     SiReact,
     SiRedis,
     SiShadcnui,
+    SiSwagger,
     SiTailwindcss,
     SiTypescript,
     SiUikit,
     SiVercel,
-    SiVsco
+    SiVsco,
+    SiWordpress,
+    SiWoocommerce
 } from 'react-icons/si';
 import Circles from "../../components/Circle";
 import { fadeIn } from "../../lib/variants";
@@ -87,6 +94,20 @@ const SkillsPage = () => {
                 { name: "Drizzle", level: 82, icon: SiDrizzle, color: "#DC382D" },
                 { name: "Prisma", level: 82, icon: SiPrisma, color: "#DC382D" },
                 { name: "Jasmine", level: 82, icon: SiJasmine, color: "#DC382D" },
+                { name: "Jest", level: 80, icon: SiJest, color: "#C21325" },
+                { name: "Python", level: 78, icon: SiPython, color: "#3776AB" },
+                { name: "Go", level: 70, icon: SiGo, color: "#00ADD8" },
+            ],
+        },
+        {
+            title: "CMS & Commerce",
+            accentColor: "text-emerald-400",
+            gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
+            skills: [
+                { name: "WordPress", level: 85, icon: SiWordpress, color: "#21759B" },
+                { name: "WooCommerce", level: 82, icon: SiWoocommerce, color: "#96588A" },
+                { name: "Swagger / OpenAPI", level: 85, icon: SiSwagger, color: "#85EA2D" },
+                { name: "NGINX", level: 82, icon: SiNginx, color: "#009639" },
             ],
         },
         {
@@ -183,7 +204,7 @@ const SkillsPage = () => {
                         animate="show"
                         className="text-gray-400 text-lg lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
                     >
-                        4+ years shipping production systems across the full stack.
+                        5+ years shipping production systems across the full stack.
                     </motion.p>
                 </div>
 

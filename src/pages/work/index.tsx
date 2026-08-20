@@ -49,7 +49,7 @@ const experiences = [
         companyLink: null,
         logo: null,
         role: "Junior WordPress Developer",
-        duration: "Dec 2024 – Present",
+        duration: "Dec 2024 – Jun 2026",
         type: "Remote",
         description:
             "Evaluated and improved site performance using GTmetrix and Google Lighthouse; implemented caching and image optimization to reduce load times. Boosted e-commerce product visibility through on-page SEO strategies using Yoast/Rank Math. Maintained overall site health — daily plugin updates, conflict resolution, and frontend UI/UX troubleshooting.",
@@ -137,7 +137,7 @@ const WorkPage = () => {
                         animate="show"
                         className="text-gray-400 text-lg lg:text-2xl max-w-3xl mx-auto font-light tracking-tight"
                     >
-                        4+ years of full-stack engineering, IT leadership, and scalable system architecture.
+                        5+ years of full-stack engineering, IT leadership, and scalable system architecture.
                     </motion.p>
                 </div>
 
