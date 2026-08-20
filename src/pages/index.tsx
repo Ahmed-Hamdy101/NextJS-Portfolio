@@ -234,7 +234,7 @@ export default function HomePage() {
                             animate="show"
                             className="max-w-xl mx-auto xl:mx-0 mb-8 text-lg lg:text-xl text-slate-400 font-light leading-relaxed"
                         >
-                            <span className="text-white font-black">Ahmed Hamdy</span> — 4+ years building scalable web systems, RESTful APIs, and cloud-hosted platforms with Node.js, Bun, Laravel, Next.js, and AWS.
+                            <span className="text-white font-black">Ahmed Hamdy</span> — 5+ years building scalable web systems, RESTful APIs, and cloud-hosted platforms with Node.js, Bun, Laravel, Next.js, and AWS.
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -242,7 +242,7 @@ export default function HomePage() {
                             variants={fadeIn("down", 0.25) as unknown as Variants}
                             initial="hidden"
                             animate="show"
-                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-10 w-full"
+                            className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center xl:justify-start gap-4 mb-10 w-full"
                         >
                             <Link
                                 href="#schedule"
@@ -250,7 +250,7 @@ export default function HomePage() {
                                     e.preventDefault();
                                     document.getElementById("schedule")?.scrollIntoView({ behavior: "smooth" });
                                 }}
-                                className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-purple-600 text-white font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-red-500/20 hover:shadow-red-500/30"
+                                className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-purple-600 text-white font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-red-500/20 hover:shadow-red-500/30 whitespace-nowrap"
                             >
                                 <HiMiniCalendarDays className="text-sm" />
                                 Schedule a Call
@@ -258,20 +258,20 @@ export default function HomePage() {
 
                             <Link
                                 href="/projects"
-                                className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-white/5"
+                                className="w-full sm:w-auto text-center px-8 py-4 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 shadow-2xl shadow-white/5 whitespace-nowrap"
                             >
                                 View Projects →
                             </Link>
 
                             <button
                                 onClick={() => setIsResumeOpen(true)}
-                                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/[0.04] border border-white/5 hover:border-red-500/20 hover:bg-white/[0.08] text-white font-black uppercase tracking-widest text-xs transition-all duration-300 backdrop-blur-xl flex items-center justify-center gap-2 group"
+                                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/[0.04] border border-white/5 hover:border-red-500/20 hover:bg-white/[0.08] text-white font-black uppercase tracking-widest text-xs transition-all duration-300 backdrop-blur-xl flex items-center justify-center gap-2 group whitespace-nowrap"
                             >
                                 <HiMiniEye className="text-sm group-hover:scale-110 transition-transform" />
                                 Interactive CV
                             </button>
 
-                            <Link href="/about" className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-slate-200 transition-colors py-3 px-4">
+                            <Link href="/about" className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-slate-200 transition-colors py-3 px-4 whitespace-nowrap">
                                 About Me
                             </Link>
                         </motion.div>
