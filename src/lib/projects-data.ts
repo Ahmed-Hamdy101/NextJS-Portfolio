@@ -14,6 +14,8 @@ export interface CaseStudy {
     highlights: string[];
     /** true = no real screenshots exist yet, render an architecture diagram instead of a gallery */
     apiOnly?: boolean;
+    /** Real architecture/ER/sequence diagrams exported as SVG — shown in a tabbed viewer when present */
+    diagrams?: { label: string; src: string }[];
 }
 
 export interface Project {
@@ -69,6 +71,12 @@ export const projects: Project[] = [
                 "i18next-driven bilingual UI with automatic browser-language detection",
                 "GA4 integration for traffic monitoring — Lighthouse scores of 100% SEO / 98% Accessibility",
             ],
+            diagrams: [
+                { label: "System Architecture", src: "/images/projects/et-gco-platform/diagrams/et-gco-architecture.svg" },
+                { label: "ER Diagram", src: "/images/projects/et-gco-platform/diagrams/et-gco-erDiagram.svg" },
+                { label: "Booking Sequence", src: "/images/projects/et-gco-platform/diagrams/et-gco-sequenceDiagram.svg" },
+                { label: "Low-Level Design", src: "/images/projects/et-gco-platform/diagrams/etgco-lrd-rp.svg" },
+            ],
         },
     },
     {
@@ -105,6 +113,13 @@ export const projects: Project[] = [
                 "Optimized database schemas and SQL execution plans across concurrent production systems",
                 "Three.js/GSAP 3D visual layer and IndexedDB caching added in the Nova redesign",
                 "End-to-end infra ownership: DNS (GoDaddy), hosting (Namecheap), SSL certificates",
+            ],
+            diagrams: [
+                { label: "System Architecture", src: "/images/projects/al-kayan-nova/diagrams/al-kayan-architecture.svg" },
+                { label: "Component Diagram", src: "/images/projects/al-kayan-nova/diagrams/alkayan-component-tb.svg" },
+                { label: "Component Interaction", src: "/images/projects/al-kayan-nova/diagrams/alkayan-cid.svg" },
+                { label: "Data Flow Diagram", src: "/images/projects/al-kayan-nova/diagrams/alkayan-df-td.svg" },
+                { label: "ER Diagram", src: "/images/projects/al-kayan-nova/diagrams/alkayan-erd.svg" },
             ],
         },
     },
@@ -237,6 +252,13 @@ export const projects: Project[] = [
                 "RBAC layer governing user, order, and admin-operation endpoints",
                 "Full order lifecycle management via RESTful endpoints",
                 "Streaming CSV export for large order datasets, avoiding memory spikes",
+            ],
+            diagrams: [
+                { label: "System Architecture", src: "/images/projects/laravel-rest-api/diagrams/laravel-system-architecture.svg" },
+                { label: "Stack Architecture", src: "/images/projects/laravel-rest-api/diagrams/laravel-rest-stack-arch.svg" },
+                { label: "API Endpoints", src: "/images/projects/laravel-rest-api/diagrams/laravel-api-endpoint-v1.svg" },
+                { label: "ER Diagram", src: "/images/projects/laravel-rest-api/diagrams/laravel-rest-erDiagram.svg" },
+                { label: "JWT Auth Sequence", src: "/images/projects/laravel-rest-api/diagrams/jwt-auth-sequenceDiagram.svg" },
             ],
             apiOnly: true,
         },
