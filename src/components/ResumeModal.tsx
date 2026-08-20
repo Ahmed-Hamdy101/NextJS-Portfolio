@@ -87,7 +87,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                             Professional Summary
                         </h2>
                         <p className="text-sm leading-relaxed text-gray-400 print-cv-text-muted font-light">
-                            Mid level Senior Full Stack Engineer and Computer Programmer with <strong className="text-white font-bold">3+ years</strong> of professional experience designing, building, and deploying scalable web applications, RESTful APIs, and cloud-hosted systems. Skilled across the full stack — JavaScript, TypeScript, PHP, and Python — with deep expertise in <strong className="text-white font-bold">Node.js, Bun, Laravel, React, and AWS</strong> (EC2, S3, RDS, Lambda). Hands-on experience with Docker, Redis, JWT/OAuth2, CI/CD pipelines, microservices, and decoupled architecture. Currently engineering AI-powered products including LLM-integrated agents, RAG pipelines, and AI video generation platforms.
+                            Full Stack Engineer with <strong className="text-white font-bold">5+ years</strong> of professional experience designing, building, and deploying scalable web applications, RESTful APIs, and cloud-hosted systems. Skilled across the full stack — JavaScript, TypeScript, PHP, and Python — with deep expertise in <strong className="text-white font-bold">Node.js, Bun, Laravel, React/Next.js, and AWS</strong> (EC2, S3, RDS, Lambda). Hands-on experience with Docker, Redis, JWT/OAuth2, CI/CD pipelines, microservices, and decoupled architecture. Currently building AI-powered features including LLM integrations and RAG-style pipelines.
                         </p>
                     </div>
 
@@ -99,13 +99,16 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {[
-                                { label: "Languages", value: "JavaScript (ES6+), TypeScript, PHP, Python, GO, C++, SQL, HTML5, CSS3" },
-                                { label: "Front End", value: "React.js, Next.js 15 (App Router), Tailwind CSS 4+, shadcn/ui, Radix UI, Framer Motion, GSAP, jQuery" },
-                                { label: "Back End", value: "Node.js, Express.js, Fastify, Bun, Laravel (MVC), RESTful APIs, GraphQL, JWT, OAuth2, Microservices" },
-                                { label: "AI / ML", value: "LLM API integration (OpenAI, Claude), RAG pipelines, LangChain, Vector Databases" },
+                                { label: "Architecture & Principles", value: "Data Structures, Algorithms, System Design, OOP, Software Architecture, Decoupled Architecture" },
+                                { label: "Languages", value: "JavaScript (ES6+), TypeScript, PHP, Go, C++, Python, SQL, HTML5, CSS3" },
+                                { label: "Front End", value: "React.js, Next.js 15 (App Router), MDBootstrap, CSS3, Tailwind CSS 4+, shadcn/ui, Radix UI, Framer Motion, GSAP, jQuery" },
+                                { label: "AI / ML", value: "LLM API integration (OpenAI, Claude)" },
+                                { label: "Back End", value: "Node.js, Express.js, Fastify, Bun, Laravel (MVC), RESTful APIs, JWT, OAuth2, Passport.js, Microservices, Decoupled Architecture" },
                                 { label: "Databases", value: "MySQL, PostgreSQL, MongoDB, SQLite, Oracle, Drizzle ORM, Prisma ORM, Redis (caching)" },
-                                { label: "Cloud & DevOps", value: "AWS (EC2, S3, RDS, Lambda), Docker, Caddy, NGINX, Apache, CI/CD, SSH, DigitalOcean, Vercel" },
+                                { label: "Cloud & DevOps", value: "AWS (EC2, S3, RDS, Lambda), Docker, Caddy, NGINX, Apache, CI/CD pipelines, SSH" },
+                                { label: "CMS / Commerce", value: "WordPress, WooCommerce, custom theme & plugin development" },
                                 { label: "Testing & Quality", value: "Jasmine, PHPUnit, Jest, unit & integration testing, SOLID, DRY, Swagger/OpenAPI" },
+                                { label: "Tools", value: "Git, Linux, Wireshark, DNS/SSL (GoDaddy, Namecheap, Zoho, Oracle Cloud), Figma, Adobe XD, Adobe Premiere, DigitalOcean" },
                                 { label: "i18n & PWA", value: "i18next, react-i18next, next-intl, TanStack Query, React Hook Form, Zod, PWA" },
                             ].map(({ label, value }) => (
                                 <div key={label} className="p-3 rounded-xl bg-white/[0.02] print-cv-bg-light border border-white/5 print-cv-border">
@@ -141,7 +144,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                             {
                                 role: "Junior WordPress Developer",
                                 company: "Egypt Racket Sport",
-                                duration: "Dec 2024 – Present | Remote",
+                                duration: "Dec 2024 – Jun 2026 | Remote",
                                 color: "bg-cyan-500",
                                 points: [
                                     "Evaluated and improved site performance using GTmetrix/Google Lighthouse; implemented caching and image optimization to reduce load times.",
@@ -210,12 +213,12 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {[
-                                { name: "Egypt Tour Guide", url: "egypt-tour-guide.com", desc: "Next.js 15 + Node.js bilingual PWA tourism platform. Sub-2s load via Turbopack. Deployed on Vercel + DigitalOcean VPS." },
-                                { name: "AutoFix — Car Service Platform", desc: "AI-powered automotive platform (Bun + React + OpenAI). Multi-role: Tech / Admin / Customer. 3× faster startup vs Node.js." },
-                                { name: "AI Video Generation Platform", desc: "Next.js 15 + Prisma + NextAuth scaffold with multi-language support, Sharp image processing, Docker, and Caddy reverse proxy." },
-                                { name: "Logger Suite ERP (SaaS)", desc: "Multi-tenant SaaS ERP: Next.js 15 frontend + Laravel REST backend. Admin/Editor/Guest RBAC, Redis caching, AWS EC2/S3." },
-                                { name: "GIS Sinai Explorer", desc: "Decoupled Node.js + PostgreSQL/PostGIS API with Leaflet.js map dashboard for managing POIs across the Sinai region." },
-                                { name: "Node.js Backend Suite (Udacity)", desc: "Store Front API (Redis cart caching, 100% Jasmine coverage), Image Processing Microservice, MERN app on AWS EC2/S3/RDS." },
+                                { name: "ETGCO Tours", url: "egypt-tour-guide.com", desc: "High-performance bilingual (AR/EN) PWA tourism app built with Next.js 15, TypeScript, and Redis, achieving sub-2s load times." },
+                                { name: "Node.js Storefront API", url: "github.com/Ahmed-Hamdy101/nodejs-store-front-api", desc: "Robust TypeScript/Express e-commerce REST API with PostgreSQL, JWT authentication, migration workflows, and comprehensive Jasmine testing." },
+                                { name: "Laravel REST API (Admin Backend)", url: "github.com/Ahmed-Hamdy101/laravel-rest-api", desc: "Production-ready Laravel REST API featuring Passport OAuth2/JWT auth, RBAC, full order lifecycle management, and streaming CSV exports." },
+                                { name: "TypeScript AI API", url: "github.com/Ahmed-Hamdy101/ts-ai-api", desc: "Production-ready Fastify REST API in TypeScript integrated with OpenAI to deliver intelligent assistant capabilities." },
+                                { name: "AWS Fullstack Deployment", url: "github.com/Ahmed-Hamdy101/aws-fullstack-deployment", desc: "Full-stack AWS application featuring custom cloud infrastructure, backend microservices, and CI/CD production deployment." },
+                                { name: "Alkayan Construction Nova", url: "alkayan-co.com", desc: "High-performance construction platform built with PHP/MVC, interactive 3D visuals (Three.js/GSAP), IndexedDB caching, and SEO optimization." },
                             ].map(({ name, url, desc }) => (
                                 <div key={name} className="p-3 rounded-xl bg-white/[0.02] print-cv-bg-light border border-white/5 print-cv-border space-y-1">
                                     <h3 className="text-xs font-bold text-white print-cv-text-dark uppercase">
@@ -250,7 +253,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                                     <br />
                                     Udacity / FWD — Node.js, Express, PostgreSQL, React, AWS (EC2, S3, RDS), Docker, CI/CD, security &amp; testing
                                 </div>
-                                <span className="font-bold ml-4">2023</span>
+                                <span className="font-bold ml-4">2022</span>
                             </div>
                         </div>
                     </div>
