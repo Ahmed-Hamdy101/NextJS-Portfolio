@@ -1,13 +1,15 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import {
     HiMiniArrowLeft, HiMiniArrowTopRightOnSquare, HiMiniCodeBracket,
-    HiMiniCubeTransparent,
+    HiMiniCubeTransparent, HiMiniPhoto,
 } from "react-icons/hi2";
 import Circles from "@/components/Circle";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
+import DiagramViewer from "@/components/DiagramViewer";
 import { fadeIn } from "@/lib/variants";
 import { projects, statusConfig, Project } from "@/lib/projects-data";
 
@@ -120,17 +122,51 @@ export default function ProjectDetailPage({ slug }: Props) {
                                     Source on GitHub
                                 </a>
                             )}
+                            <a href="#architecture"
+                                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 hover:bg-white/[0.08] text-white font-black uppercase tracking-widest text-[10px] transition-all duration-300"
+                            >
+                                <HiMiniCubeTransparent className="text-sm" />
+                                View Architecture
+                            </a>
                         </div>
                     </motion.div>
 
+                    {/* ── Screens ── */}
+                    {project.images.length > 0 && (
+                        <motion.div variants={fadeIn("up", 0.13) as unknown as Variants} initial="hidden" animate="show" className="mb-14">
+                            <div className="flex items-center gap-3 mb-6">
+                                <HiMiniPhoto className="text-lg text-gray-500" />
+                                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">Screens</h2>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {project.images.map((img, i) => (
+                                    <a
+                                        key={img}
+                                        href={img}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="relative aspect-video rounded-2xl overflow-hidden border border-white/[0.08] hover:border-white/20 transition-all duration-300 group block"
+                                    >
+                                        <Image src={img} alt={`${project.title} screenshot ${i + 1}`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" unoptimized />
+                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                                    </a>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+
                     {/* ── Tech Stack & Architecture ── */}
-                    <motion.div variants={fadeIn("up", 0.15) as unknown as Variants} initial="hidden" animate="show" className="mb-16">
+                    <motion.div id="architecture" variants={fadeIn("up", 0.15) as unknown as Variants} initial="hidden" animate="show" className="mb-16 scroll-mt-24">
                         <div className="flex items-center gap-3 mb-6">
                             <HiMiniCubeTransparent className="text-lg text-gray-500" />
                             <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">Tech Stack & Architecture</h2>
                         </div>
 
-                        {caseStudy.apiOnly && (
+                        {caseStudy.diagrams && caseStudy.diagrams.length > 0 ? (
+                            <div className="mb-6">
+                                <DiagramViewer diagrams={caseStudy.diagrams} accent={project.accent} />
+                            </div>
+                        ) : caseStudy.apiOnly ? (
                             <div className="glass-panel rounded-[2rem] overflow-hidden mb-6">
                                 <ArchitectureDiagram
                                     accent={project.accent}
@@ -146,7 +182,7 @@ export default function ProjectDetailPage({ slug }: Props) {
                                     Backend API service — no UI to screenshot. See the source for full endpoint documentation.
                                 </p>
                             </div>
-                        )}
+                        ) : null}
 
                         <div className="glass-panel rounded-[2rem] p-8 space-y-4">
                             {caseStudy.highlights.map((h, i) => (

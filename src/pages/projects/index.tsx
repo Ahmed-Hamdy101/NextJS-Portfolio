@@ -3,6 +3,7 @@ import { fadeIn } from "@/lib/variants";
 import Circles from "@/components/Circle";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useCallback, useRef } from "react";
 import {
     HiMiniArrowTopRightOnSquare,
@@ -83,6 +84,7 @@ interface CardProps {
 
 const ProjectCard = ({ project, index, onOpenLightbox }: CardProps) => {
     const cardRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
     const Icon = project.Icon;
     const hasImages = project.images.length > 0;
     const status = statusConfig[project.status];
@@ -108,34 +110,19 @@ const ProjectCard = ({ project, index, onOpenLightbox }: CardProps) => {
 
             {/* ── Preview ── */}
             <div
-                className={`relative w-full aspect-[16/10] overflow-hidden bg-[#06060a] shrink-0 ${hasImages ? "cursor-pointer" : ""}`}
-                onClick={() => hasImages && onOpenLightbox(project, 0)}
+                className={`relative w-full aspect-[16/10] overflow-hidden bg-[#06060a] shrink-0 ${hasImages || project.slug ? "cursor-pointer" : ""}`}
+                onClick={() => {
+                    if (project.slug) router.push(`/projects/${project.slug}`);
+                    else if (hasImages) onOpenLightbox(project, 0);
+                }}
             >
                 {hasImages ? (
                     <>
                         <Image src={project.previewImage} alt={project.title} fill className="object-cover transition-all duration-700 group-hover:scale-[1.04]" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" unoptimized />
                         {/* Gradient vignette */}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0f] via-transparent to-transparent opacity-60" />
-                        {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all duration-500 flex items-center justify-center">
-                            <div className="opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-2 group-hover:translate-y-0 flex items-center gap-2 px-4 py-2 rounded-xl bg-black/60 border border-white/15 backdrop-blur-xl">
-                                <HiMiniPhoto className="text-white text-sm" />
-                                <span className="text-white text-[10px] font-black uppercase tracking-[0.18em]">{project.images.length} shots</span>
-                            </div>
-                        </div>
-                        {/* Thumb strip */}
-                        {project.images.length > 1 && (
-                            <div className="absolute bottom-2.5 left-2.5 right-2.5 flex gap-1.5 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-400">
-                                {project.images.slice(0, 5).map((img, i) => (
-                                    <button key={i} onClick={e => { e.stopPropagation(); onOpenLightbox(project, i); }} className="relative flex-1 aspect-video rounded-lg overflow-hidden border border-white/20 hover:border-white/60 transition-all duration-200">
-                                        <Image src={img} alt="" fill className="object-cover" unoptimized />
-                                    </button>
-                                ))}
-                                {project.images.length > 5 && (
-                                    <div className="flex items-center justify-center w-9 text-[9px] font-black text-gray-500">+{project.images.length - 5}</div>
-                                )}
-                            </div>
-                        )}
+                        {/* Hover tint */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-500" />
                     </>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">
