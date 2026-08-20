@@ -34,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             <DockNav />
 
-            <main className="relative z-10 w-full min-h-screen">
+            <main className="relative z-10 w-full min-h-screen pb-24 lg:pb-0">
                 {children}
             </main>
         </div>

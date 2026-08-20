@@ -91,12 +91,12 @@ const DockNav = () => {
             </nav>
 
             {/* Mobile/Tablet Bottom Navigation Bar */}
-            <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 block lg:hidden w-[90%] max-w-md">
+            <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 block lg:hidden w-[94%] max-w-xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex justify-around items-center px-4 py-2.5 bg-[#0a0a0c]/85 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.8)]"
+                    className="flex items-center gap-1 px-2 py-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden bg-[#0a0a0c]/85 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.8)]"
                 >
                     {navItems.map((item) => {
                         const isActive = pathname === item.href || 
@@ -107,7 +107,7 @@ const DockNav = () => {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="relative flex flex-col items-center justify-center p-2 rounded-xl"
+                                className="relative flex flex-col items-center justify-center shrink-0 w-14 p-2 rounded-xl"
                             >
                                 <motion.div
                                     whileTap={{ scale: 0.9 }}
@@ -130,7 +130,7 @@ const DockNav = () => {
                                         />
                                     )}
                                 </motion.div>
-                                <span className={`text-[8px] font-black uppercase tracking-wider mt-1 scale-95 transition-colors duration-300 ${isActive ? "text-red-500 font-bold" : "text-slate-500"}`}>
+                                <span className={`text-[8px] font-black uppercase tracking-wider mt-1 scale-95 whitespace-nowrap transition-colors duration-300 ${isActive ? "text-red-500 font-bold" : "text-slate-500"}`}>
                                     {item.label}
                                 </span>
                             </Link>
