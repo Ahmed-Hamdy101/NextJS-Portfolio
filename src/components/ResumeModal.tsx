@@ -87,7 +87,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                             Professional Summary
                         </h2>
                         <p className="text-sm leading-relaxed text-gray-400 print-cv-text-muted font-light">
-                            Full Stack Engineer with <strong className="text-white font-bold">5+ years</strong> of professional experience designing, building, and deploying scalable web applications, RESTful APIs, and cloud-hosted systems. Skilled across the full stack — JavaScript, TypeScript, PHP, and Python — with deep expertise in <strong className="text-white font-bold">Node.js, Bun, Laravel, React/Next.js, and AWS</strong> (EC2, S3, RDS, Lambda). Hands-on experience with Docker, Redis, JWT/OAuth2, CI/CD pipelines, microservices, and decoupled architecture. Currently building AI-powered features including LLM integrations and RAG-style pipelines.
+                            Full Stack Engineer with <strong className="text-white font-bold">5+ years</strong> of experience building and deploying production web applications and APIs. Deep expertise in <strong className="text-white font-bold">Node.js, Laravel, Next.js 15, TypeScript, and AWS</strong>. Proven track record delivering high-performance systems (LCP under 2.5s, strong Lighthouse scores), secure architectures, and AI-powered features (LLM integrations &amp; RAG pipelines). Multiple live products across tourism, construction, real estate, and e-commerce. Focused on clean architecture, measurable performance, and security.
                         </p>
                     </div>
 
@@ -99,17 +99,12 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {[
-                                { label: "Architecture & Principles", value: "Data Structures, Algorithms, System Design, OOP, Software Architecture, Decoupled Architecture" },
-                                { label: "Languages", value: "JavaScript (ES6+), TypeScript, PHP, Go, C++, Python, SQL, HTML5, CSS3" },
-                                { label: "Front End", value: "React.js, Next.js 15 (App Router), MDBootstrap, CSS3, Tailwind CSS 4+, shadcn/ui, Radix UI, Framer Motion, GSAP, jQuery" },
-                                { label: "AI / ML", value: "LLM API integration (OpenAI, Claude)" },
-                                { label: "Back End", value: "Node.js, Express.js, Fastify, Bun, Laravel (MVC), RESTful APIs, JWT, OAuth2, Passport.js, Microservices, Decoupled Architecture" },
-                                { label: "Databases", value: "MySQL, PostgreSQL, MongoDB, SQLite, Oracle, Drizzle ORM, Prisma ORM, Redis (caching)" },
-                                { label: "Cloud & DevOps", value: "AWS (EC2, S3, RDS, Lambda), Docker, Caddy, NGINX, Apache, CI/CD pipelines, SSH" },
-                                { label: "CMS / Commerce", value: "WordPress, WooCommerce, custom theme & plugin development" },
-                                { label: "Testing & Quality", value: "Jasmine, PHPUnit, Jest, unit & integration testing, SOLID, DRY, Swagger/OpenAPI" },
-                                { label: "Tools", value: "Git, Linux, Wireshark, DNS/SSL (GoDaddy, Namecheap, Zoho, Oracle Cloud), Figma, Adobe XD, Adobe Premiere, DigitalOcean" },
-                                { label: "i18n & PWA", value: "i18next, react-i18next, next-intl, TanStack Query, React Hook Form, Zod, PWA" },
+                                { label: "Core Stack", value: "Node.js, Express, Fastify, Bun, Laravel, Next.js 15, React, TypeScript, PHP" },
+                                { label: "Frontend", value: "Tailwind CSS, shadcn/ui, Radix UI, Framer Motion, GSAP, Three.js" },
+                                { label: "Backend & APIs", value: "RESTful APIs, JWT / OAuth2, Microservices, Decoupled Architecture, Monolithic" },
+                                { label: "Cloud & DevOps", value: "AWS (EC2, S3, RDS, Lambda), Docker, NGINX, CI/CD, Redis" },
+                                { label: "Databases & ORMs", value: "PostgreSQL, MySQL, MongoDB, Drizzle, Prisma" },
+                                { label: "AI & Testing", value: "OpenAI / Claude LLM integration, RAG pipelines, Testing (Jest, PHPUnit, Jasmine)" },
                             ].map(({ label, value }) => (
                                 <div key={label} className="p-3 rounded-xl bg-white/[0.02] print-cv-bg-light border border-white/5 print-cv-border">
                                     <span className="text-[10px] font-black uppercase tracking-wider text-red-400 print:text-red-600">{label}: </span>
@@ -134,49 +129,58 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                                 duration: "Dec 2025 – Present | Remote",
                                 color: "bg-yellow-500",
                                 points: [
-                                    "Led architecture and implementation of client-side (Next.js) and server-side (Express) systems with full-stack TypeScript type safety and decoupled architecture.",
-                                    "Developed tour booking workflow with unique booking code generation, customer management, and dynamic inventory tracking.",
-                                    "Optimized LCP under 2.5s via Redis caching, Gzip compression, and SSR/SSG. Achieved Lighthouse scores: 100% SEO, 81% Performance, 98% Accessibility.",
-                                    "Designed normalized PostgreSQL schema with Drizzle ORM; implemented indexed queries, automated migrations, and connection pooling.",
-                                    "Managed end-to-end deployment: Vercel (frontend) + DigitalOcean Droplet VPS (backend) with Caddy reverse proxy, custom domains, and SSL/TLS.",
+                                    "Architected a fully type-safe, decoupled Next.js 15 + Express + TypeScript application powering a complete tour booking platform with unique booking codes, customer management, and real-time inventory.",
+                                    "Designed and implemented a normalized PostgreSQL schema with Drizzle ORM, strategic indexes, migrations, and connection pooling for production-scale traffic.",
+                                    "Delivered LCP under 2.5s and Lighthouse scores of 100% SEO / 81% Performance / 98% Accessibility through Redis caching, SSR/SSG, and Gzip compression.",
+                                    "Built an accessible, mobile-first interface using Radix UI components, enhanced with GSAP, Framer Motion, and Tailwind CSS animations.",
+                                    "Managed end-to-end deployment: front-end on Vercel, back-end migrated from Oracle Cloud to a DigitalOcean Droplet with reverse proxy, custom domains, and strict SSL/TLS.",
                                 ]
                             },
                             {
-                                role: "Junior WordPress Developer",
+                                role: "WordPress / SEO Specialist",
                                 company: "Egypt Racket Sport",
-                                duration: "Dec 2024 – Jun 2026 | Remote",
+                                link: "https://egyptracketstore.com",
+                                duration: "Nov 2025 – Jan 2026 | Remote",
                                 color: "bg-cyan-500",
                                 points: [
-                                    "Evaluated and improved site performance using GTmetrix/Google Lighthouse; implemented caching and image optimization to reduce load times.",
-                                    "Boosted e-commerce product visibility through on-page SEO strategies using Yoast/Rank Math.",
-                                    "Maintained site health: daily plugin updates, conflict resolution, and frontend UI/UX troubleshooting.",
+                                    "Managed and optimized WordPress product pages with technical SEO, improved Core Web Vitals, and UI enhancements.",
+                                    "Performed ongoing performance tuning, troubleshooting, and maintenance that improved site speed and search visibility.",
                                 ]
                             },
                             {
-                                role: "IT Support & Systems Engineer",
-                                company: "Padel Nuestro",
-                                duration: "Sep 2022 – Mar 2025 | West Cairo",
-                                color: "bg-blue-500",
+                                role: "Full Stack Developer",
+                                company: "Al Kayan Construction & Engineering (Nova v2.0)",
+                                link: "https://ahmedhamdy101.is-a.dev/projects/alkayan-nova",
+                                duration: "Sep 2025 – Present | Maadi, Egypt",
+                                color: "bg-indigo-500",
                                 points: [
-                                    "Diagnosed and resolved 50+ monthly network issues across a 200-person office; improved uptime from 95% to 99.5% using Wireshark packet analysis.",
-                                    "Designed and documented an AI Padel Coach assistant prototype with 15+ technical architecture diagrams, reducing estimated implementation time by 30%.",
-                                    "Deployed and maintained 3+ CCTV and DVR/NVR systems, cutting security incident response time by 35%.",
-                                    "Administered 50+ software licenses; resolved 15+ weekly hardware and printer issues, reducing recurring downtime by 50%.",
+                                    "Architected a reusable OOP component system (PHP static layout classes) exposing shared UI blocks as composable methods, keeping markup DRY across 10+ page templates.",
+                                    "Built a distinctive front end using MDBootstrap, GSAP-driven 3D card animations, and a Three.js WebGL hero scene, with full light/dark theme support persisted via localStorage.",
+                                    "Designed a custom PHP MVC framework from scratch using a front-controller pattern, handling routing, JSON APIs, and page rendering — no Laravel, no CMS.",
+                                    "Hardened application security: CSRF tokens on all forms, full-stack input validation, removed hard-coded credentials, closed .env exposure, and fixed error leakages.",
                                 ]
-                            }
-                            ,
+                            },
                             {
                                 role: "Full Stack Developer",
-                                company: "Al Kayan Construction & Engineering",
+                                company: "Al Kayan Construction (Legacy + Real Estate CMS)",
                                 link: "https://www.alkayan-co.com",
-                                duration: "Jan 2021 – Present | Maadi",
+                                duration: "Jan 2021 – Sep 2025 | Maadi, Egypt",
                                 color: "bg-purple-500",
                                 points: [
-                                    "Designed and deployed MVC web applications using PHP and Laravel, improving scalability for higher traffic volumes.",
-                                    "Engineered a proprietary Real Estate CMS with secure authentication and role-based access control (RBAC).",
-                                    "Reduced identified vulnerabilities by 75% through CSRF protection and rigorous full-stack input validation.",
-                                    "Optimized database schemas and SQL query execution plans, accelerating data retrieval across production systems.",
-                                    "Managed end-to-end hosting (Namecheap), DNS configuration (GoDaddy), and SSL certificates.",
+                                    "Architected and deployed the official production web platform for Al Kayan Construction, showcasing multi-category project portfolios and career management features.",
+                                    "Built an Admin CMS with Role-Based Access Control (RBAC), implementing strict input validation and CSRF protection to safeguard against web vulnerabilities.",
+                                    "Managed end-to-end production deployment, including cloud hosting, DNS routing, and SSL configuration.",
+                                ]
+                            },
+                            {
+                                role: "IT Support Specialist",
+                                company: "Padel Nuestro",
+                                duration: "Sep 2023 – Mar 2026 | West Cairo, Egypt",
+                                color: "bg-blue-500",
+                                points: [
+                                    "Maintained network and IT infrastructure for a 100-person office, resolving 10+ issues monthly.",
+                                    "Deployed and managed CCTV/DVR/NVR systems for security monitoring.",
+                                    "Administered Windows Server 2019, ERP systems, VPN access, software licensing, and hardware/printer support.",
                                 ]
                             }
                         ].map((exp, i) => (
@@ -213,12 +217,15 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {[
-                                { name: "ETGCO Tours", url: "egypt-tour-guide.com", desc: "High-performance bilingual (AR/EN) PWA tourism app built with Next.js 15, TypeScript, and Redis, achieving sub-2s load times." },
-                                { name: "Node.js Storefront API", url: "github.com/Ahmed-Hamdy101/nodejs-store-front-api", desc: "Robust TypeScript/Express e-commerce REST API with PostgreSQL, JWT authentication, migration workflows, and comprehensive Jasmine testing." },
+                                { name: "ETGCO Tours", url: "egypt-tour-guide.com", desc: "High-performance bilingual (DE/EN) PWA tourism app built with Next.js 15, TypeScript, and Redis, achieving sub-2s load times." },
                                 { name: "Laravel REST API (Admin Backend)", url: "github.com/Ahmed-Hamdy101/laravel-rest-api", desc: "Production-ready Laravel REST API featuring Passport OAuth2/JWT auth, RBAC, full order lifecycle management, and streaming CSV exports." },
-                                { name: "TypeScript AI API", url: "github.com/Ahmed-Hamdy101/ts-ai-api", desc: "Production-ready Fastify REST API in TypeScript integrated with OpenAI to deliver intelligent assistant capabilities." },
                                 { name: "AWS Fullstack Deployment", url: "github.com/Ahmed-Hamdy101/aws-fullstack-deployment", desc: "Full-stack AWS application featuring custom cloud infrastructure, backend microservices, and CI/CD production deployment." },
-                                { name: "Alkayan Construction Nova", url: "alkayan-co.com", desc: "High-performance construction platform built with PHP/MVC, interactive 3D visuals (Three.js/GSAP), IndexedDB caching, and SEO optimization." },
+                                { name: "Logger Suite ERP", url: "ahmedhamdy101.is-a.dev/projects/logger-suite-erp", desc: "Multi-tenant SaaS ERP combining Next.js 15 frontend with Laravel REST backend. Admin/Editor/User RBAC and Redis caching." },
+                                { name: "Node.js Storefront API", url: "github.com/Ahmed-Hamdy101/nodejs-store-front-api", desc: "Robust TypeScript/Express e-commerce REST API with PostgreSQL, JWT authentication, migration workflows, and comprehensive Jasmine testing." },
+                                { name: "TypeScript AI API", url: "github.com/Ahmed-Hamdy101/ts-ai-api", desc: "Production-ready Fastify REST API in TypeScript integrated with OpenAI to deliver intelligent assistant capabilities." },
+                                { name: "Al Kayan Construction Nova", url: "github.com/Ahmed-Hamdy101/alkayan-nova-showcase", desc: "High-performance construction platform built with PHP/MVC, interactive 3D visuals (Three.js/GSAP), IndexedDB caching, and SEO optimization." },
+                                { name: "AutoFix", url: "github.com/Ahmed-Hamdy101/autofix-service-platform-demo", desc: "Multi-role dashboards for mechanics, admins, and customers, with AI-assisted vehicle diagnostics." },
+                                { name: "GIS Dashboard Map", url: "github.com/Ahmed-Hamdy101/gis-dashboard", desc: "A multilingual GIS dashboard for exploring buildings on a Cesium 3D map." },
                             ].map(({ name, url, desc }) => (
                                 <div key={name} className="p-3 rounded-xl bg-white/[0.02] print-cv-bg-light border border-white/5 print-cv-border space-y-1">
                                     <h3 className="text-xs font-bold text-white print-cv-text-dark uppercase">

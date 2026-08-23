@@ -218,7 +218,7 @@ export default function HomePage() {
                             animate="show"
                             className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-[0.95] tracking-tighter uppercase"
                         >
-                           Mid Level Senior Full<br />
+                           Full<br />
                             <span className="relative inline-block mt-1.5">
                                 <span className="absolute -inset-1 bg-gradient-to-r from-red-500 via-purple-600 to-indigo-500 opacity-25 blur-xl rounded-full" />
                                 <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-500 to-indigo-500">
