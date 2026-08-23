@@ -35,44 +35,54 @@ export default function AboutPage() {
                         company: "ET GCO Tours",
                         duration: "Dec 2025 – Present",
                         points: [
-                            "Led Next.js + Express architecture with TypeScript, achieved Lighthouse 100% SEO, 98% Accessibility.",
-                            "Optimized LCP under 2.5s via Redis caching, Gzip compression, and SSR/SSG.",
-                            "Designed normalized PostgreSQL schema with Drizzle ORM, managed Vercel + DigitalOcean VPS deployment.",
+                            "Architected a decoupled Next.js 15 + Express + TypeScript app with unique booking codes, customer management, and real-time inventory.",
+                            "Delivered LCP under 2.5s and Lighthouse scores of 100% SEO / 81% Performance / 98% Accessibility via Redis caching, SSR/SSG, and Gzip.",
+                            "Built an accessible, mobile-first UI with Radix UI, GSAP, and Framer Motion. Deployed on Vercel + DigitalOcean Droplet.",
                         ],
                         color: "from-yellow-500 to-green-600"
                     },
                     {
-                        role: "Junior WordPress Developer",
+                        role: "WordPress / SEO Specialist",
                         company: "Egypt Racket Sport",
-                        duration: "Dec 2024 – Jun 2026",
+                        duration: "Nov 2025 – Jan 2026",
                         points: [
-                            "Improved site performance via GTmetrix/Lighthouse audits, caching, and image optimization.",
-                            "Implemented on-page SEO with Yoast/Rank Math to boost e-commerce product visibility.",
-                            "Resolved plugin conflicts and maintained frontend UI/UX stability.",
+                            "Managed and optimized WordPress product pages with technical SEO and Core Web Vitals improvements.",
+                            "Performed ongoing performance tuning and maintenance that improved site speed and search visibility.",
                         ],
                         color: "from-cyan-400 to-blue-600"
                     },
                     {
-                        role: "IT Support & Systems Engineer",
-                        company: "Padel Nuestro",
-                        duration: "Sep 2022 – Mar 2025",
+                        role: "Full Stack Developer",
+                        company: "Al Kayan Construction & Engineering (Nova v2.0)",
+                        duration: "Sep 2025 – Present",
                         points: [
-                            "Diagnosed 50+ monthly network issues in a 200-person office, improved uptime from 95% to 99.5% using Wireshark.",
-                            "Designed AI Padel Coach assistant prototype with 15+ architecture diagrams, cutting implementation time by 30%.",
-                            "Deployed 3+ CCTV/DVR/NVR systems, administered 50+ licenses and reduced hardware downtime by 50%.",
+                            "Designed a custom PHP MVC framework from scratch (front-controller pattern) — no Laravel, no CMS.",
+                            "Built a reusable OOP component system and a distinctive front end with MDBootstrap, GSAP 3D cards, and a Three.js WebGL hero.",
+                            "Hardened security: CSRF tokens, full-stack input validation, removed hard-coded credentials, closed .env exposure.",
                         ],
                         color: "from-blue-400 to-indigo-600"
-                    },          
-                     {
+                    },
+                    {
                         role: "Full Stack Developer",
-                        company: "Al Kayan Construction & Engineering",
-                        duration: "Jan 2021 – Present",
+                        company: "Al Kayan Construction (Legacy + Real Estate CMS)",
+                        duration: "Jan 2021 – Sep 2025",
                         points: [
-                            "Built proprietary Real Estate CMS in Laravel with RBAC authentication and role-based access control.",
-                            "Reduced vulnerabilities by 75% through CSRF protection and full-stack input validation.",
-                            "Managed DNS (GoDaddy), hosting (Namecheap), and SSL certificates for concurrent production projects.",
+                            "Architected and deployed the official production web platform for Al Kayan Construction, showcasing multi-category project portfolios and career management features.",
+                            "Built an Admin CMS with RBAC, implementing strict input validation and CSRF protection to safeguard against web vulnerabilities.",
+                            "Managed end-to-end production deployment: cloud hosting, DNS routing, and SSL configuration.",
                         ],
                         color: "from-purple-500 to-red-600"
+                    },
+                    {
+                        role: "IT Support Specialist",
+                        company: "Padel Nuestro",
+                        duration: "Sep 2023 – Mar 2026",
+                        points: [
+                            "Maintained network and IT infrastructure for a 100-person office, resolving 10+ issues monthly.",
+                            "Deployed and managed CCTV/DVR/NVR systems for security monitoring.",
+                            "Administered Windows Server 2019, ERP systems, VPN access, licensing, and hardware/printer support.",
+                        ],
+                        color: "from-sky-400 to-cyan-600"
                     },
                 ].map((exp, index) => (
                     <motion.div
@@ -209,21 +219,21 @@ export default function AboutPage() {
                         <> {/*  This fragment now correctly wraps all top-level elements */}
         <Head>
             <title> About Me|  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
-            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
             
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
             <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
             
             {/* Twitter */}
             <meta name="twitter:card" content="favicons.svg" />     
             <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
             <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
 
         </Head>
@@ -260,14 +270,14 @@ export default function AboutPage() {
                         </div>
 
                         <h2 className="text-5xl lg:text-7xl font-black text-white leading-tight">
-                            Mid level Senior Full  <br />
+                           Full  <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-purple-600 to-blue-500">Stack Engineer</span>
                         </h2>
 
                         <div className="space-y-5 text-lg text-gray-400 font-light leading-relaxed">
                             <p>
                                 I&apos;m <span className="text-white font-bold underline decoration-red-500 underline-offset-8">Ahmed Hamdy</span>,
-                                a Mid level Senior Full  Stack Engineer based in Giza, Egypt. I design and ship scalable web applications, RESTful APIs, and cloud-hosted systems across the full stack.
+                               Full  Stack Engineer based in Giza, Egypt. I design and ship scalable web applications, RESTful APIs, and cloud-hosted systems across the full stack.
                             </p>
                             <p>
                                 From real estate platforms and ERP systems to AI-powered products and tourism PWAs, I specialize in
