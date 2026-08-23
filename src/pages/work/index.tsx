@@ -7,6 +7,7 @@ import {
     HiMiniCommandLine,
     HiMiniRocketLaunch,
     HiMiniGlobeAlt,
+    HiMiniCpuChip,
 } from "react-icons/hi2";
 import Head from "next/head";
 
@@ -19,8 +20,8 @@ const experiences = [
         duration: "Dec 2025 – Present",
         type: "Remote",
         description:
-            "Led full-stack architecture using Next.js 15 (client) and Express (server) with TypeScript and a fully decoupled design. Engineered a tour booking workflow with unique booking-code generation and dynamic inventory tracking. Achieved Lighthouse 100% SEO / 98% Accessibility. Optimized LCP under 2.5s via Redis caching, Gzip compression, and SSR/SSG. Deployed on Vercel + DigitalOcean VPS with Caddy reverse proxy.",
-        skills: ["Next.js 15", "TypeScript", "PostgreSQL", "Drizzle ORM", "Redis", "GSAP", "i18next", "DigitalOcean", "Vercel"],
+            "Architected a fully type-safe, decoupled Next.js 15 + Express + TypeScript app powering a complete tour booking platform with unique booking codes, customer management, and real-time inventory. Normalized PostgreSQL schema with Drizzle ORM, strategic indexes, migrations, and connection pooling. Delivered LCP under 2.5s and Lighthouse scores of 100% SEO / 81% Performance / 98% Accessibility via Redis caching, SSR/SSG, and Gzip. Built an accessible, mobile-first interface with Radix UI, GSAP, and Framer Motion. Deployed front-end on Vercel and back-end on a DigitalOcean Droplet (migrated from Oracle Cloud) with a reverse proxy, custom domains, and strict SSL/TLS.",
+        skills: ["Next.js 15", "TypeScript", "Express", "PostgreSQL", "Drizzle ORM", "Redis", "Radix UI", "GSAP", "DigitalOcean", "Vercel"],
         Icon: HiMiniGlobeAlt,
         gradient: "from-yellow-500/10 via-green-600/5 to-transparent",
         accent: "text-yellow-400",
@@ -28,32 +29,15 @@ const experiences = [
         tag: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
     },
     {
-        company: "Al Kayan Construction & Engineering",
-        update: "Alkayan Nova New UX-2.0 In Progress",
-        companyLink: "https://www.alkayan-co.com",
-        logo: "/images/companies/alkayan-nova.png",
-        role: "Full Stack Developer",
-        duration: "Jan 2021 – Present",
-        type: "On-site · Maadi",
-        description:
-            "Engineered Alkayan Nova — a high-diamond UX real estate platform for one of Egypt's leading construction firms. Designed and built a premium property management CMS from the ground up with sophisticated role-based access control (RBAC), dark/light theme system, advanced property filtering, and smooth micro-animations. Implemented enterprise-grade security: CSRF protection, full-stack input validation, and SQL injection prevention — cutting vulnerabilities by 75%. Optimized database schema and query execution plans across all production systems. Managed DNS (GoDaddy), hosting (Namecheap), and SSL certificates end-to-end.",
-        skills: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF", "Next.js", "Tailwind CSS", "Dark Mode UX", "Namecheap", "GoDaddy"],
-        Icon: HiMiniRocketLaunch,
-        gradient: "from-blue-500/10 via-purple-600/5 to-transparent",
-        accent: "text-blue-400",
-        dot: "border-blue-500 shadow-blue-500/40",
-        tag: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    },
-    {
         company: "Egypt Racket Sport",
-        companyLink: null,
+        companyLink: "https://egyptracketstore.com",
         logo: null,
-        role: "Junior WordPress Developer",
-        duration: "Dec 2024 – Jun 2026",
+        role: "WordPress / SEO Specialist",
+        duration: "Nov 2025 – Jan 2026",
         type: "Remote",
         description:
-            "Evaluated and improved site performance using GTmetrix and Google Lighthouse; implemented caching and image optimization to reduce load times. Boosted e-commerce product visibility through on-page SEO strategies using Yoast/Rank Math. Maintained overall site health — daily plugin updates, conflict resolution, and frontend UI/UX troubleshooting.",
-        skills: ["WordPress", "WooCommerce", "SEO", "GTmetrix", "Lighthouse", "Plugin Dev"],
+            "Managed and optimized WordPress product pages with technical SEO, improved Core Web Vitals, and UI enhancements. Performed ongoing performance tuning, troubleshooting, and maintenance that improved site speed and search visibility.",
+        skills: ["WordPress", "SEO", "Core Web Vitals", "Performance Tuning"],
         Icon: HiMiniBriefcase,
         gradient: "from-cyan-500/10 via-blue-600/5 to-transparent",
         accent: "text-cyan-400",
@@ -61,15 +45,48 @@ const experiences = [
         tag: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     },
     {
+        company: "Al Kayan Construction & Engineering (Nova v2.0)",
+        update: "Alkayan Nova — Custom PHP MVC Rebuild",
+        companyLink: "https://ahmedhamdy101.is-a.dev/projects/alkayan-nova",
+        logo: "/images/companies/alkayan-nova.png",
+        role: "Full Stack Developer",
+        duration: "Sep 2025 – Present",
+        type: "On-site · Maadi",
+        description:
+            "Designed a custom PHP MVC framework from scratch (front-controller pattern, no Laravel, no CMS) handling routing, JSON APIs, and page rendering. Architected a reusable OOP component system — static layout classes exposing navbar, footer, hero, and section blocks as composable methods — keeping markup DRY across 10+ page templates. Built a distinctive front end with MDBootstrap, GSAP-driven 3D card animations, and a Three.js WebGL hero scene, with light/dark theme persisted via localStorage. Hardened security: CSRF tokens on every form, full-stack input validation, removed hard-coded credentials, closed .env exposure, fixed error-message leakage.",
+        skills: ["PHP", "Custom MVC", "MDBootstrap", "Three.js", "GSAP", "WebGL", "CSRF"],
+        Icon: HiMiniRocketLaunch,
+        gradient: "from-blue-500/10 via-purple-600/5 to-transparent",
+        accent: "text-blue-400",
+        dot: "border-blue-500 shadow-blue-500/40",
+        tag: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    },
+    {
+        company: "Al Kayan Construction (Legacy + Real Estate CMS)",
+        companyLink: "https://www.alkayan-co.com",
+        logo: "/images/companies/alkayan-nova.png",
+        role: "Full Stack Developer",
+        duration: "Jan 2021 – Sep 2025",
+        type: "On-site · Maadi",
+        description:
+            "Architected and deployed the official production web platform for Al Kayan Construction, showcasing multi-category project portfolios and career management features. Built an Admin CMS with Role-Based Access Control (RBAC), implementing strict input validation and CSRF protection to safeguard against web vulnerabilities. Managed end-to-end production deployment, including cloud hosting, DNS routing, and SSL configuration.",
+        skills: ["Laravel", "PHP", "MySQL", "RBAC", "CSRF", "Namecheap", "GoDaddy"],
+        Icon: HiMiniCpuChip,
+        gradient: "from-sky-500/10 via-purple-600/5 to-transparent",
+        accent: "text-sky-400",
+        dot: "border-sky-500 shadow-sky-500/40",
+        tag: "bg-sky-500/10 text-sky-400 border-sky-500/20",
+    },
+    {
         company: "Padel Nuestro",
         companyLink: null,
         logo: null,
-        role: "IT Support & Systems Engineer",
-        duration: "Sep 2022 – Mar 2025",
+        role: "IT Support Specialist",
+        duration: "Sep 2023 – Mar 2026",
         type: "West Cairo",
         description:
-            "Diagnosed and resolved 50+ monthly network issues across a 200-person office, improving uptime from 95% to 99.5% using Wireshark packet analysis. Designed an AI Padel Coach assistant prototype with 15+ technical architecture diagrams, reducing estimated implementation time by 30%. Deployed and maintained 3+ CCTV/DVR/NVR systems, cutting security incident response time by 35%. Administered 50+ software licenses and resolved 15+ weekly hardware and printer issues.",
-        skills: ["Networking", "Wireshark", "CCTV / NVR", "IT Support", "AI Prototyping", "System Design"],
+            "Maintained network and IT infrastructure for a 100-person office, resolving 10+ issues monthly. Deployed and managed CCTV/DVR/NVR systems for security monitoring. Administered Windows Server 2019, ERP systems, VPN access, software licensing, and hardware/printer support.",
+        skills: ["Networking", "CCTV / NVR", "Windows Server", "ERP", "VPN", "IT Support"],
         Icon: HiMiniCommandLine,
         gradient: "from-indigo-500/10 via-purple-600/5 to-transparent",
         accent: "text-indigo-400",
@@ -83,21 +100,21 @@ const WorkPage = () => {
             <>
              <Head>
             <title> Work Showcase |  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
-            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
             
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
             <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
             
             {/* Twitter */}
             <meta name="twitter:card" content="favicons.svg" />     
             <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
             <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
 
         </Head>

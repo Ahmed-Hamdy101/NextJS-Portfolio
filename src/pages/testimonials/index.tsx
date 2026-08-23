@@ -34,7 +34,7 @@ const testimonials = [
         company: "West Cairo",
         initial: "PN",
         color: "from-purple-500 to-pink-500",
-        content: "Network uptime went from 95% to 99.5%. Ahmed also designed an AI coaching assistant prototype with 15+ architecture diagrams — reduced our estimated build time by 30%.",
+        content: "Ahmed kept our office running — network and IT infrastructure, ERP, VPN, licensing, and hardware support — plus deployed our CCTV/DVR/NVR security systems end to end.",
         rating: 5,
     },
     {
@@ -65,21 +65,21 @@ const TestimonialsPage = () => {
              <>
              <Head>
             <title> Testimonials |  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
-            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
             
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
             <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
             
             {/* Twitter */}
             <meta name="twitter:card" content="favicons.svg" />     
             <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
             <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 4+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
 
         </Head>
@@ -126,7 +126,7 @@ const TestimonialsPage = () => {
                     className="grid grid-cols-3 gap-6 mb-20 max-w-2xl mx-auto"
                 >
                     {[
-                        { value: "4+", label: "Years Experience" },
+                        { value: "5+", label: "Years Experience" },
                         { value: "10+", label: "Live Projects" },
                         { value: "5★", label: "Client Rating" },
                     ].map((stat) => (
