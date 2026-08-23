@@ -5,7 +5,8 @@ import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import {
     HiMiniArrowLeft, HiMiniArrowTopRightOnSquare, HiMiniCodeBracket,
-    HiMiniCubeTransparent, HiMiniPhoto,
+    HiMiniCubeTransparent, HiMiniPhoto, HiMiniLightBulb, HiMiniUser,
+    HiMiniArrowPath, HiMiniShieldCheck, HiMiniChartBar,
 } from "react-icons/hi2";
 import Circles from "@/components/Circle";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
@@ -155,6 +156,42 @@ export default function ProjectDetailPage({ slug }: Props) {
                         </motion.div>
                     )}
 
+                    {/* ── Business Problem ── */}
+                    <motion.div variants={fadeIn("up", 0.15) as unknown as Variants} initial="hidden" animate="show" className="mb-14">
+                        <div className="flex items-center gap-3 mb-6">
+                            <HiMiniLightBulb className="text-lg text-amber-400" />
+                            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">The Business Problem</h2>
+                        </div>
+                        <div className="glass-panel rounded-[2rem] p-8">
+                            <p className="text-gray-400 text-sm leading-relaxed font-light">{caseStudy.problem}</p>
+                        </div>
+                    </motion.div>
+
+                    {/* ── Responsibilities + Main Workflows ── */}
+                    <motion.div variants={fadeIn("up", 0.18) as unknown as Variants} initial="hidden" animate="show" className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+                        <div className="glass-panel rounded-[2rem] p-8">
+                            <div className="flex items-center gap-3 mb-4">
+                                <HiMiniUser className="text-lg" style={{ color: project.accent }} />
+                                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">My Responsibilities</h2>
+                            </div>
+                            <p className="text-gray-400 text-sm leading-relaxed font-light">{caseStudy.responsibilities}</p>
+                        </div>
+                        <div className="glass-panel rounded-[2rem] p-8">
+                            <div className="flex items-center gap-3 mb-4">
+                                <HiMiniArrowPath className="text-lg" style={{ color: project.accent }} />
+                                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">Main Workflows</h2>
+                            </div>
+                            <ol className="space-y-2.5">
+                                {caseStudy.workflows.map((w, i) => (
+                                    <li key={i} className="flex gap-3 text-gray-400 text-sm font-light leading-relaxed">
+                                        <span className="shrink-0 w-5 h-5 rounded-full bg-white/[0.06] text-white text-[10px] font-black flex items-center justify-center mt-0.5">{i + 1}</span>
+                                        {w}
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
+                    </motion.div>
+
                     {/* ── Tech Stack & Architecture ── */}
                     <motion.div id="architecture" variants={fadeIn("up", 0.15) as unknown as Variants} initial="hidden" animate="show" className="mb-16 scroll-mt-24">
                         <div className="flex items-center gap-3 mb-6">
@@ -185,7 +222,7 @@ export default function ProjectDetailPage({ slug }: Props) {
                         ) : null}
 
                         <div className="glass-panel rounded-[2rem] p-8 space-y-4">
-                            {caseStudy.highlights.map((h, i) => (
+                            {caseStudy.architecture.map((h, i) => (
                                 <div key={i} className="flex items-start gap-3">
                                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: project.accent }} />
                                     <span className="text-gray-400 text-sm font-light leading-relaxed">{h}</span>
@@ -193,6 +230,35 @@ export default function ProjectDetailPage({ slug }: Props) {
                             ))}
                         </div>
                     </motion.div>
+
+                    {/* ── Security & Deployment ── */}
+                    <motion.div variants={fadeIn("up", 0.3) as unknown as Variants} initial="hidden" animate="show" className="mb-14">
+                        <div className="flex items-center gap-3 mb-6">
+                            <HiMiniShieldCheck className="text-lg text-gray-500" />
+                            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">Security & Deployment</h2>
+                        </div>
+                        <div className="glass-panel rounded-[2rem] p-8 space-y-4">
+                            {caseStudy.security.map((s, i) => (
+                                <div key={i} className="flex items-start gap-3">
+                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: project.accent }} />
+                                    <span className="text-gray-400 text-sm font-light leading-relaxed">{s}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* ── Results ── */}
+                    {caseStudy.results && (
+                        <motion.div variants={fadeIn("up", 0.35) as unknown as Variants} initial="hidden" animate="show" className="mb-16">
+                            <div className="flex items-center gap-3 mb-6">
+                                <HiMiniChartBar className="text-lg text-gray-500" />
+                                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-white">Results</h2>
+                            </div>
+                            <div className="glass-panel rounded-[2rem] p-8 border-l-2" style={{ borderLeftColor: project.accent }}>
+                                <p className="text-gray-300 text-sm leading-relaxed font-medium">{caseStudy.results}</p>
+                            </div>
+                        </motion.div>
+                    )}
 
                     {/* ── More projects ── */}
                     {otherProjects.length > 0 && (
