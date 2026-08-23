@@ -9,9 +9,18 @@ import {
 export type FilterType = "All" | "Live" | "In Progress (private)" | "Live -- Alkayan Nova in Progress" | "Graduation";
 
 export interface CaseStudy {
+    /** 1. The business problem */
     problem: string;
-    solution: string;
-    highlights: string[];
+    /** 2. Your responsibilities */
+    responsibilities: string;
+    /** 4. Main workflows (technologies used = project.tech, already shown in the hero) */
+    workflows: string[];
+    /** 5. Architecture decisions */
+    architecture: string[];
+    /** 6. Security and deployment considerations */
+    security: string[];
+    /** 7. Results, if disclosed — omit the section entirely when not public */
+    results?: string;
     /** true = no real screenshots exist yet, render an architecture diagram instead of a gallery */
     apiOnly?: boolean;
     /** Real architecture/ER/sequence diagrams exported as SVG — shown in a tabbed viewer when present */
@@ -34,7 +43,7 @@ export interface Project {
     previewImage: string;
     year: string;
     category: string;
-    /** Present only on the 5–7 featured projects that get a dedicated /projects/[slug] case-study page */
+    /** Present only on the featured projects that get a dedicated /projects/[slug] case-study page */
     slug?: string;
     caseStudy?: CaseStudy;
 }
@@ -62,15 +71,26 @@ export const projects: Project[] = [
         ],
         slug: "egypt-tour-guide",
         caseStudy: {
-            problem: "ET GCO Tours needed a bilingual (German/English) tourism booking platform that could compete on organic search, load instantly on mobile, and replace manual phone/email booking coordination with a structured, trackable workflow — without sacrificing design polish.",
-            solution: "Architected a fully decoupled system: a Next.js 15 client and an Express API server, both in TypeScript for end-to-end type safety. Built a custom booking-code generation engine with dynamic inventory tracking across tour categories, backed by a normalized PostgreSQL schema (Drizzle ORM) with automated migrations and connection pooling.",
-            highlights: [
-                "Decoupled frontend/backend: Next.js 15 on Vercel talking to an Express API on a DigitalOcean Droplet (migrated from Oracle Cloud) behind a reverse proxy with custom domains and strict SSL/TLS",
-                "Redis caching + Gzip compression + SSR/SSG to keep LCP under 2.5s — Lighthouse scores of 100% SEO / 81% Performance / 98% Accessibility",
-                "Accessible, mobile-first interface built with Radix UI primitives, animated with GSAP and Framer Motion",
-                "Rate limiting, CSRF protection, SQL-injection prevention, and automated request validation via Express Validator",
-                "i18next-driven bilingual (DE/EN) UI with automatic browser-language detection",
+            problem: "ET GCO Tours needed a bilingual (DE/EN) tourism booking platform that could compete on organic search, load instantly on mobile, and replace manual phone/email booking coordination with a structured, trackable workflow — without sacrificing design polish.",
+            responsibilities: "Sole full-stack developer: architected and built both the Next.js frontend and the Express/PostgreSQL API from scratch, owned the database schema, caching strategy, i18n, and the production deployment end-to-end.",
+            workflows: [
+                "Visitor browses destinations and tours, reads details, pricing, and reviews",
+                "Visitor submits a booking request — a unique booking code is generated and inventory is updated in real time — or submits a contact form",
+                "Backend validates and stores the request, then serves cached responses for repeated public reads (5–10 min TTL) to keep the catalog fast under load",
+                "SSR/SSG renders content-heavy pages for SEO while TanStack Query keeps the client in sync without excessive refetching",
             ],
+            architecture: [
+                "Decoupled Next.js 15 frontend and Express/TypeScript API, connected over a typed REST layer",
+                "PostgreSQL + Drizzle ORM as the canonical data store (tours, destinations, categories, reviews, bookings), with Redis in front of hot read paths",
+                "Layered backend — routes → services → models — with a singleton Redis client and centralized env config; no formal DI container, kept intentionally lightweight",
+                "PWA layer (next-pwa) plus TanStack Query on the client for offline-friendly, low-refetch browsing",
+            ],
+            security: [
+                "Helmet, CORS allowlisting, express-rate-limit, and request sanitization on every API route",
+                "Reverse-proxy-ready with SSL termination, static asset caching, and abuse protection at the edge",
+                "Deployed front-end on Vercel, back-end on a DigitalOcean Droplet (migrated off Oracle Cloud) with custom domains and strict SSL/TLS",
+            ],
+            results: "Lighthouse scores of 100% SEO / 81% Performance / 98% Accessibility, with LCP held under 2.5s.",
             diagrams: [
                 { label: "System Architecture", src: "/images/projects/et-gco-platform/diagrams/et-gco-architecture.svg" },
                 { label: "ER Diagram", src: "/images/projects/et-gco-platform/diagrams/et-gco-erDiagram.svg" },
@@ -81,7 +101,7 @@ export const projects: Project[] = [
     },
     {
         title: "Alkayan Construction Nova",
-        description: "Al Kayan's business site rebuilt on a custom PHP MVC framework (front-controller pattern, no Laravel) — an OOP layout component system, MDBootstrap + GSAP 3D cards, and a Three.js WebGL hero scene.",
+        description: "Al Kayan's business site rebuilt on a custom PHP MVC framework (front-controller pattern) — an OOP layout component system, MDBootstrap + GSAP 3D cards, and a Three.js WebGL hero scene.",
         tech: ["PHP", "Custom MVC", "MDBootstrap", "Three.js", "GSAP", "WebGL"],
         link: "https://www.alkayan-co.com",
         githubLink: "https://github.com/Ahmed-Hamdy101/alkayan-nova-showcase",
@@ -106,13 +126,24 @@ export const projects: Project[] = [
         slug: "alkayan-nova",
         caseStudy: {
             problem: "Al Kayan Construction's business site needed a ground-up rebuild (Nova v2.0) with a distinctive visual identity and tighter security than the legacy codebase, without pulling in a full framework's overhead.",
-            solution: "Designed a custom PHP MVC framework from scratch using a front-controller pattern to handle routing, JSON APIs, and page rendering. Built a reusable OOP component system, static layout classes (MainLayout, PageLayout, ProjectDetailLayout) exposing navbar, footer, hero, and section blocks as composable methods, keeping markup DRY across 10+ page templates. Layered in MDBootstrap, GSAP-driven 3D card animations, and a Three.js WebGL hero scene with light/dark theme persisted via localStorage.",
-            highlights: [
-                "Custom PHP MVC framework built from scratch (front-controller pattern) — no Laravel, no CMS",
-                "Reusable OOP component system (static layout classes) powering navbar, footer, hero, and sections as composable methods across 10+ templates",
-                "MDBootstrap + GSAP 3D card animations and a Three.js WebGL hero scene, with light/dark theme persisted via localStorage",
-                "File-based caching layer and strategic query indexes for a high-traffic production site",
-                "Security hardening: CSRF tokens on every form, full-stack input validation, removed hard-coded credentials, closed .env exposure, fixed error-message leakage",
+            responsibilities: "Designed and built the entire Nova v2.0 platform solo: the custom PHP MVC framework, the OOP layout component system, the 3D front end, and the security hardening pass.",
+            workflows: [
+                "Visitor browses project categories — delivered, planned, under construction, interior design, supplies — through clean URLs",
+                "The front controller (public/index.php) parses the request and routes it to the matching controller, either rendering a view or returning JSON",
+                "A JSON API endpoint (?type=api&resource=projects) serves the same project data for client-side rendering and pagination",
+                "Authentication and identity for the connected real-estate platform are handled by a separate microservice on a dedicated subdomain, decoupled from this app",
+            ],
+            architecture: [
+                "Custom PHP MVC framework built from scratch on a single front-controller entry point",
+                "Reusable OOP component system (static layout classes) exposing navbar, footer, hero, and section blocks as composable methods, keeping markup DRY across 10+ templates",
+                "MDBootstrap, GSAP-driven 3D card animations, and a Three.js WebGL hero scene, with light/dark theme persisted via localStorage",
+                "File-based caching layer sitting in front of MySQL for the high-traffic project-listing endpoints",
+            ],
+            security: [
+                "CSRF tokens on every form and full-stack input validation",
+                "Removed hard-coded credentials and closed .env exposure carried over from the legacy codebase",
+                "Fixed error-message leakage that could reveal internal paths or stack traces",
+                "Security hardening headers set at the front controller",
             ],
             diagrams: [
                 { label: "System Architecture", src: "/images/projects/al-kayan-nova/diagrams/al-kayan-architecture.svg" },
@@ -162,40 +193,68 @@ export const projects: Project[] = [
         slug: "logger-suite-erp",
         caseStudy: {
             problem: "Growing operations teams needed a multi-tenant ERP that could handle inventory, stock tracking, and role-scoped dashboards for admins, editors, and guests — without every tenant needing separate infrastructure.",
-            solution: "Built a multi-tenant SaaS ERP pairing a Next.js 15 frontend with a Laravel REST backend. Implemented Admin/Editor/Guest RBAC, JWT-secured API access, and Redis caching for dashboard and stock-tracking performance, containerized with Docker and deployed on AWS EC2/S3.",
-            highlights: [
+            responsibilities: "Built the full stack solo: the Next.js frontend, the Laravel REST backend, the RBAC model, and the Docker/AWS deployment.",
+            workflows: [
+                "Admin, editor, or guest logs in and receives a JWT scoped to their role",
+                "Editors manage products and stock levels; changes flow through the Laravel API and invalidate the relevant Redis cache entries",
+                "Dashboard queries hit Redis first for hot aggregates before falling back to MySQL",
+                "Guests get read-only, scoped views into reporting dashboards",
+            ],
+            architecture: [
                 "Decoupled Next.js 15 frontend + Laravel REST API backend",
                 "Multi-tenant data model with Admin/Editor/Guest role-based access control",
                 "JWT authentication across the API boundary, Redis caching for hot dashboard queries",
                 "Docker containerization with AWS EC2/S3 deployment",
             ],
+            security: [
+                "JWT-scoped access control enforced on every API route, not just hidden in the UI",
+                "Tenant data isolation at the query layer",
+                "Containerized deployment (Docker) on AWS EC2, with S3 for asset storage",
+            ],
         },
     },
     {
         title: "AutoFix — Car Service",
-        description: "AI-powered automotive platform using Bun runtime. Multi-role dashboards for mechanics, admins, and customers. OpenAI API for vehicle diagnostics and code-level maintenance guidance.",
-        tech: ["Bun", "React", "TypeScript", "OpenAI API", "Tailwind CSS"],
+        description: "Business software for managing vehicle repair requests, technicians, spare parts, orders, and payments in one workspace — role-based dashboards for customers, technicians, and admins.",
+        tech: ["Bun", "Next.js 16", "React 19", "TypeScript", "Prisma", "SQLite", "Tailwind CSS", "shadcn/ui"],
         link: "https://github.com/Ahmed-Hamdy101/autofix-service-platform-demo",
         Icon: HiMiniWrenchScrewdriver,
         color: "text-emerald-400",
         accent: "#34d399",
         accentRgb: "52,211,153",
         status: "Graduation",
-        previewImage: "/images/projects/Icare-car-platform/autofix-car-ux-full.png",
+        previewImage: "/images/projects/Icare-car-platform/AutoFix-–-Mobile-Vehicle-h-Repair-Spare-Parts.png",
         year: "2024",
-        category: "AI · Automotive",
+        category: "Service Platform",
         images: [
-            "/images/projects/Icare-car-platform/autofix-car-ux-full.png",
+            "/images/projects/Icare-car-platform/AutoFix-–-Mobile-Vehicle-h-Repair-Spare-Parts.png",
+            "/images/projects/Icare-car-platform/AutoFix-–-Mobile-Vehicle-Repair-Spare-Parts.png",
+            "/images/projects/Icare-car-platform/AutoFix-–-Mobile-Vehicle-Repair-loSpare-Parts.png",
+            "/images/projects/Icare-car-platform/AutoFix-–-Mobile-Vehicle-Repair-Sparepa--Parts.png",
+            "/images/projects/Icare-car-platform/AutoFix-–-Mobile-Vehictesle-Repair-Spare-Parts.png",
         ],
         slug: "autofix-car-service",
         caseStudy: {
-            problem: "Car owners and independent mechanics often lack quick, structured access to diagnostic guidance — leading to guesswork, unnecessary shop visits, and miscommunication between customers, mechanics, and admins.",
-            solution: "Built an AI-powered automotive service platform on the Bun runtime with multi-role dashboards for mechanics, admins, and customers. Integrated the OpenAI API to power vehicle diagnostics and code-level maintenance guidance directly inside the customer and mechanic flows.",
-            highlights: [
-                "Bun runtime for fast startup and a tighter dev loop than a standard Node.js stack",
-                "Role-scoped dashboards: Customer / Mechanic / Admin, each with its own views and permissions",
-                "OpenAI API integration for natural-language vehicle diagnostics and maintenance guidance",
-                "React + TypeScript + Tailwind CSS front end with a component-driven UI",
+            problem: "Vehicle service businesses need to coordinate customers submitting repair requests, technicians completing them, spare-parts inventory and ordering, and payments — all in one place, with clear approval and assignment workflows.",
+            responsibilities: "Sole developer: designed the Prisma schema, built all three role-based dashboards (customer/technician/admin), and implemented the repair lifecycle plus the parts/orders/payments system.",
+            workflows: [
+                "Customer registers, adds a vehicle, and submits a repair request with description, location, and media",
+                "Admin approves technicians and assigns incoming requests",
+                "A request moves through PENDING → ASSIGNED → IN_PROGRESS → COMPLETED, or CANCELLED at any point before completion",
+                "Customer can also browse the spare-parts catalog, place orders, and leave a rating/review for the technician",
+            ],
+            architecture: [
+                "Modular Next.js 16 monolith — pages and API route handlers run in the same deployable process",
+                "Prisma provides the persistence boundary over SQLite, suitable for dev and small deployments; a managed DB would be evaluated for higher concurrency",
+                "Role-based dashboards (Customer / Technician / Admin) under separate route groups, each with server-side authorization checks",
+                "shadcn/ui + Radix UI primitives for accessible components, TanStack Query and Zustand for client state, Caddy as the reverse proxy in front of the standalone Next.js build",
+            ],
+            security: [
+                "Server-side authorization verified on every role-sensitive route, not just hidden in the UI",
+                "Ownership validation before allowing access to vehicles, repairs, orders, uploads, or payments",
+                "Upload type/size validation with controlled access",
+                "Password hashing with a current strategy, secrets rotated through a secret manager — .env files, credentials, and DB files never committed",
+                "Next.js standalone production build behind Caddy, with TLS, backups, and health checks expected before go-live",
             ],
         },
     },
@@ -246,12 +305,24 @@ export const projects: Project[] = [
         slug: "laravel-admin-rest-api",
         caseStudy: {
             problem: "Admin backends for e-commerce or ops platforms often bolt on authentication and export features late, leading to inconsistent auth and slow, memory-heavy CSV exports for large order sets.",
-            solution: "Built a secure, scalable Admin REST API in Laravel using Passport for OAuth2/JWT authentication, with RBAC controlling access to users, orders, and admin operations. Order lifecycle management is exposed through clean RESTful endpoints, including streaming CSV exports that avoid loading full datasets into memory.",
-            highlights: [
-                "Laravel + Passport for OAuth2/JWT-based API authentication",
-                "RBAC layer governing user, order, and admin-operation endpoints",
-                "Full order lifecycle management via RESTful endpoints",
-                "Streaming CSV export for large order datasets, avoiding memory spikes",
+            responsibilities: "Built the entire API solo: schema design, all 9 controllers, the RBAC middleware, and the CSV export pipeline.",
+            workflows: [
+                "Client logs in via /api/v1/login and receives a Passport-issued OAuth2 token",
+                "Every protected request is authenticated by the token and gated by the CheckRole middleware for admin/editor-only routes",
+                "Admins and editors manage products (with image upload to Laravel Storage) and view orders",
+                "Orders can be exported as CSV via a streaming cursor, so large datasets don't load fully into memory",
+            ],
+            architecture: [
+                "Standard Laravel layering: routes → middleware → controllers → FormRequests → Eloquent models → API Resources",
+                "Passport chosen over Sanctum specifically for full OAuth2 support and token revocation on logout",
+                "API Resources explicitly allowlist response fields so password hashes and full role objects never leak",
+                "CheckRole middleware centralizes role checks at the route level instead of scattering them across controllers",
+            ],
+            security: [
+                "OAuth2 tokens via Laravel Passport, revoked on logout",
+                "FormRequest validation on every endpoint, separated from controller logic",
+                "Images stored through Laravel's filesystem abstraction (Storage::disk), not written directly into public/ with open permissions",
+                "Dockerized deployment: PHP 8.4 FPM + Apache serving the app, MySQL 8 and Redis as separate containers",
             ],
             diagrams: [
                 { label: "System Architecture", src: "/images/projects/laravel-rest-api/diagrams/laravel-system-architecture.svg" },
@@ -266,7 +337,7 @@ export const projects: Project[] = [
     {
         title: "TypeScript AI API",
         description: "Production-ready Fastify REST API in TypeScript, integrated with the OpenAI API to deliver intelligent-assistant capabilities behind clean, typed endpoints.",
-        tech: ["Fastify", "TypeScript", "OpenAI API", "Node.js"],
+        tech: ["Fastify", "TypeScript", "OpenAI API", "Node.js", "Zod", "Vitest"],
         link: "https://github.com/Ahmed-Hamdy101/ts-ai-api",
         Icon: HiMiniSparkles,
         color: "text-indigo-400",
@@ -279,21 +350,34 @@ export const projects: Project[] = [
         images: ["/images/projects/ts-ai-api/ts-ai-api.jpg"],
         slug: "typescript-ai-api",
         caseStudy: {
-            problem: "Teams integrating LLM features into a product need a reliable, typed API layer around the OpenAI API rather than calling it ad hoc from the frontend — something with proper request validation, error handling, and a clean contract.",
-            solution: "Built a production-ready Fastify REST API in TypeScript that wraps the OpenAI API to deliver intelligent-assistant capabilities behind clean, typed endpoints — a reusable backend layer any frontend can call safely.",
-            highlights: [
-                "Fastify chosen over Express for its lower overhead and built-in schema-based validation",
-                "TypeScript end-to-end for compile-time safety on request/response contracts",
-                "OpenAI API integration abstracted behind internal service methods, never exposed directly to clients",
-                "Structured for reuse as an internal AI microservice inside larger systems",
+            problem: "Teams integrating an LLM into a product need a small, fast, well-tested API layer in front of OpenAI — with auth, rate limiting, and validation already handled — rather than wiring raw SDK calls into every service.",
+            responsibilities: "Built the API solo: route design, the AiService wrapper around OpenAI, the auth middleware, and the full Vitest test suite.",
+            workflows: [
+                "Client authenticates every AI request with an X-API-Key header",
+                "POST /ai/chat proxies a multi-turn conversation to an OpenAI GPT model and returns the assistant's reply plus token usage",
+                "POST /ai/summarize condenses long text into a paragraph or bullet-point summary",
+                "GET /health reports API and AI service status for uptime checks",
             ],
+            architecture: [
+                "Fastify chosen over Express for 2–3x throughput, native TypeScript support, and schema-based validation",
+                "Zod schemas validate every request body at runtime, mirroring the TypeScript types with clearer error messages than raw JSON Schema",
+                "Service layer pattern: AiService is injected into routes, so it's mockable in tests without real HTTP calls to OpenAI",
+                "App factory pattern (buildApp()) returns a fresh Fastify instance per test, avoiding port conflicts in the suite",
+            ],
+            security: [
+                "X-API-Key header required on every AI route",
+                "60 requests/min per IP via @fastify/rate-limit",
+                "Security headers via @fastify/helmet",
+                "Multi-stage Dockerfile + docker-compose for containerized deployment; auto-generated Swagger docs at /docs",
+            ],
+            results: "Full unit + integration test suite via Vitest, covering routes, the service layer, and error handling for 400/401/403/404/500.",
             apiOnly: true,
         },
     },
     {
         title: "GIS Sinai Explorer",
-        description: "Multilingual (EN/FR) GIS dashboard for exploring buildings across the Sinai region on an interactive Cesium 3D terrain map, with point-to-point distance & travel-time calculation.",
-        tech: ["Node.js", "Express", "CesiumJS", "PostgreSQL", "PostGIS", "i18next"],
+        description: "Multilingual (EN/AR/FR) GIS dashboard for exploring buildings across the Sinai region on an interactive Cesium 3D terrain map, with point-to-point distance & travel-time calculation.",
+        tech: ["Next.js", "Express", "Prisma", "PostgreSQL", "CesiumJS", "JWT"],
         link: "https://github.com/Ahmed-Hamdy101/gis-dashboard",
         Icon: HiMiniMap,
         color: "text-orange-400",
@@ -316,13 +400,25 @@ export const projects: Project[] = [
         ],
         slug: "gis-sinai-explorer",
         caseStudy: {
-            problem: "Sinai region building data had no visual, interactive way to explore locations, calculate distances between points, or manage records — and needed to serve both English- and French-speaking stakeholders.",
-            solution: "Built a multilingual (EN/FR) GIS dashboard on an interactive CesiumJS 3D terrain map. Users browse and manage buildings, calculate point-to-point distance and travel time directly on the map, and track live route status, backed by a decoupled Node.js/Express API over PostgreSQL + PostGIS.",
-            highlights: [
-                "CesiumJS-powered interactive 3D terrain map centered on the Sinai region",
-                "PostgreSQL + PostGIS backend for spatial building data and queries",
-                "Point-to-point distance & travel-time calculator driven directly from map clicks",
-                "EN/FR bilingual interface with live route-status and building-count tracking",
+            problem: "Sinai region building data had no visual, interactive way to explore locations, calculate distances between points, or manage records — and needed to serve English, Arabic, and French speaking stakeholders.",
+            responsibilities: "Built both the Next.js client and the Express/Prisma API server solo, including the localization files for all three languages.",
+            workflows: [
+                "User registers and logs in via JWT authentication",
+                "User explores buildings on an interactive Cesium 3D map of the Sinai region",
+                "User adds or browses building records tied to map locations",
+                "User calculates distance and estimated travel time between two selected points",
+                "Dashboard surfaces summary statistics on buildings and routes",
+            ],
+            architecture: [
+                "Decoupled Next.js client and Express API server, connected over REST",
+                "Prisma ORM over PostgreSQL for building records and migrations",
+                "CesiumJS powering the interactive 3D terrain map on the client",
+                "English, Arabic, and French localization files for a trilingual interface",
+            ],
+            security: [
+                "JWT-based registration and login",
+                "Environment-based configuration (.env / .env.local) kept out of version control",
+                "Cesium Ion token managed through the deployment provider's secret settings, not hardcoded",
             ],
         },
     },
@@ -358,13 +454,25 @@ export const projects: Project[] = [
         slug: "aws-fullstack-deployment",
         caseStudy: {
             problem: "Shipping a Node.js/Express app locally is easy, but standing up a real AWS deployment — a managed database, decoupled object storage, and a pipeline that safely auto-deploys every push — is where most portfolio projects stop short.",
-            solution: "Deployed a full-stack Node.js/Express/TypeScript application to AWS Elastic Beanstalk, backed by an RDS PostgreSQL database and an S3 bucket for media storage, with a CircleCI pipeline running tests and pushing every change straight to the Beanstalk environment.",
-            highlights: [
+            responsibilities: "Provisioned and configured the AWS infrastructure end-to-end and wired up the CI/CD pipeline for this Udacity Cloud DevOps Nanodegree capstone (Udagram).",
+            workflows: [
+                "Push to the repository triggers the CircleCI pipeline",
+                "Pipeline builds and tests the Node.js/Express/TypeScript app",
+                "On success, CircleCI deploys straight to the Elastic Beanstalk environment",
+                "The running app reads/writes to RDS PostgreSQL and stores media in the S3 bucket",
+            ],
+            architecture: [
                 "AWS Elastic Beanstalk hosting for the Node.js/Express/TypeScript API and frontend",
                 "AWS RDS (PostgreSQL) as the managed production database",
                 "AWS S3 bucket for image/media storage, decoupled from the app server",
                 "CircleCI pipeline automating build, test, and deployment on every push",
             ],
+            security: [
+                "Environment variables and secrets managed through CircleCI's project environment settings, not committed to the repo",
+                "RDS provisioned as a managed, access-controlled database instance separate from the app tier",
+                "S3 bucket used specifically to decouple media storage from the compute layer",
+            ],
+            results: "Fully automated pipeline — a push to master builds, tests, and deploys to Elastic Beanstalk with no manual steps.",
             apiOnly: true,
         },
     },
