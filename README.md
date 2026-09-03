@@ -63,8 +63,6 @@ Contributions are welcome—templates, content parsing, theme improvements, and 
 - [x] Review CV
 
 
-Co-authored-by: Name <mina.s.wadie@gmail.com>
-
 ## 📜 License
 MIT. See `LICENSE` for details.
 
