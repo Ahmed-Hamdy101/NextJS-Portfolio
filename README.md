@@ -62,6 +62,7 @@ Contributions are welcome—templates, content parsing, theme improvements, and 
 - [x] One-click deployment to Vercel/Netlify via CLI
 - [x] Review CV
 
+
 ## 📜 License
 MIT. See `LICENSE` for details.
 
