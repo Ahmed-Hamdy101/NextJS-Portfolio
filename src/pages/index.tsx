@@ -111,22 +111,22 @@ export default function HomePage() {
     return (
         <> {/*  This fragment now correctly wraps all top-level elements */}
         <Head>
-            <title> Home Page Ahmed Hamdy Portfolio |  Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
-            <meta name="description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <title> Home Page Ahmed Hamdy Portfolio |  Full Stack Engineer | Next.js, Laravel, AWS Expert</title>
+            <meta name="description" content="Ahmed Hamdy is a  Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <link rel="canonical" href="https://ahmedhamdy101.is-a.dev//" />
             
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://ahmedhamdy101.is-a.dev/" />
-            <meta property="og:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta property="og:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta property="og:title" content="Ahmed Hamdy |  Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta property="og:description" content="Ahmed Hamdy is a  Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta property="og:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
             
             {/* Twitter */}
             <meta name="twitter:card" content="favicons.svg" />     
             <meta name="twitter:url" content="https://ahmedhamdy101.is-a.dev/" />
-            <meta name="twitter:title" content="Ahmed Hamdy | Mid Level Senior Full Stack Engineer | Next.js, Laravel, AWS Expert" />
-            <meta name="twitter:description" content="Ahmed Hamdy is a Mid Level Senior Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
+            <meta name="twitter:title" content="Ahmed Hamdy |  Full Stack Engineer | Next.js, Laravel, AWS Expert" />
+            <meta name="twitter:description" content="Ahmed Hamdy is a  Full Stack Engineer with 5+ years of experience building scalable web applications and cloud infrastructure using Next.js, Laravel, AWS, and AI integrations." />
             <meta name="twitter:image" content="https://ahmedhamdy101.is-a.dev/og-image.jpg" />
 
         </Head>
